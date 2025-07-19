@@ -14,7 +14,7 @@ module.exports = {
         "pastel-gradient": "linear-gradient(0deg,#475c6c, #5e717f,#475c6c)",
         registerBack: "linear-gradient(0deg, #457b9d)",
         header: "linear-gradient(0deg,  transparent, #edede9  )",
-        mainBack: "linear-gradient(120deg,  white)",
+        mainBack: "linear-gradient(120deg,  #D9DFCC)",
         categoriesBack:
           "linear-gradient(190deg , transparent,transparent,#e9edc9)",
         gradientradialcenter:

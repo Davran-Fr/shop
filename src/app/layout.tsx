@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Providers } from "@/Redux/Providers";
 import HeaderFooter from "@/components/headerfooter/HeaderFooter";
 import "./globals.css";
+import { AnimationsProvider } from "@/components/forms/animation";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +18,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`antialiased `}>
         <Providers>
+          <AnimationsProvider>
             <HeaderFooter>{children}</HeaderFooter>
+          </AnimationsProvider>
         </Providers>
       </body>
     </html>

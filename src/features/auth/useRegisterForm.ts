@@ -51,10 +51,7 @@ export const useRegisterForm = () => {
       return;
     }
     
-    const {
-      confirmPassword,
-      ...validForm
-    }: { confirmPassword: string } & UpdatedType = datas;
+    const {  confirmPassword, ...validForm }: { confirmPassword: string } & UpdatedType = datas;
 
     const result = await signUp(validForm).unwrap();
 

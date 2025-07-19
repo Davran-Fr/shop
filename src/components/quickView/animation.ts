@@ -1,13 +1,11 @@
 import gsap from "gsap";
-import  { useEffect, useRef, useState } from "react";
-import {  QuickViewProps } from "./QuickView";
+import { useEffect, useRef, useState } from "react";
+import { QuickViewProps } from "./QuickView";
 import { useDispatch } from "react-redux";
 import { openQuikview } from "@/Redux/slices/quickView";
 import { useWidth } from "@/hooks/useWidth";
 
-
-
-export const animation = ({ openClose, data}: QuickViewProps) => {
+export const animation = ({ openClose, data }: QuickViewProps) => {
   const [image, setImage] = useState<number>(0);
   const images = data?.images || [];
   const divref = useRef<HTMLDivElement>(null);
@@ -19,10 +17,8 @@ export const animation = ({ openClose, data}: QuickViewProps) => {
     if (divref.current) {
       if (openClose === "open") {
         gsap.set(divref.current, {
-          // height: 0,
-          scaleY : 0,
+          scaleY: 0,
           overflow: "scroll",
-          // maxHeight: width >= 1024 ? "550px" : "600px",
           opacity: 0,
         });
 
@@ -61,16 +57,13 @@ export const animation = ({ openClose, data}: QuickViewProps) => {
   };
 };
 
-
-
-
-export const checkPricePercentage = ({data} : QuickViewProps)  => {
-     const discountPrice =
+export const checkPricePercentage = ({ data }: QuickViewProps) => {
+  const discountPrice =
     data?.price && data?.discountPercentage
       ? data.price * (1 - data.discountPercentage / 100)
       : null;
 
-      return {
-        discountPrice
-      }
+  return {
+    discountPrice,
+  };
 };

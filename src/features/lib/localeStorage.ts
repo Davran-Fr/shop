@@ -11,7 +11,7 @@ export const getId_User = () => {
   if (typeof window !== "undefined") {
     return localStorage.getItem("user_id");
   }
-  return null; // или другое дефолтное значение для сервера
+  return null; 
 };
 
 export const clearId_User = () => localStorage.removeItem("user_id");

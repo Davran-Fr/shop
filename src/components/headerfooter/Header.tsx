@@ -66,7 +66,7 @@ const Header = () => {
                 height={800}
                 alt="avatar"
                 className="w-full h-full object-cover"
-                src={`${user.avatar}`}
+                src={`/${user.avatar}`}
               />
             </div>
           ) : (

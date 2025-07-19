@@ -1,60 +1,37 @@
 "use client";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import { useVideoAnimations } from "./videoAnimations";
 
-gsap.registerPlugin(ScrollTrigger);
 const Video = () => {
-  const divRef = useRef<HTMLDivElement | null>(null);
-
-  const videos = [
-    {
-      name: "DvG",
-      src: "/video/SkeatBoard.mp4",
-    },
-    {
-      name: "Wonderful Furniters For Modern Design",
-      src: "/video/House.mp4",
-    },
-    {
-      name: "Shoeses",
-      src: "/video/reklamSneakers.mp4",
-    },
-    {
-      name: "Clothes",
-      src: "/video/clothes1.mp4",
-    },
-  ];
-  useEffect(() => {
-    const tl = gsap.timeline(
-      ScrollTrigger.create({
-        trigger: '.divv',
-        start: 'top top',
-        // end: '+=300px',
-        // pin: true,
-        // pinSpacing: false
-      })
-    );
-    tl.from(divRef.current, { x: "-100%"  , duration: 1 });
-    
-    return () => {
-      tl.kill()
-    }
-  }, []);
+  const { videos, divRef, textRef } = useVideoAnimations();
 
   return (
-    <div className="w-full divv relative  overflow-hidden h-[75vh]  z-0  ">
-      <div ref={divRef} className="w-full h-[75vh]">
-        <video
-          className="w-full h-full   object-cover"
-          loop
-          autoPlay
-          muted
-          src={`${videos[0].src}`}
+    <div className="w-full relative overflow-hidden h-[75vh] z-10">
+      {videos.map((items, i) => (
+        <div
+          key={i}
+          ref={(e) => {
+            if (e) divRef.current[i] = e;
+          }}
+          className="w-full absolute top-0 left-0 h-[75vh]"
         >
-          Your browser does not support the video tag.
-        </video>
-      </div>
+          <video
+            className="w-full h-full  z-20 object-cover"
+            loop
+            autoPlay
+            muted
+            src={items.src}
+          />
+          <div
+            className="text-5xl font-world absolute z-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white"
+            ref={(e) => {
+              if (e) textRef.current[i] = e;
+            }}
+          >
+            <p className="">{items.name}</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
