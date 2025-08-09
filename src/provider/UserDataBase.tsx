@@ -12,8 +12,7 @@ export function UserDataBase({ children }: { children: React.ReactNode }) {
   const refreshToken = getTokenCookies();
   const pathname = usePathname();
   const router = useRouter();
-  const showRefresh =
-    !refreshToken && !pathname.startsWith("/auth") ? true : false;
+  const showRefresh = !refreshToken && !pathname.startsWith("/auth") ? true : false;
 
   const [triggerProfile, { data }] = useLazyGetProfileQuery();
 
@@ -31,7 +30,7 @@ export function UserDataBase({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <div
+      {/* <div
         className={`${
           showRefresh
             ? "visible pointer-events-auto"
@@ -48,7 +47,7 @@ export function UserDataBase({ children }: { children: React.ReactNode }) {
           <h3>Please try again something went wrong</h3>
           <button onClick={() => router.refresh()}>Refresh</button>
         </div>
-      </div>
+      </div> */}
       {children}
     </>
   );
