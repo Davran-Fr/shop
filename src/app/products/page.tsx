@@ -8,7 +8,7 @@ import React from "react";
 
 const page = () => {
   const {   isLoading, filtered,   searchedProducts , } = productsFiltiration();
-  // if(!filtered) return null
+  if(!filtered) return null
   return (
     <div>
       <Banner />

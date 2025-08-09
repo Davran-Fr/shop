@@ -7,7 +7,6 @@ import { Autoplay, FreeMode } from "swiper/modules";
 import Cards from "../cards/Cards";
 import { actionMainPageCard } from "../../features/card/useCardActions";
 import { sliderBreakPoints } from "../cards/cardsBreakpoints";
-import QuickView from "../quickView/QuickView";
 import { useWidth } from "@/hooks/useWidth";
 import { useSearch } from "../filter/actions";
 import { capitalize } from "@/hooks/useFirstLetterCapital";
@@ -38,7 +37,6 @@ const MainPageCards = () => {
 
   return (
     <div className="mx-auto container font-ptSerif  space-y-10 text-black  px-4 py-20">
-      <QuickView />
       <div className="">
         <Swiper
           ref={swiperRef}
