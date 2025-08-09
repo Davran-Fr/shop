@@ -1,14 +1,16 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, FreeMode } from "swiper/modules";
 import Cards from "../cards/Cards";
-import { actionMainPageCard } from "../../features/card/cardActions";
+import { actionMainPageCard } from "../../features/card/useCardActions";
 import { sliderBreakPoints } from "../cards/cardsBreakpoints";
 import QuickView from "../quickView/QuickView";
 import { useWidth } from "@/hooks/useWidth";
+import { useSearch } from "../filter/actions";
+import { capitalize } from "@/hooks/useFirstLetterCapital";
 
 const MainPageCards = () => {
   const mainPageActions = actionMainPageCard();
@@ -40,7 +42,12 @@ const MainPageCards = () => {
       <div className="">
         <Swiper
           ref={swiperRef}
-          loop={mainPageActions.products?.products.length  && mainPageActions.products?.products.length > 1 ? true : false}
+          loop={
+            mainPageActions.categories &&
+            mainPageActions.categories?.length >= 3
+              ? true
+              : false
+          }
           pagination={true}
           freeMode={{
             enabled: true,
@@ -56,7 +63,7 @@ const MainPageCards = () => {
             swiperRef.current?.swiper.autoplay.start();
           }}
           modules={[Autoplay, FreeMode]}
-          speed={3000}
+          speed={500}
           autoplay={{
             delay: 5,
             disableOnInteraction: false,
@@ -65,37 +72,38 @@ const MainPageCards = () => {
         >
           {mainPageActions.categories?.map((item, i) => {
             return (
-              <>
-                <SwiperSlide
-                  key={i}
-                  onClick={() => {
-                    mainPageActions.setCategory(item);
-                    swiperRef.current?.swiper.slideToLoop(i, 500);
-                    swiperRef.current?.swiper.autoplay.stop();
-                  }}
-                  className=" cursor-pointer relative  rounded-xl"
+              <SwiperSlide
+                key={i}
+                onClick={() => {
+                  mainPageActions.setCategory(item ? item : null);
+                  swiperRef.current?.swiper.slideToLoop(i, 500);
+                  swiperRef.current?.swiper.autoplay.stop();
+                }}
+                className=" cursor-pointer relative  rounded-xl"
+              >
+                <div
+                  className={`relative  w-full
+                     
+                        ${
+                          mainPageActions.category === item
+                            ? "bg-orderBtn"
+                            : "bg-mainColor"
+                        }  rounded-xl flex backdrop-blur-xl items-center overflow-hidden relative justify-center  text-xl py-7 `}
                 >
                   <div
-                    className={`relative  w-full  ${
-                      mainPageActions.category === item
-                        ? "bg-orderBtn"
-                        : "bg-mainColor"
-                    }  rounded-xl flex backdrop-blur-xl items-center overflow-hidden relative justify-center  text-xl py-7 `}
+                    className={`absolute whitespace-nowrap font-medium   flex items-center justify-center    h-full ${
+                      item &&
+                      item.length > 8 &&
+                      width <= 640 &&
+                      swiperRef.current?.swiper.realIndex === i
+                        ? " animate-marquee "
+                        : ""
+                    } `}
                   >
-                    <div
-                      className={`absolute whitespace-nowrap   flex items-center justify-center    h-full ${
-                        item.length > 8 &&
-                        width <= 640 &&
-                        swiperRef.current?.swiper.realIndex === i
-                          ? " animate-marquee "
-                          : ""
-                      } `}
-                    >
-                      {item}
-                    </div>
+                    {capitalize(item ? item : "")}
                   </div>
-                </SwiperSlide>
-              </>
+                </div>
+              </SwiperSlide>
             );
           })}
         </Swiper>
@@ -109,7 +117,12 @@ const MainPageCards = () => {
           pagination={true}
           spaceBetween={10}
           slidesPerView={slidesPerView}
-          loop={mainPageActions.products?.products.length  && mainPageActions.products?.products.length > 1 ? true : false}
+          loop={
+            mainPageActions.products?.products.length &&
+            mainPageActions.products?.products.length > 1
+              ? true
+              : false
+          }
           autoplay={true}
           modules={[Autoplay]}
           className="mySwiper"

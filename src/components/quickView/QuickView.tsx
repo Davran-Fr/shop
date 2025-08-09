@@ -5,7 +5,7 @@ import { Product } from "@/Types/productsTypes";
 import { IoCloseSharp } from "react-icons/io5";
 import { animation } from "./animation";
 import { QuickViewImages, QuickViewText } from "./Infos";
-import { actionGetIdProducts } from "../../features/card/cardActions";
+import { actionGetIdProducts } from "../../features/card/useCardActions";
 
 export interface QuickViewProps {
   data?: Product | null;

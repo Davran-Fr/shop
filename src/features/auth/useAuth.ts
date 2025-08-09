@@ -3,11 +3,11 @@ import {
   clearTokenCookies,
   getTokenCookies,
   setTokenCookies,
-} from "../lib/cookies";
+} from "../lib/useCookies";
 import { useDispatch } from "react-redux";
 import { useRefreshTokenMutation } from "@/Api/auth";
 import { useRouter } from "next/navigation";
-import { setAccess_token } from "../lib/localeStorage";
+import { setAccess_token } from "../lib/useLocaleStorage";
 
 export const useAuth = () => {
 

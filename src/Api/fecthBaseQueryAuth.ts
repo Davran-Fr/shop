@@ -8,12 +8,12 @@ import {
   clearTokenCookies,
   getTokenCookies,
   setTokenCookies,
-} from "@/features/lib/cookies";
+} from "@/features/lib/useCookies";
 import {
   clearAccess_token,
   getAccess_token,
   setAccess_token,
-} from "@/features/lib/localeStorage";
+} from "@/features/lib/useLocaleStorage";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "https://api.escuelajs.co/api/v1",

@@ -3,44 +3,52 @@
 import { useLogInForm } from "@/features/auth/useLogInForm";
 import RegisterButton from "@/ui/RegisterButton";
 import RegisterInput from "@/ui/RegisterInput";
-import React from "react";
+import gsap from "gsap";
+import { usePathname } from "next/navigation";
+import React, { useEffect, useRef } from "react";
 
 const LoginForm = () => {
-  const {
-    onSubmit,
-    handleSubmit,
-    dispacht,
-    register,
-    data,
-    error,
-    isLoading,
-    load,
-  } = useLogInForm();
+  const divRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  useEffect(() => {
+    gsap.fromTo(
+      divRef.current,
+      { x: -100, opacity: 0 },
+      { x: 0, duration: 0.5, opacity: 1 }
+    );
+  }, [pathname]);
+  const { onSubmit, handleSubmit, register, errors, reset } = useLogInForm();
 
-  if (isLoading) return <div>LOADING</div>;
+  // if (isLoading) return <div>LOADING</div>;
   return (
-    <div className="w-full h-full">
+    <div ref={divRef} className="w-full h-full">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col   w-full justify-between h-full"
+        className="flex flex-col gap-10 md:gap-0  w-full justify-between h-full"
       >
         {/* {error} */}
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-10  ">
           <RegisterInput
+            error={errors.email}
             type="email"
             placeholder="E-mail"
             registation={register("email")}
           />
           <RegisterInput
+            error={errors.password}
             type="password"
             placeholder="Password"
             registation={register("password")}
           />
         </div>
-        <div className="flex-col gap-5 flex">
+        <div className="flex-col text-lg font-world gap-5 flex">
           <div className="flex gap-5">
-            <RegisterButton type="button" name="Clear All" />
-            <RegisterButton type="submit" name="Login" navigation="/" />
+            <RegisterButton
+              onclick={() => reset()}
+              type="button"
+              name="Clear All"
+            />
+            <RegisterButton type="submit" name="Login" />
           </div>
           <RegisterButton
             type="button"

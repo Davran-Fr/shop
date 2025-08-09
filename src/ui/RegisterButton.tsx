@@ -1,27 +1,23 @@
 "use client";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, {
-  forwardRef,
-  HTMLAttributes,
-  ObjectHTMLAttributes,
-  RefAttributes,
-  RefObject,
-} from "react";
+import React, { forwardRef } from "react";
 
 interface Props {
-  type: "submit" | "button" | "reset";
   navigation?: string;
   name: string;
   classname?: string;
   onclick?: () => void;
+  type: "button" | 'submit';
 }
-const RegisterButton = forwardRef<HTMLButtonElement, Props>(({ navigation, name, classname = "", onclick, type = "button" }, ref) => {
+const RegisterButton = forwardRef<HTMLButtonElement, Props>(
+  ({ navigation, type = "button", name, classname = "", onclick }, ref) => {
     const router = useRouter();
     return (
       <button
         ref={ref}
         type={`${type}`}
-        className={`bg-orderBtn  w-full rounded-xl text-black py-2 ${classname}`}
+        className={`bg-orderBtn border-1px border-gray-500 w-full rounded-xl text-black py-2 ${classname}`}
         onClick={() => {
           onclick?.();
           if (navigation) router.push(`${navigation}`);

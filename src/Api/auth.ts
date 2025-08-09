@@ -7,7 +7,7 @@ export const api = createApi({
   reducerPath: "pokemonApi",
   baseQuery: customBaseQuery,
   endpoints: (builder) => ({
-    getUserInfo: builder.query<any, void>({
+    getAllUserInfo: builder.query<UserResponse[], void>({
       query: () => "/users",
     }),
     signUp: builder.mutation<UserResponse, UpdatedType>({
@@ -40,9 +40,16 @@ export const api = createApi({
     ,
     getProfile: builder.query<UserResponse, void>({
       query : () => '/auth/profile'
+    }),
+    isEmailAvailable : builder.mutation<{isAvailable : boolean  } , {email : string}>({
+      query : ({email}) => ({
+       method : "POST",
+       url : '/users/is-available',
+       body: {email}
+      })
     })
   
   }),
 });
 
-export const { useGetUserInfoQuery, useSignUpMutation , useLogInMutation ,useGetProfileQuery, useRefreshTokenMutation , useUserInfoQuery} = api;
+export const {useIsEmailAvailableMutation ,  useLazyGetAllUserInfoQuery, useSignUpMutation , useLogInMutation ,useLazyGetProfileQuery, useRefreshTokenMutation , useUserInfoQuery} = api;

@@ -18,29 +18,26 @@ export const ecommerce = createApi({
     }),
     getChosedCategories: builder.query<
       getAllProductsTypes,
-      { category: string }
+      { category: string | null }
     >({
       query: ({ category }) => `/products/category/${category}`,
     }),
     getAllProducts: builder.query<getAllProductsTypes, void>({
       query: () => "/products?limit=0&skip=0",
     }),
-    getSingleProduct: builder.query<Product, number | null>({
+    getSingleProduct: builder.query<Product, number>({
       query: (id) => ({
         url: `products/${id}`,
         method: "GET",
       }),
     }),
-    getProductsFiltered: builder.query<any, ProductParams>({
-      query: ({ skip, category, q, sortBy, order, select, limit }) => {
+    getProductsFiltered: builder.query<getAllProductsTypes, ProductParams>({
+      query: ({ skip, category, sortBy, order, select, limit }) => {
         let url = "";
         const params = new URLSearchParams();
 
-        if (category && !q) {
+        if (category) {
           url = `/products/category/${category}`;
-        } else if (q) {
-          url = `/products/search`;
-          params.append("q", q);
         } else {
           url = `/products`;
         }
@@ -52,6 +49,14 @@ export const ecommerce = createApi({
         if (select) params.append("select", select);
 
         return `${url}?${params.toString()}`;
+      },
+      transformResponse: (response: getAllProductsTypes) => {
+        return {
+          ...response,
+          products: response.products.filter(
+            (items) => !items.category.includes("groceries")
+          ),
+        };
       },
     }),
   }),

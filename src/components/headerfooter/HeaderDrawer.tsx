@@ -20,7 +20,7 @@ const HeaderDrawer = forwardRef<HTMLDivElement, Props>(
     return (
       <div
         ref={ref}
-        className={`fixed py-10 px-5 text-white top-0 w-2/3  delay-400 space-y-10 ease-out duration-500  transition-transform h-full right-0 z-60 bg-mainBack transform  ${
+        className={`fixed py-10 px-5 text-black top-0 w-2/3  delay-400 space-y-10 ease-out duration-500  transition-transform h-full right-0 z-60 bg-mainBack transform  ${
           open ? "translate-x-0 delay-200" : "translate-x-full "
         }`}
       >
@@ -34,7 +34,7 @@ const HeaderDrawer = forwardRef<HTMLDivElement, Props>(
                   height={800}
                   alt="avatar"
                   className="w-full h-full object-cover "
-                  src={`/${user.avatar}`}
+                  src={`${user.avatar}`}
                 />
               </div>
             ) : (
@@ -42,11 +42,12 @@ const HeaderDrawer = forwardRef<HTMLDivElement, Props>(
             )}
           </div>
           <div className="flex flex-col w-full   gap-3    font-world text-center">
-            {links.map((items ,i ) => {
+            {links.map((items, i) => {
               return (
                 <Link
-                key={i}
-                  className="py-5 bg-mainColor rounded-xl"
+                  onClick={onClick}
+                  key={i}
+                  className="py-2 bg-mainColor border-1px border-gray-500 rounded-xl"
                   href={items.href}
                 >
                   {items.name}

@@ -1,23 +1,20 @@
 "use client";
-import { useGetProductsFilteredQuery } from "@/Api/ecommerce";
+import PaginationPage from "@/components/pagination/PaginationPage";
 import Banner from "@/components/products/Banner";
+import CardsProducts from "@/components/products/CardsProducts";
+import Filter from "@/components/filter/MainFilterBar";
+import productsFiltiration from "@/features/products/productsFiltiration";
 import React from "react";
 
 const page = () => {
-  const { data, error, isLoading } = useGetProductsFilteredQuery({
-    q: "apple",
-    category: "mens-shirts",
-    sortBy: "title",
-    order: "asc",
-    limit: 10,
-    skip: 0,
-    select: "",
-  });
-  console.log(data);
-
+  const {   isLoading, filtered,   searchedProducts , } = productsFiltiration();
+  // if(!filtered) return null
   return (
     <div>
       <Banner />
+      <Filter  />
+      <CardsProducts  main={filtered } />
+      <PaginationPage    total={searchedProducts.length} />
     </div>
   );
 };

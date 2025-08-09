@@ -7,7 +7,7 @@ const Banner = () => {
   const { divRef, arrayBannerImage, textRef } = bannerAnimations();
 
   return (
-    <div className="w-full relative overflow-hidden h-40vh sm:h-50vh ">
+    <div className="w-full relative overflow-hidden  z-40 h-40vh sm:h-50vh ">
       {arrayBannerImage.map((items, i) => (
         <div
           key={i}
@@ -21,10 +21,10 @@ const Banner = () => {
               ref={(el) => {
                 if (el) textRef.current[i] = el;
               }}
-              className="w-full h-full text-center flex flex-col justify-center relative z-40 items-center gap-5 container mx-auto px-4"
+              className="w-full h-full text-center flex flex-col justify-center pt-10 relative z-40 items-center gap-2 container mx-auto px-4"
             >
-              <h2 className="text-2xl 400:text-3xl sm:text-5xl font-bold">{items.name}</h2>
-              <h3 className="text-xl sm:text-2xl font-semibold">{items.title}</h3>
+              <h2 className="text-xl 400:text-3xl sm:text-4xl font-bold">{items.name}</h2>
+              <h3 className="text-lg sm:text-2xl font-semibold">{items.title}</h3>
             </div>
             <div className="w-full h-full bg-black/50 absolute top-0 left-0 z-30"></div>
           </div>

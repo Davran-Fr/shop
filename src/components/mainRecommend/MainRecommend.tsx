@@ -4,9 +4,14 @@ import React, { useState } from "react";
 import { recommend } from "./recommends";
 import Image from "next/image";
 import { FaArrowCircleRight, FaArrowRight } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { changeFilter } from "@/Redux/slices/filterBase";
 
 const MainRecommend = () => {
   const [index, setIndex] = useState<number | null>(null);
+  const router= useRouter()
+  const dispacht = useDispatch()
   const show = "translate-y-0 transform";
 
   return (
@@ -24,12 +29,16 @@ const MainRecommend = () => {
         <div className="columns-2 md:columns-3 lg:columns-4 gap-5   ">
           {recommend.map((items, i) => (
             <div
+              onClick={() => {
+                router.push('/products')
+                dispacht(changeFilter({category: items.title}))
+              }}
               onMouseEnter={() => setIndex(i)}
               onMouseLeave={() => setIndex(null)}
               key={i}
               className={` ${
                 i === 0 && ""
-              }  mb-5  relative  shadow-sm    overflow-hidden `}
+              }  mb-5  relative  shadow-sm rounded-md    cursor-pointer overflow-hidden `}
             >
               <div className="bg- h-full w-full absolute top-0 left-0 z-10 opacity-50"></div>
               <div

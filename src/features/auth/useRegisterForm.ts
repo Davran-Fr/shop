@@ -7,21 +7,29 @@ import {
   GetTypeValidForm,
   UpdatedType,
 } from "@/validation/validation";
-import { useLogInMutation, useSignUpMutation } from "@/Api/auth";
+import {
+  useLazyGetAllUserInfoQuery,
+  useLogInMutation,
+  useSignUpMutation,
+} from "@/Api/auth";
 import { useRouter } from "next/navigation";
-import { setAccess_token, setId_User } from "../lib/localeStorage";
-import { setTokenCookies } from "../lib/cookies";
+import { setAccess_token } from "../lib/useLocaleStorage";
+import { setTokenCookies } from "../lib/useCookies";
 import { uploadToCloudinary } from "@/hooks/upLoadCloudinary";
+import { useDispatch } from "react-redux";
+import { loadingAuth } from "@/Redux/slices/globalLoading";
+import imageCompression from "browser-image-compression";
 
 export const useRegisterForm = () => {
   const [imgPreview, setImgPreview] = useState<string | null>(null);
-  const [signUp, { isLoading, error }] = useSignUpMutation();
-  const [
-    logIn,
-    { isLoading: logInIsloading, error: logInError },
-  ] = useLogInMutation();
+  const dispatch = useDispatch();
+  const [data] = useLazyGetAllUserInfoQuery();
+  const [signUp] = useSignUpMutation();
+  const [logIn] = useLogInMutation();
+
   const router = useRouter();
 
+  //Validation react hooook forms
   const {
     register,
     handleSubmit,
@@ -32,57 +40,99 @@ export const useRegisterForm = () => {
     resolver: zodResolver(validForm),
   });
 
+  //Upload  images from cloudinaryy
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+
     if (!file) return;
+
+    const checkedSize = file.size / (1024 * 1024);
+
+    if (checkedSize > 2) {
+      alert(
+        "Would you mind uploading a smaller file? Ideally, it should be under 2 MB."
+      );
+      return;
+    }
+    if (file) dispatch(loadingAuth(false));
+
     setImgPreview(URL.createObjectURL(file));
+
     const url = await uploadToCloudinary(file);
-    setValue("avatar", url , { shouldValidate: true });
+    if (!url) {
+      alert("Coudn't upload image please try again");
+      dispatch(loadingAuth(true));
+      return;
+    }
+    if (url) dispatch(loadingAuth(true));
+
+    setValue("avatar", url, { shouldValidate: true });
   };
 
+  //Register
   const onSubmit: SubmitHandler<GetTypeValidForm> = async (datas) => {
     if (
       !datas.name ||
       !datas.email ||
       !datas.password ||
-      !datas.confirmPassword
+      !datas.confirmPassword ||
+      !datas.avatar
     ) {
       alert("Doldur");
       return;
     }
-    
-    const {  confirmPassword, ...validForm }: { confirmPassword: string } & UpdatedType = datas;
+    const {
+      confirmPassword,
+      ...validForm
+    }: { confirmPassword: string } & UpdatedType = datas;
+    dispatch(loadingAuth(false));
 
-    const result = await signUp(validForm).unwrap();
-
-    const tokens = await logIn({
-      email: validForm.email,
-      password: validForm.password,
-    });
-
-    if (tokens.data?.access_token && tokens.data.refresh_token) {
-      setTokenCookies(tokens.data.refresh_token);
-      setAccess_token(tokens.data.access_token);
+    //CHECK EMIAL STATUS IN DATABASE
+    const isEmailAvailable = async () => {
+      const response = await data();
+      return response.data?.some((user) => user.email === validForm.email);
+    };
+    const emailFree = await isEmailAvailable();
+    if (emailFree) {
+      alert("email is alreadyy exists");
+      dispatch(loadingAuth(true));
+      return;
     }
+    ////---//---//
 
-    router.replace("/");
-    setId_User(result.id);
-    setImgPreview(null);
-    reset();
+    try {
+      await signUp(validForm).unwrap();
+      const tokens = await logIn({
+        email: validForm.email,
+        password: validForm.password,
+      }).unwrap();
+
+      if (tokens.access_token && tokens.refresh_token) {
+        setTokenCookies(tokens.refresh_token);
+        setAccess_token(tokens.access_token);
+      }
+
+      setImgPreview(null);
+      reset();
+
+      dispatch(loadingAuth(false));
+      await router.replace("/");
+      dispatch(loadingAuth(true));
+    } catch (error) {
+      console.error("Registration error:", error);
+      dispatch(loadingAuth(true));
+    }
   };
 
   const clearSubmit = () => {
     setImgPreview(null);
     reset();
   };
-
   return {
     register,
     handleSubmit,
     errors,
     imgPreview,
-    isLoading,
-    error,
     handleFileChange,
     onSubmit,
     clearSubmit,

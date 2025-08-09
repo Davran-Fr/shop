@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+//For Sign up 
 export const validForm = z
   .object({
     name: z.string().min(2),
@@ -17,7 +18,7 @@ export const validForm = z
       //   message: "Password need to contain  at least one symbol ",
       // }),
     confirmPassword: z.string().trim(),
-    avatar: z.string(),
+    avatar: z.string({message : 'Please fill your fucking image'}),
   })
   .superRefine((val, ctx) => {
     if (val.password !== val.confirmPassword) {
@@ -32,8 +33,10 @@ export const validForm = z
 export type GetTypeValidForm = z.infer<typeof validForm>;
 export type UpdatedType = Omit<GetTypeValidForm, "confirmPassword">;
 
+
+//For Login
 export const logInForm = z.object({
-  password: z.string({message: 'Please enter your password'}),
-  email: z.string().email({message: 'Please enter your '}),
+  password: z.string().min(2, { message: "Please enter your password" }),
+  email: z.string().email({message: 'Please enter your e-mail '}),
 });
 export type LoginType = z.infer<typeof logInForm>;

@@ -1,6 +1,6 @@
-export const uploadToCloudinary = async (file: File) => {
+export const uploadToCloudinary = async (file: File ) => {
   const data = new FormData();
-  data.append("file", file);
+  data.append("file", file );
   data.append("upload_preset", "unsigned_present");
   
   const res = await fetch(
