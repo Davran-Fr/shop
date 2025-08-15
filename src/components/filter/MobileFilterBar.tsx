@@ -5,13 +5,14 @@ import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { IoCloseSharp } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { toggleFilter } from "@/Redux/slices/toggleFilterBack";
+import { toggleFilter } from "@/Redux/toggleFilterBack";
 import { useRouter } from "next/navigation";
 
 interface Props {
   filter: boolean;
   divFilter: RefObject<HTMLDivElement | null>;
 }
+
 gsap.registerPlugin(ScrollToPlugin);
 
 const MobileFilterBar = ({ filter, divFilter }: Props) => {

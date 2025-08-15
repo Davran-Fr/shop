@@ -13,21 +13,23 @@ import {
   useSignUpMutation,
 } from "@/Api/auth";
 import { useRouter } from "next/navigation";
-import { setAccess_token } from "../lib/useLocaleStorage";
-import { setTokenCookies } from "../lib/useCookies";
+import { setAccess_token } from "../../lib/useLocaleStorage";
+import { setTokenCookies } from "../../lib/useCookies";
 import { uploadToCloudinary } from "@/hooks/upLoadCloudinary";
 import { useDispatch } from "react-redux";
-import { loadingAuth } from "@/Redux/slices/globalLoading";
-import imageCompression from "browser-image-compression";
+import { loadingAuth } from "@/Redux/globalLoading";
 
 export const useRegisterForm = () => {
-  const [imgPreview, setImgPreview] = useState<string | null>(null);
+  //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
+
+  const router = useRouter();
   const dispatch = useDispatch();
   const [data] = useLazyGetAllUserInfoQuery();
   const [signUp] = useSignUpMutation();
   const [logIn] = useLogInMutation();
+  const [imgPreview, setImgPreview] = useState<string | null>(null);
 
-  const router = useRouter();
+  //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
   //Validation react hooook forms
   const {
@@ -39,6 +41,8 @@ export const useRegisterForm = () => {
   } = useForm<GetTypeValidForm>({
     resolver: zodResolver(validForm),
   });
+
+  //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
   //Upload  images from cloudinaryy
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,20 +58,25 @@ export const useRegisterForm = () => {
       );
       return;
     }
+
     if (file) dispatch(loadingAuth(false));
 
     setImgPreview(URL.createObjectURL(file));
 
     const url = await uploadToCloudinary(file);
+
     if (!url) {
       alert("Coudn't upload image please try again");
       dispatch(loadingAuth(true));
       return;
     }
+
     if (url) dispatch(loadingAuth(true));
 
     setValue("avatar", url, { shouldValidate: true });
   };
+
+  //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
   //Register
   const onSubmit: SubmitHandler<GetTypeValidForm> = async (datas) => {
@@ -81,27 +90,36 @@ export const useRegisterForm = () => {
       alert("Doldur");
       return;
     }
+
+    ///Take From here confirmPassword because backend is not exepting
     const {
       confirmPassword,
       ...validForm
     }: { confirmPassword: string } & UpdatedType = datas;
+
     dispatch(loadingAuth(false));
+
+    //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
     //CHECK EMIAL STATUS IN DATABASE
     const isEmailAvailable = async () => {
       const response = await data();
       return response.data?.some((user) => user.email === validForm.email);
     };
+
     const emailFree = await isEmailAvailable();
+
     if (emailFree) {
       alert("email is alreadyy exists");
       dispatch(loadingAuth(true));
       return;
     }
-    ////---//---//
+
+    //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
     try {
       await signUp(validForm).unwrap();
+
       const tokens = await logIn({
         email: validForm.email,
         password: validForm.password,
@@ -116,7 +134,7 @@ export const useRegisterForm = () => {
       reset();
 
       dispatch(loadingAuth(false));
-      await router.replace("/");
+      router.replace("/");
       dispatch(loadingAuth(true));
     } catch (error) {
       console.error("Registration error:", error);
@@ -124,10 +142,15 @@ export const useRegisterForm = () => {
     }
   };
 
+  //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
+
   const clearSubmit = () => {
     setImgPreview(null);
     reset();
   };
+
+  //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
+
   return {
     register,
     handleSubmit,

@@ -5,6 +5,7 @@ interface Props {
   id: number | null;
   open: "open" | "hidden" | "close",
 }
+
 const initialState: Props = {
   id: null,
   open: 'hidden',

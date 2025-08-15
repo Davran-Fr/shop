@@ -1,10 +1,10 @@
 "use client";
 
-import { openQuikview } from "@/Redux/slices/quickView";
-import { Product } from "@/Types/productsTypes";
+import { openQuikview } from "@/Redux/quickView";
+import { Product } from "@/Types/products";
 import { IoCloseSharp } from "react-icons/io5";
 import { QuickViewImages, QuickViewText } from "./Infos";
-import { actionGetIdProducts } from "../../features/card/useCardActions";
+import { actionGetIdProducts } from "../../features/card/useCard";
 
 export interface QuickViewProps {
   data?: Product | null;

@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userInfo from "@/Redux/slices/userDataBase";
-import quickView from "@/Redux/slices/quickView";
-import filter from "@/Redux/slices/filterBase";
+import userInfo from "@/Redux/userDataBase";
+import quickView from "@/Redux/quickView";
+import filter from "@/Redux/filterBase";
 import { ecommerce } from "@/Api/ecommerce";
 import { api } from "@/Api/auth";
-import toggleFilter from "./slices/toggleFilterBack";
-import loadingAuth from "./slices/globalLoading";
-import cardItems from "./slices/cards";
-import addInfoProducts  from "./slices/infoDataBase";
+import toggleFilter from "./toggleFilterBack";
+import loadingAuth from "./globalLoading";
+import cardItems from "./cards";
+import addInfoProducts  from "./infoDataBase";
 
 export const store = configureStore({
   reducer: {

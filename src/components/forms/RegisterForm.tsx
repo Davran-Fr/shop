@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 const RegisterForm = () => {
   const divRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+
   useEffect(() => {
     gsap.fromTo(
       divRef.current,
@@ -18,6 +19,7 @@ const RegisterForm = () => {
       { x: 0, duration: 0.5, opacity: 1 }
     );
   }, [pathname]);
+
   const {
     register,
     handleSubmit,
@@ -27,14 +29,15 @@ const RegisterForm = () => {
     onSubmit,
     clearSubmit,
   } = useRegisterForm();
+  
   return (
     <div
       ref={divRef}
-      className="flex  font-medium items-center  font-world  h- 500:h-700px sm:h-full    w-full  bg-red-"
+      className="flex  font-medium items-center font-world 500:h-700px sm:h-full w-full"
     >
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="rounded-xl flex  items-center flex-col sm:flex-row   gap-10  justify-between w-full  h-full     text-black"
+        className="rounded-xl flex  items-center flex-col sm:flex-row   gap-10  justify-between w-full h-full text-black"
       >
         <label
           htmlFor="avatar"
@@ -49,7 +52,7 @@ const RegisterForm = () => {
             accept="image/*"
             className="hidden"
           />
-          <div className="w-28 h-28 400:w-36  400:h-36 500:w-40 500:h-40 bg-white  border-1px border-black rounded-full flex justify-center items-center overflow-hidden">
+          <div className="w-28 h-28 400:w-36 400:h-36 500:w-40 500:h-40 bg-white  border-1px border-black rounded-full flex justify-center items-center overflow-hidden">
             {imgPreview ? (
               <Image
                 className="w-full h-full object-cover rounded-full"

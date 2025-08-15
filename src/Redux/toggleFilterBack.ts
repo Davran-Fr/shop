@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 const initialState  =  {
    filter : false
 }
+
 const toggleFilterBack = createSlice({
   name: "toggleFilter",
   initialState,

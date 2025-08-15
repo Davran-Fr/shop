@@ -1,4 +1,3 @@
-import { Card } from "@/components/cards/Cards";
 import React from "react";
 
 interface Props {
@@ -13,7 +12,7 @@ const PriceDiscount = ({ price, discountPercentage , classname }: Props) => {
   return (
     <div className="flex items-center">
       {discountPrice && (
-        <span className={` ${classname}   font-workSans font-bold text-red-400`}>
+        <span className={` ${classname} font-workSans font-bold text-red-400`}>
           {discountPrice.toFixed(2)}$
         </span>
       )}

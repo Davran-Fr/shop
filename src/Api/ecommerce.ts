@@ -1,6 +1,6 @@
-import { ProductParams } from "@/Types/filterTypes";
-import { getAllProductsTypes } from "@/Types/mainTypes";
-import { Product } from "@/Types/productsTypes";
+import { ProductParams } from "@/Types/filter";
+import { getAllProductsTypes } from "@/Types/main";
+import { Product } from "@/Types/products";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const ecommerce = createApi({

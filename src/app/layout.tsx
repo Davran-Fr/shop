@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Providers } from "@/provider/Providers";
-import HeaderFooter from "@/components/headerfooter/HeaderFooter";
 import "./globals.css";
+import HeaderFooter from "@/components/header/HeaderFooter";
 
 export const metadata: Metadata = {
   title: "DVG",

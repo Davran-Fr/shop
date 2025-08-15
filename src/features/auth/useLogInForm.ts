@@ -1,21 +1,19 @@
-import {
-  useLogInMutation,
-} from "@/Api/auth";
+import { useLogInMutation } from "@/Api/auth";
 import { logInForm, LoginType } from "@/validation/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { setTokenCookies } from "../lib/useCookies";
+import { setTokenCookies } from "../../lib/useCookies";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { setAccess_token } from "../lib/useLocaleStorage";
-import { loadingAuth } from "@/Redux/slices/globalLoading";
+import { setAccess_token } from "../../lib/useLocaleStorage";
+import { loadingAuth } from "@/Redux/globalLoading";
 
 export const useLogInForm = () => {
   const [logInMutation, { data, error, isLoading }] = useLogInMutation();
   const router = useRouter();
   const dispacht = useDispatch();
-  console.log(data);
+
+  //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
   const {
     register,
@@ -25,6 +23,8 @@ export const useLogInForm = () => {
   } = useForm<LoginType>({
     resolver: zodResolver(logInForm),
   });
+
+  //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
   const onSubmit: SubmitHandler<LoginType> = async (data) => {
     if (!data.email || !data.password) {
@@ -50,6 +50,9 @@ export const useLogInForm = () => {
       dispacht(loadingAuth(true));
     }
   };
+
+  //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
+
   return {
     onSubmit,
     handleSubmit,

@@ -5,6 +5,7 @@ export const sliceBreakPoints = {
   100: 100,
   default: 17,
 };
+
 export const descriptionsSlice = {
   360 : 25,
   500: 40,
@@ -12,18 +13,18 @@ export const descriptionsSlice = {
   768: 20,
   default: 20,
 };
+
 export const sliderBreakPoints = () => {
   const [slidesPerView, setSlidesPerview] = useState(2);
   const [choosePerView, setChoosePerView] = useState(2);
   const width = useWidth();
   useEffect(() => {
-    if (width >= 500) {
+    if (width <= 640) {
       setSlidesPerview(2);
     }
-    if (width >= 640) {
+    if (width <= 768) {
       setChoosePerView(3)
     }
-
     if (width >= 768) {
       setSlidesPerview(3);
     }

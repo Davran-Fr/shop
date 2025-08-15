@@ -14,7 +14,7 @@ export default function AuthLayout({
   const isAuthPage = pathname.startsWith("/auth/login") || pathname.startsWith("/auth/signup");
   
   return (
-    <div className="mx-auto fixed  flex overflow-hidden justify-center font-medium   items-center  400:py-5 px-5 z-10  w-full h-screen bg-mainBack">
+    <div className="mx-auto fixed flex overflow-hidden justify-center font-medium items-center 400:py-5 px-5 z-10  w-full h-screen bg-mainBack">
       <div
         ref={authDiv}
         className={`bg-mainColor overflow-x-hidden ${

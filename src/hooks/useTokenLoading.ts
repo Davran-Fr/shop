@@ -1,4 +1,4 @@
-import { getTokenCookies } from "@/features/lib/useCookies";
+import { getTokenCookies } from "@/lib/useCookies";
 import { useEffect, useState } from "react";
 
 export const useTokenLoading = () => {

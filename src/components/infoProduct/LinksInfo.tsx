@@ -1,5 +1,5 @@
 import { capitalize } from "@/hooks/useFirstLetterCapital";
-import { changeFilter } from "@/Redux/slices/filterBase";
+import { changeFilter } from "@/Redux/filterBase";
 import { RootState } from "@/Redux/store";
 import { useParams, useRouter } from "next/navigation";
 import React from "react";

@@ -1,4 +1,4 @@
-import { changeFilter } from "@/Redux/slices/filterBase";
+import { changeFilter } from "@/Redux/filterBase";
 import { AppDispatch } from "@/Redux/store";
 import { useState } from "react";
 
@@ -24,6 +24,9 @@ export const useCategory = (dispatch: AppDispatch) => {
     onChangeCategory,
   };
 };
+
+//////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
+
 export const useOrder = (dispatch: AppDispatch) => {
   const [openOrder, setOpenOrder] = useState(false);
 
@@ -55,6 +58,9 @@ export const useOrder = (dispatch: AppDispatch) => {
     openOrder,
   };
 };
+
+//////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
+
 export const useSearch = (dispatch: AppDispatch) => {
   const clearSearch = () => {
     dispatch(changeFilter({ search: "" }));
@@ -67,6 +73,9 @@ export const useSearch = (dispatch: AppDispatch) => {
     onChangeSearch
   }
 };
+
+//////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
+
 export const usePrices = (dispatch: AppDispatch) => {
   const clearMinPrice = () => {
     dispatch(changeFilter({ minPrice: 0 }));
@@ -82,7 +91,9 @@ export const usePrices = (dispatch: AppDispatch) => {
     const val = Number(e.target.value);
     dispatch(changeFilter({ maxPrice: val }));
   };
-
+  
+  //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
+  
   return {
     handleMaxChange,
     handleMinChange,

@@ -3,13 +3,15 @@ import { useParams, usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
-import { addCountCards, remaindingState } from "@/Redux/slices/cards";
-import { addInfoProducts } from "@/Redux/slices/infoDataBase";
+import { addCountCards, remaindingState } from "@/Redux/cards";
+import { addInfoProducts } from "@/Redux/infoDataBase";
+
 export const dates = () => {
   const { id, category } = useParams();
   const { data, isSuccess, error , isLoading} = useGetSingleProductQuery(Number(id));
   const dispatch = useDispatch();
   const pathname = usePathname();
+  
   const infoBase = useSelector(
     (state: RootState) => state.infoProductsBase.data
   );

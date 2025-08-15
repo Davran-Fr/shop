@@ -1,11 +1,13 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
+
 interface Props {
   onChange: (e: string) => void;
   value?: string;
   onClear: () => void;
 }
+
 const Search = ({ onChange, value, onClear }: Props) => {
   return (
     <div className="relative  w-full lg:w-2/6   h-full">

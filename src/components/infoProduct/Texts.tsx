@@ -1,16 +1,17 @@
 import PriceDiscount from "@/ui/PriceDiscount";
 import { Rating, Star } from "@smastrom/react-rating";
 import React, { useEffect, useRef, useState } from "react";
-import "@smastrom/react-rating/style.css";
 import { FaChevronDown } from "react-icons/fa";
-import {  PropsSlice } from "@/Redux/slices/cards";
-import { Product } from "@/Types/productsTypes";
+import {  PropsSlice } from "@/Redux/cards";
+import { Product } from "@/Types/products";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
 import { usePathname } from "next/navigation";
 import { MdQrCode } from "react-icons/md";
-import { loadingAuth } from "@/Redux/slices/globalLoading";
+import { loadingAuth } from "@/Redux/globalLoading";
 import AddButton from "./ui/AddButton";
+import "@smastrom/react-rating/style.css";
+
 
 interface Props {
   data: Product;
@@ -18,14 +19,13 @@ interface Props {
 }
 
 const Texts = ({ data }: Props) => {
-  const [description, setDescription] = useState<boolean>(false);
+  const pathname = usePathname();
+  const dispatch = useDispatch();
+  const selector = useSelector((state: RootState) => state.cardItems);
   const [newStock, setNewStock] = useState(0);
   const divDesc = useRef<HTMLDivElement>(null);
+  const [description, setDescription] = useState<boolean>(false);
 
-  const pathname = usePathname();
-  
-  const selector = useSelector((state: RootState) => state.cardItems);
-  const dispatch = useDispatch();
   useEffect(() => {
     const foundItem = selector.items.find((item) => item.id === data.id);
     if (foundItem) {
@@ -35,15 +35,16 @@ const Texts = ({ data }: Props) => {
     }
     console.log(selector);
   }, [selector.count, pathname]);
+
   return (
     <div className="  flex flex-col self-center md:self-start   space-y-4 w-full md:w-2/5 lg:w-1/3 ">
-      <h2 className="font-world text-xl 400:text-2xl  xl:text-2xl">
+      <h2 className="font-world text-xl 400:text-2xl  xl:text-3xl">
         {data?.title}
       </h2>
 
       <span className="">
         <PriceDiscount
-          classname="xl:text-3xl text-2xl"
+          classname="xl:text-4xl text-2xl"
           price={data?.price}
           discountPercentage={data?.discountPercentage}
         />
@@ -55,12 +56,12 @@ const Texts = ({ data }: Props) => {
           description ? "h-auto  flex gap-0.5 max-h-fit" : "h-5 max-h-5"
         }  overflow-hidden duration-200 transition-all cursor-pointer    relative  `}
       >
-        <p className={`font-world   pr-5 ${description ? "" : "truncate"}`}>
+        <p className={`font-world pr-5 ${description ? "" : "truncate"}`}>
           {data?.description}
         </p>
         <FaChevronDown
           className={`${
-            description ? "rotate-180   " : ""
+            description ? "rotate-180 " : ""
           }  max-w-4 max-h-4 top-1  right-0 z-10 w-full absolute h-full     duration-200`}
         />
       </div>

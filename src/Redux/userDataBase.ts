@@ -1,9 +1,10 @@
-import { UserResponse } from "@/Types/mainTypes";
+import { UserResponse } from "@/Types/main";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Data {
   data: UserResponse | null;
 }
+
 const initialState: Data = {
   data: null,
 };

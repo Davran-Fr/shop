@@ -1,7 +1,7 @@
 import { useOverFlow } from "@/hooks/overFlow";
-import { loadingAuth } from "@/Redux/slices/globalLoading";
+import { loadingAuth } from "@/Redux/globalLoading";
 import { RootState } from "@/Redux/store";
-import { Product } from "@/Types/productsTypes";
+import { Product } from "@/Types/products";
 import Image from "next/image";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,13 +1,14 @@
-import { Product } from "@/Types/productsTypes";
+import { Product } from "@/Types/products";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
 
 interface Props {
     data: Product | null,
 }
+
 const initialState : Props = {
     data : null
 }
+
 const infoProductsBase = createSlice({
     name : ' infoProducts',
     initialState,

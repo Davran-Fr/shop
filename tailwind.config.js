@@ -19,7 +19,7 @@ module.exports = {
           "linear-gradient(190deg , transparent,transparent,#e9edc9)",
         gradientradialcenter:
           "radial-gradient(circle at center,white, transparent  )",
-        headerGradient: "linear-gradient(180deg,#2f3e46  ,transparent     )",
+        headerGradient: "linear-gradient(180deg,#2f3e46  ,transparent )",
           
       },
       backgroundColor: {

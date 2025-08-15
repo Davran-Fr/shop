@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { QuickViewProps } from "./QuickView";
 import { useDispatch } from "react-redux";
-import { openQuikview } from "@/Redux/slices/quickView";
+import { openQuikview } from "@/Redux/quickView";
 import { useWidth } from "@/hooks/useWidth";
 
 export const animation = ({ openClose, data }: QuickViewProps) => {

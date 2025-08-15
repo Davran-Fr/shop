@@ -2,10 +2,11 @@
 
 import React from "react";
 import Video from "@/components/video/Video";
-import MainRecommend from "@/components/mainRecommend/MainRecommend";
-import MainPageCards from "@/components/mainPageCard/MainPageCards";
-import { clearAccess_token } from "@/features/lib/useLocaleStorage";
-import { clearTokenCookies } from "@/features/lib/useCookies";
+import MainPageCards from "@/components/home/SwiperCard";
+import { clearAccess_token } from "@/lib/useLocaleStorage";
+import { clearTokenCookies } from "@/lib/useCookies";
+import Category from "@/components/home/Category";
+import SwiperCard from "@/components/home/SwiperCard";
 
 const page = () => {
   // clearAccess_token()
@@ -14,8 +15,8 @@ const page = () => {
   return (
     <div className="w-full  bg-mainBack ">
       <Video />
-      <MainRecommend />
-      <MainPageCards />
+      <Category />
+      <SwiperCard />
     </div>
   );
 };

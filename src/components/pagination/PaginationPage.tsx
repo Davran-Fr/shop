@@ -1,7 +1,7 @@
 import React from "react";
 import MUIPagination from "@mui/material/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { changeFilter } from "@/Redux/slices/filterBase";
+import { changeFilter } from "@/Redux/filterBase";
 import { RootState } from "@/Redux/store";
 
 const PaginationPage = ({
@@ -12,6 +12,7 @@ const PaginationPage = ({
   const dispatch = useDispatch();
   const values = useSelector((state: RootState) => state.filter);
   if (!values.itemsPerPage) return null;
+  
   return (
     <div
       className={` ${
@@ -20,7 +21,6 @@ const PaginationPage = ({
     >
       <MUIPagination
         sx={{
-          
           "& .MuiPaginationItem-ellipsis": {
             backgroundColor: "transparent !important", // Убираем фон у точек
             border: "none !important", // Если нужно убрать границу

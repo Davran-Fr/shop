@@ -8,15 +8,15 @@ import {
   clearTokenCookies,
   getTokenCookies,
   setTokenCookies,
-} from "@/features/lib/useCookies";
+} from "@/lib/useCookies";
 import {
   clearAccess_token,
   getAccess_token,
   setAccess_token,
-} from "@/features/lib/useLocaleStorage";
+} from "@/lib/useLocaleStorage";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://api.escuelajs.co/api/v1",
+  baseUrl: "https://api.escuelajs.co/api/v1" ,
   //   credentials: "include",
   prepareHeaders: (headers) => {
     const token = getAccess_token();

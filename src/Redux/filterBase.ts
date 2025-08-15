@@ -1,4 +1,4 @@
-import { ProductParams } from "@/Types/filterTypes";
+import { ProductParams } from "@/Types/filter";
 import { createSlice, PayloadAction  } from "@reduxjs/toolkit";
 
 const initialState: ProductParams = {

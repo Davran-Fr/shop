@@ -1,7 +1,7 @@
 import React from "react";
-import { links } from "./links";
+import { links } from "../header/links";
 import Link from "next/link";
-import { FaFacebookF, FaInstagram, FaSquareXTwitter } from "react-icons/fa6";
+import { FaFacebookF, FaInstagram } from "react-icons/fa6";
 import { BsTwitterX } from "react-icons/bs";
 
 const Fotoer = () => {

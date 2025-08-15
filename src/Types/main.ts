@@ -1,4 +1,4 @@
-import { Product } from "@/Types/productsTypes";
+import { Product } from "@/Types/products";
 
 export interface UserResponse {
   id: number;

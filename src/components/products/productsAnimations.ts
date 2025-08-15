@@ -1,10 +1,12 @@
 import { RootState } from "@/Redux/store";
-import { getAllProductsTypes } from "@/Types/mainTypes";
+import { getAllProductsTypes } from "@/Types/main";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
+
 gsap.registerPlugin(ScrollToPlugin);
+
 const productsAnimations = (main: getAllProductsTypes) => {
   const filterBack = useSelector((state: RootState) => state.toggleFilter);
   const filterBase = useSelector((state: RootState) => state.filter);

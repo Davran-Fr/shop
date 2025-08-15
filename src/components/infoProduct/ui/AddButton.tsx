@@ -1,6 +1,6 @@
-import { addCountCards, addItems, PropsSlice } from "@/Redux/slices/cards";
-import { Product } from "@/Types/productsTypes";
 import React, { useState } from "react";
+import { addCountCards, addItems, PropsSlice } from "@/Redux/cards";
+import { Product } from "@/Types/products";
 import { FaSpinner } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 
@@ -8,6 +8,7 @@ interface Props {
   data: Product;
   cards: PropsSlice;
 }
+
 const AddButton = ({ cards, data }: Props) => {
   const [spinnner, setSpinner] = useState(false);
   const [require, setRequire] = useState(false);

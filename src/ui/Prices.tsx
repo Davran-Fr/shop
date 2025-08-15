@@ -1,11 +1,13 @@
 import React from "react";
 import { IoCloseSharp } from "react-icons/io5";
+
 interface Props {
   value?: number ;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onClear: () => void;
   placeholder : string
 }
+
 const Prices = ({ value, onChange, onClear  , placeholder}: Props) => {
   return (
     <div className="relative w-full ">
@@ -22,7 +24,7 @@ const Prices = ({ value, onChange, onClear  , placeholder}: Props) => {
       {value !== 0 && (
         <div
           onClick={onClear}
-          className="absolute z-10 top-1/2  cursor-pointer  right-3 text-gray-800 -translate-y-1/2   "
+          className="absolute z-10 top-1/2  cursor-pointer  right-3 text-gray-800 -translate-y-1/2"
         >
           <IoCloseSharp />
         </div>

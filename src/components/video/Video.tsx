@@ -7,7 +7,7 @@ const Video = () => {
   const { videos, divRef, textRef } = useVideoAnimations();
 
   return (
-    <div className="w-full relative overflow-hidden h-50vh z-10">
+    <div className="w-full relative overflow-hidden min-h-[300px] max-h-[300px] h-full  z-10">
       {videos.map((items, i) => (
         <div
           key={i}

@@ -1,22 +1,25 @@
 "use client";
 
-import { useLogInForm } from "@/features/auth/useLogInForm";
+import React  from "react";
 import RegisterButton from "@/ui/RegisterButton";
 import RegisterInput from "@/ui/RegisterInput";
 import gsap from "gsap";
+
 import { usePathname } from "next/navigation";
-import React, { useEffect, useRef } from "react";
+import { useLogInForm } from "@/features/auth/useLogInForm";
 
 const LoginForm = () => {
-  const divRef = useRef<HTMLDivElement>(null);
+  const divRef = React.useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-  useEffect(() => {
+
+  React.useEffect(() => {
     gsap.fromTo(
       divRef.current,
       { x: -100, opacity: 0 },
       { x: 0, duration: 0.5, opacity: 1 }
     );
   }, [pathname]);
+  
   const { onSubmit, handleSubmit, register, errors, reset } = useLogInForm();
 
   // if (isLoading) return <div>LOADING</div>;

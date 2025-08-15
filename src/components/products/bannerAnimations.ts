@@ -29,6 +29,7 @@ const arrayBannerImage = [
     img: "/productsBanner/cosmeticss.jpg",
   },
 ];
+
 gsap.registerPlugin(SplitText);
 
 const bannerAnimations = () => {

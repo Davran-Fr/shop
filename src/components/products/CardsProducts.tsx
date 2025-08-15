@@ -1,51 +1,50 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Cards from "../cards/Cards";
-import { getAllProductsTypes } from "@/Types/mainTypes";
-import { useSelector } from "react-redux";
-import { RootState } from "@/Redux/store";
-import gsap from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { getAllProductsTypes } from "@/Types/main";
 import productsAnimations from "./productsAnimations";
+import { Container } from "@/ui/Container";
 interface Props {
   main?: getAllProductsTypes;
 }
+
 const CardsProducts = ({ main }: Props) => {
-  if(!main) return
+  if (!main) return;
+
   const { mainDiv, filterBack, divAnimation } = productsAnimations(main);
+
   return (
-    <div
-      ref={mainDiv}
-      className="w-full pb-20 container mx-auto px-2.5 500:px-4 "
-    >
-      {main?.products.length === 0 ? (
-        <h3 className="w-full text-5xl font-semibold text-center py-10 font-world">
-          Not Found
-        </h3>
-      ) : (
-        <div className=" w-full grid grid-cols-2 500:grid-cols-2  relative sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 gap-y-4 sm:gap-5 ">
-          <div
-            className={`w-full h-full absolute  ease-in-out ${
-              filterBack.filter
-                ? "pointer-events-auto translate-y-0 visible "
-                : " pointer-events-none invisible -translate-y-full"
-            } duration-500 transition-all top-0 left-0 bg-white/75 z-10`}
-          ></div>
-          {main?.products.map((items, i) => {
-            return (
-              <div
-                ref={(e) => {
-                  if (e) divAnimation.current[i] = e;
-                }}
-                className=" w-full h-full relative z-0"
-              >
-                <Cards data={items} />
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </div>
+    <Container className="pb-20">
+      <div ref={mainDiv} className="w-full">
+        {main?.products.length === 0 ? (
+          <h3 className="w-full text-5xl font-semibold text-center py-10 font-world">
+            Not Found
+          </h3>
+        ) : (
+          <div className=" w-full grid grid-cols-2 500:grid-cols-2 relative sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 gap-y-4 sm:gap-5 ">
+            <div
+              className={`w-full h-full absolute  ease-in-out ${
+                filterBack.filter
+                  ? "pointer-events-auto translate-y-0 visible "
+                  : " pointer-events-none invisible -translate-y-full"
+              } duration-500 transition-all top-0 left-0 bg-white/75 z-10`}
+            ></div>
+            {main?.products.map((items, i) => {
+              return (
+                <div
+                  ref={(e) => {
+                    if (e) divAnimation.current[i] = e;
+                  }}
+                  className=" w-full h-full relative z-0"
+                >
+                  <Cards data={items} />
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </Container>
   );
 };
 

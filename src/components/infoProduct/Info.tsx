@@ -4,7 +4,7 @@ import Texts from "./Texts";
 import { useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
 
-const ImagesTexts = () => {
+const Info = () => {
   const data = useSelector((state: RootState) => state.infoProductsBase.data);
   const cards = useSelector((state: RootState) => state.cardItems);
   if (!data) return <div className="w-full py-32 text-center">Product Not Found</div>;
@@ -16,4 +16,4 @@ const ImagesTexts = () => {
   );
 };
 
-export default ImagesTexts;
+export default Info;
