@@ -1,4 +1,5 @@
 "use client";
+
 import PaginationPage from "@/components/pagination/PaginationPage";
 import Banner from "@/components/products/Banner";
 import CardsProducts from "@/components/products/CardsProducts";
@@ -8,13 +9,13 @@ import React from "react";
 
 const page = () => {
   const {   isLoading, filtered,   searchedProducts , } = productsFiltiration();
-  if(!filtered) return null
+
   return (
     <div>
       <Banner />
       <Filter  />
-      <CardsProducts  main={filtered } />
-      <PaginationPage    total={searchedProducts.length} />
+      <CardsProducts main={filtered } />
+      <PaginationPage total={searchedProducts.length} />
     </div>
   );
 };

@@ -16,7 +16,7 @@ import {
 } from "@/lib/useLocaleStorage";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://api.escuelajs.co/api/v1" ,
+  baseUrl:  process.env.NEXT_PUBLIC_API_URL,
   //   credentials: "include",
   prepareHeaders: (headers) => {
     const token = getAccess_token();
@@ -28,27 +28,28 @@ const baseQuery = fetchBaseQuery({
 });
 
 export const customBaseQuery: BaseQueryFn<   string | FetchArgs,   unknown,   FetchBaseQueryError > = async (args, api, extraOptions) => {
+
   let result = await baseQuery(args, api, extraOptions);
-   
-  if (result.error?.status === 401) {
-    try {
-      const currentToken = getTokenCookies();
-
-      const refresResult: any = await baseQuery(
-        {
-          url: "/auth/refresh-token",
-          method: "POST",
-          body: {
-            refreshToken: currentToken,
+   /// If access token expired we will send request to /profile endpoint
+   /// do not interrupt user at sending him(her) to log in again
+   if (result.error?.status === 401) {
+     try {
+       const currentToken = getTokenCookies();
+       
+       const refresResult: any = await baseQuery(
+         {
+           url: "/auth/refresh-token",
+           method: "POST",
+           body: {
+             refreshToken: currentToken,
+            },
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-        api,
-        extraOptions
-      );
-
+          api,
+          extraOptions
+        );
       if (refresResult?.data?.refresh_token) {
         setTokenCookies(refresResult.data.refresh_token);
         setAccess_token(refresResult.data.access_token);

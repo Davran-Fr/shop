@@ -1,9 +1,11 @@
 "use client";
+
 import React from "react";
 import Cards from "../cards/Cards";
 import { getAllProductsTypes } from "@/Types/main";
 import productsAnimations from "./productsAnimations";
 import { Container } from "@/ui/Container";
+
 interface Props {
   main?: getAllProductsTypes;
 }
@@ -21,7 +23,7 @@ const CardsProducts = ({ main }: Props) => {
             Not Found
           </h3>
         ) : (
-          <div className=" w-full grid grid-cols-2 500:grid-cols-2 relative sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 gap-y-4 sm:gap-5 ">
+          <div className=" w-full grid grid-cols-2 500:grid-cols-2 relative sm:grid-cols-3 min-[900px]:grid-cols-4 xl:grid-cols-5 gap-2 gap-y-4 sm:gap-5 ">
             <div
               className={`w-full h-full absolute  ease-in-out ${
                 filterBack.filter

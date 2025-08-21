@@ -18,7 +18,7 @@ const Images = ({ data }: Props) => {
   const swiperRef = useRef<SwiperRef>(null);
 
   return (
-    <div className="flex flex-col-reverse   items-center justify-center lg:items-start lg:flex-row    gap-5 ">
+    <div className="flex flex-col-reverse items-center justify-center lg:items-start lg:flex-row gap-5">
       {data?.length > 1 && (
         <div className="flex lg:flex-col  flex-row   gap-2  lg:items-center  ">
           {data.map((items, i) => {

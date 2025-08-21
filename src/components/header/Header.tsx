@@ -36,6 +36,7 @@ const Header = () => {
         <Logo />
         <ul className=" hidden md:flex bg-black/50 items-center gap-3 px-10 text-white rounded-full h-full backdrop-blur-xl space-x-7 text-lg">
           {links.map((items, i) => {
+            if(items.href === '/cards') return null
             return (
               <li key={i}>
                 <Link href={items.href} className="cursor-pointer">

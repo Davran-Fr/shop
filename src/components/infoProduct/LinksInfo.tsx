@@ -1,13 +1,15 @@
+import React from "react";
+
 import { capitalize } from "@/hooks/useFirstLetterCapital";
 import { changeFilter } from "@/Redux/filterBase";
 import { RootState } from "@/Redux/store";
 import { useParams, useRouter } from "next/navigation";
-import React from "react";
 import { FaAngleLeft } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 
 
 export const LinksInfo = () => {
+  
   const data = useSelector((state: RootState) => state.infoProductsBase.data);
   const dispatch = useDispatch();
   const router = useRouter();

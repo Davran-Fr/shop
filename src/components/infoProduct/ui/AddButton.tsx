@@ -15,7 +15,7 @@ const AddButton = ({ cards, data }: Props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="font-world h-10 xl:text-lg text-sm  flex gap-1">
+    <div className="font-world max-w-[420px] h-10 xl:text-lg text-sm  flex gap-1">
       <button
         onClick={() => {
           if (cards.count > 0) {

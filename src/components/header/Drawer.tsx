@@ -40,7 +40,7 @@ const HeaderDrawer = forwardRef<HTMLDivElement, Props>(
             <ul className="flex flex-col w-full gap-3 font-world text-center">
               {links.map((items, i) => {
                 return (
-                  <li className="py-2 bg-mainColor border-1px border-gray-500 rounded-xl">
+                  <li key={i} className="py-2 bg-mainColor border-1px border-gray-500 rounded-xl">
                     <Link onClick={onClick} key={i} href={items.href}>
                       {items.name}
                     </Link>

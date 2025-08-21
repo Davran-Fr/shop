@@ -13,10 +13,10 @@ import clsx from "clsx";
 import { Container } from "@/ui/Container";
 
 const SwiperCard = () => {
-  const mainPageActions = actionMainPageCard();
-  const swiperRef = useRef<SwiperRef>(null);
-  const { slidesPerView, choosePerView } = sliderBreakPoints();
   const width = useWidth();
+  const swiperRef = useRef<SwiperRef>(null);
+  const mainPageActions = actionMainPageCard();
+  const { slidesPerView, choosePerView } = sliderBreakPoints();
 
   useEffect(() => {
     if (

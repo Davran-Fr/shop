@@ -7,7 +7,7 @@ const Banner = () => {
   const { divRef, arrayBannerImage, textRef } = bannerAnimations();
 
   return (
-    <div className="w-full relative overflow-hidden  z-40 h-40vh sm:h-50vh ">
+    <div className="w-full relative overflow-hidden  z-40 h-40vh sm:h-[300px] ">
       {arrayBannerImage.map((items, i) => (
         <div
           key={i}

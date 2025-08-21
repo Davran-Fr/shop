@@ -9,7 +9,12 @@ import Prices from "../../ui/Prices";
 import Order from "../../ui/Order";
 import Category from "../../ui/Category";
 import Search from "../../ui/Search";
-import { useCategory, usePrices, useOrder, useSearch } from "../../features/filters/filter";
+import {
+  useCategory,
+  usePrices,
+  useOrder,
+  useSearch,
+} from "../../features/filters/filter";
 import { useWidth } from "@/hooks/useWidth";
 import { useOverFlow } from "@/hooks/overFlow";
 import MobileFilterBar from "./MobileFilterBar";
@@ -54,13 +59,11 @@ const Filter = () => {
   useClickOutside(divOrder, () => setOpenOrder(false));
   useClickOutside(divFilter, () => dispatch(toggleFilter(false)));
   useOverFlow(filterBack.filter);
-  const animation = `${
-
+  const animation = ` px-4 ${
     filterBack.filter
       ? "visible pointer-events-auto  delay translate-y-full"
-      : "invisible  pointer-events-none -translate-y-10  "
+      : "invisible  pointer-events-none -translate-y-10"
   }`;
-
 
   return (
     <Container className="relative bg-white z-30 w-full font-world flex items-center gap-5 lg:gap-0">

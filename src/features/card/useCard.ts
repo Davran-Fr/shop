@@ -6,6 +6,7 @@ import {  useRef, useState } from "react";
 import { SwiperRef } from "swiper/react";
 
 export const actionMainPageCard = () => {
+  
   const [category, setCategory] = useState<string | null>("mens-shirts");
   const swiperRef = useRef<SwiperRef>(null);
 

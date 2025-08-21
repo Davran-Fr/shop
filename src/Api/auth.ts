@@ -10,6 +10,9 @@ export const api = createApi({
     getAllUserInfo: builder.query<UserResponse[], void>({
       query: () => "/users",
     }),
+
+    //////// --------- --------- --------- ///////// --------- --------- --------- /////////
+    
     signUp: builder.mutation<UserResponse, UpdatedType>({
       query: (newUser) => ({
         url: "/users",
@@ -17,6 +20,9 @@ export const api = createApi({
         body: newUser,
       }),
     }),
+
+    //////// --------- --------- --------- ///////// --------- --------- --------- /////////
+    
     logIn: builder.mutation<{access_token : string, refresh_token: string}, {email: string , password:string}>({
       query: (newUser) => ({
         url: "/auth/login",
@@ -24,13 +30,19 @@ export const api = createApi({
         body: newUser,
       }),
     }),
+
+    //////// --------- --------- --------- ///////// --------- --------- --------- /////////
+    
     refreshToken : builder.mutation<{refresh_token: string | undefined , access_token : string | undefined} , {refreshToken: string}>({
-       query: (refreshToken)=> ({
+      query: (refreshToken)=> ({
         url: '/auth/refresh-token',
         method: 'POST',
         body: refreshToken,
-       })
+      })
     }),
+
+    //////// --------- --------- --------- ///////// --------- --------- --------- /////////
+    
     userInfo : builder.query<UserResponse, string | null>({
       query:(id) => ({
         url: `/users/${id}`,
@@ -38,9 +50,15 @@ export const api = createApi({
       })
     })
     ,
+
+    //////// --------- --------- --------- ///////// --------- --------- --------- /////////
+    
     getProfile: builder.query<UserResponse, void>({
       query : () => '/auth/profile'
     }),
+    
+    //////// --------- --------- --------- ///////// --------- --------- --------- /////////
+
     isEmailAvailable : builder.mutation<{isAvailable : boolean  } , {email : string}>({
       query : ({email}) => ({
        method : "POST",

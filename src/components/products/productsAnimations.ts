@@ -8,10 +8,13 @@ import { useSelector } from "react-redux";
 gsap.registerPlugin(ScrollToPlugin);
 
 const productsAnimations = (main: getAllProductsTypes) => {
-  const filterBack = useSelector((state: RootState) => state.toggleFilter);
-  const filterBase = useSelector((state: RootState) => state.filter);
   const divAnimation = useRef<HTMLDivElement[]>([]);
   const mainDiv = useRef<HTMLDivElement>(null);
+  const filterBack = useSelector((state: RootState) => state.toggleFilter);
+  const filterBase = useSelector((state: RootState) => state.filter);
+
+  //////// --------- --------- --------- ///////// --------- --------- --------- /////////
+  
   useEffect(() => {
     if (main?.products?.length) {
       gsap.fromTo(
@@ -27,6 +30,9 @@ const productsAnimations = (main: getAllProductsTypes) => {
       );
     }
   }, [main?.products]);
+  
+  //////// --------- --------- --------- ///////// --------- --------- --------- /////////
+
   useEffect(() => {
     const move = setTimeout(() => {
       if (mainDiv.current) {
@@ -44,6 +50,9 @@ const productsAnimations = (main: getAllProductsTypes) => {
     return () => {
       clearTimeout(move);
     };
+
+  //////// --------- --------- --------- ///////// --------- --------- --------- /////////
+
   }, [
     filterBase.page,
     filterBase.category,

@@ -20,6 +20,7 @@ const MobileFilterBar = ({ filter, divFilter }: Props) => {
   const dispatch = useDispatch();
   const filterIcon = useRef<HTMLDivElement>(null);
   const closeIcon = useRef<HTMLDivElement>(null);
+  
   const scrollToSection = () => {
     if (divFilter.current) {
       gsap.to(window, {
@@ -31,8 +32,9 @@ const MobileFilterBar = ({ filter, divFilter }: Props) => {
       });
     }
   };
+  
   return (
-    <div className="px-4 w-full flex items-center  relative overflow-hidden justify-between">
+    <div className=" w-full flex items-center  relative overflow-hidden justify-between">
       <FaArrowLeft onClick={() => router.back()} />
       <div
         ref={closeIcon}

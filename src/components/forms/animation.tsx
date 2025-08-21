@@ -35,6 +35,7 @@ export const AnimationsProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  
   const authDiv = useRef<HTMLDivElement>(null);
   const btnDiv = useRef<HTMLDivElement>(null);
   const dvgTexts = useRef<HTMLDivElement>(null);

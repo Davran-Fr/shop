@@ -9,6 +9,7 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
+  
   const { authDiv } = useAnimations();
   const pathname = usePathname();
   const isAuthPage = pathname.startsWith("/auth/login") || pathname.startsWith("/auth/signup");
@@ -19,7 +20,7 @@ export default function AuthLayout({
         ref={authDiv}
         className={`bg-mainColor overflow-x-hidden ${
           isAuthPage ? "shadow-regiterBackShadow" : "invisible overflow-hidden"
-        }   relative z-10  h-auto sm:max-h-registerHeight  rounded-xl sm:h-full  max-w-registerWidth w-full  flex items-center justify-center   p-5 sm:p-10  `}
+        }   relative z-10  h-auto sm:max-h-registerHeight rounded-xl sm:h-full max-w-registerWidth w-full flex items-center justify-center   p-5 sm:p-10  `}
       >
         <AuthLoading />
         <div className="w-full h-full relative z-10">{children}</div>
