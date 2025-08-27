@@ -1,4 +1,5 @@
 "use client";
+
 import { Provider } from "react-redux";
 import { store } from "../Redux/store";
 import { AnimationsProvider } from "@/components/forms/animation";

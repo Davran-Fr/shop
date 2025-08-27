@@ -3,7 +3,7 @@
 import Link from "next/link";
 import clsx from "clsx";
 import React, { forwardRef } from "react";
-import { useOverFlow } from "@/hooks/overFlow";
+import { useOverFlow } from "@/hooks/useOverFlow";
 import { IoCloseSharp } from "react-icons/io5";
 import { links } from "./links";
 import { useSelector } from "react-redux";

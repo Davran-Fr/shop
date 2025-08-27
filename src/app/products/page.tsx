@@ -1,21 +1,21 @@
 "use client";
 
-import PaginationPage from "@/components/pagination/PaginationPage";
 import Banner from "@/components/products/Banner";
-import CardsProducts from "@/components/products/CardsProducts";
+import { Products } from "@/components/products/Products";
 import Filter from "@/components/filter/MainFilterBar";
-import productsFiltiration from "@/features/products/useFilter";
+import productsFiltiration from "@/features/filters/useFilter";
 import React from "react";
+import { Pagination } from "@/components/pagination/Pagination";
 
 const page = () => {
-  const {   isLoading, filtered,   searchedProducts , } = productsFiltiration();
+  const { isLoading, filtered, searchedProducts } = productsFiltiration();
 
   return (
     <div>
       <Banner />
-      <Filter  />
-      <CardsProducts main={filtered } />
-      <PaginationPage total={searchedProducts.length} />
+      <Filter />
+      <Products main={filtered} />
+      <Pagination total={searchedProducts.length} />
     </div>
   );
 };

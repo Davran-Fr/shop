@@ -16,17 +16,17 @@ const Search = ({ onChange, value, onClear }: Props) => {
         value={value ? value : ""}
         type="text"
         placeholder="Search"
-        className="rounded-md px-3 w-full   bg-white border-gray-500 border-1px  font-medium text-lg py-1"
+        className="rounded-md px-3 w-full bg-white border-gray-500 border-1px font-medium text-lg py-1"
       />
       {value !== "" ? (
         <div
           onClick={onClear}
-          className={`absolute z-10 top-1/2    cursor-pointer right-3 text-gray-800 text-lg -translate-y-1/2 `}
+          className={`absolute z-10 top-1/2 cursor-pointer right-3 text-gray-800 text-lg -translate-y-1/2 `}
         >
           <IoCloseSharp />
         </div>
       ) : (
-        <div className="absolute z-10 text-sm top-1/2 right-3 text-gray-500 -translate-y-1/2   ">
+        <div className="absolute z-10 text-sm top-1/2 right-3 text-gray-500 -translate-y-1/2">
           <FaSearch />
         </div>
       )}

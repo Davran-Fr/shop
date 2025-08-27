@@ -1,20 +1,8 @@
 import { useWidth } from "@/hooks/useWidth";
 import { useEffect, useState } from "react";
 
-export const sliceBreakPoints = {
-  100: 100,
-  default: 17,
-};
 
-export const descriptionsSlice = {
-  360: 25,
-  500: 40,
-  650: 25,
-  768: 20,
-  default: 20,
-};
-
-export const sliderBreakPoints = () => {
+export const useSliderBreakPoints = () => {
   const [slidesPerView, setSlidesPerview] = useState(2);
   const [choosePerView, setChoosePerView] = useState(2);
   const width = useWidth();

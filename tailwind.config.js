@@ -20,7 +20,8 @@ module.exports = {
         gradientradialcenter:
           "radial-gradient(circle at center,white, transparent  )",
         headerGradient: "linear-gradient(180deg,#2f3e46  ,transparent )",
-          
+        showMoreGradient:
+          "linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.50) 100%)",
       },
       backgroundColor: {
         mainColor: "#F4F6E4 ",

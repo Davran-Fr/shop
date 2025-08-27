@@ -1,22 +1,25 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
+'use client'
+
+import Cards from "../../ui/Cards";
+import clsx from "clsx";
+
+import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
 import { Autoplay, FreeMode } from "swiper/modules";
-import Cards from "../cards/Cards";
 import { actionMainPageCard } from "../../features/card/useCard";
-import { sliderBreakPoints } from "../cards/cardsBreakpoints";
+import { useSliderBreakPoints } from "../../hooks/useSliderBreakpoints";
 import { useWidth } from "@/hooks/useWidth";
 import { capitalize } from "@/hooks/useFirstLetterCapital";
-import clsx from "clsx";
 import { Container } from "@/ui/Container";
+
+import "swiper/css";
+import "swiper/css/pagination";
 
 const SwiperCard = () => {
   const width = useWidth();
   const swiperRef = useRef<SwiperRef>(null);
   const mainPageActions = actionMainPageCard();
-  const { slidesPerView, choosePerView } = sliderBreakPoints();
+  const { slidesPerView, choosePerView } = useSliderBreakPoints();
 
   useEffect(() => {
     if (

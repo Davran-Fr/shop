@@ -14,6 +14,7 @@ const initialState: ProductParams = {
   page : 1,
   itemsPerPage : 8
 };
+
 const filterBase = createSlice({
   name: "filterBase",
   initialState,

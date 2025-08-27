@@ -1,4 +1,5 @@
 import { Work_Sans, PT_Serif } from "next/font/google";
+
 export const WorkSansFonts = Work_Sans({
   variable: "--font-workSans",
   weight: ["400", "500", "600", "700", "800"],

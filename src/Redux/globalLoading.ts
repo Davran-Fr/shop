@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState = {
   loading: true,
 };
+
 const globalLoadingPage = createSlice({
   name: "loadingAuth",
   initialState,

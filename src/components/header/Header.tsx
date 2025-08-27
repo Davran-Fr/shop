@@ -54,7 +54,7 @@ const Header = () => {
           />
           <div className="relative z-30">
             <Avatar
-              className=" w-6 h-6 hidden md:block"
+              className="w-6 h-6 hidden md:block"
               avatar={user?.avatar ? user.avatar : ""}
             />
             <GiHamburgerMenu

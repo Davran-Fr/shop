@@ -2,12 +2,12 @@ import Image from "next/image";
 import React from "react";
 
 interface Props {
-    img : string
-    title : string,
-    count : number
+  img: string;
+  title: string;
+  count: number;
 }
 
-export const ShortCard = ({img , title , count} : Props) => {
+export const ShortCard = ({ img, title, count }: Props) => {
   return (
     <div className={`flex gap-4 pr-3 items-center py-2 text-sm `}>
       <div className="bg-orderBtn rounded-md p-1">

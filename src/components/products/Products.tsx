@@ -1,16 +1,15 @@
-"use client";
-
 import React from "react";
-import Cards from "../cards/Cards";
+import Cards from "../../ui/Cards";
+
 import { getAllProductsTypes } from "@/Types/main";
-import productsAnimations from "./productsAnimations";
+import productsAnimations from "./animation/useCardAnimations";
 import { Container } from "@/ui/Container";
 
 interface Props {
   main?: getAllProductsTypes;
 }
 
-const CardsProducts = ({ main }: Props) => {
+export const Products = ({ main }: Props) => {
   if (!main) return;
 
   const { mainDiv, filterBack, divAnimation } = productsAnimations(main);
@@ -50,4 +49,3 @@ const CardsProducts = ({ main }: Props) => {
   );
 };
 
-export default CardsProducts;

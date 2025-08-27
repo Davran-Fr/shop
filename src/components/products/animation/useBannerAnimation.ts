@@ -1,10 +1,11 @@
 import gsap from "gsap";
+
 import { SplitText } from "gsap/SplitText";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 gsap.registerPlugin(SplitText);
 
-const videos = [
+const arrayBannerImage = [
   {
     name: " Upgrade Your Style.",
     title: "Find the look that defines you.",
@@ -32,63 +33,57 @@ const videos = [
   },
 ];
 
-export const useVideoAnimations = () => {
+//////// --------- --------- --------- ///////// --------- --------- --------- /////////
+
+export const useBannerAnimtaion = () => {
   const divRef = useRef<HTMLDivElement[]>([]);
   const textRef = useRef<HTMLDivElement[]>([]);
   const [isReady, setIsReady] = useState(false);
-  
+
+  //////// --------- --------- --------- ///////// --------- --------- --------- /////////
+
   useEffect(() => {
     const allReady =
-      divRef.current.length === videos.length &&
+      divRef.current.length === arrayBannerImage.length &&
       divRef.current.every((el) => el !== null);
 
     if (allReady) {
       setIsReady(true);
     }
-  }, []);
- 
+  }, [arrayBannerImage]);
+
+  //////// --------- --------- --------- ///////// --------- --------- --------- /////////
+  
   useLayoutEffect(() => {
     if (!isReady) return;
 
     const tl = gsap.timeline({ repeat: -1 });
 
-    videos.forEach((_, i) => {
-      const current = divRef.current[i];
-      const currentText = textRef.current[i];
-      if (!current || !currentText) return;
+    divRef.current.forEach((_, i) => {
+      const imageDiv = divRef.current[i];
+      const textDiv = textRef.current[i];
+      let texts = SplitText.create(textDiv, { type: "chars" });
 
-      const split = new SplitText(currentText, { type: "chars" });
-
-      tl.set(current, { zIndex: 1 })
-        .fromTo(
-          current,
-          { autoAlpha: 0 },
-          { autoAlpha: 1, duration: 0.7, ease: "power2.out" }
-        )
+      tl.from(imageDiv, {
+        x: `${i % 2 === 0 ? "-" : ""}${i}00px`,
+        opacity: i === 0 ? 1 : 0,
+        duration: 0.5,
+        ease: "power1.inOut",
+        delay: i * 2,
+      })
+        .to(imageDiv, {
+          duration: i === arrayBannerImage.length - 1 ? 3 : 0,
+        })
         .from(
-          split.chars,
+          texts.chars,
           {
             autoAlpha: 0,
-            y: 20,
-            stagger: { each: 0.02 , from : 'random' },
-            duration: 0.7,
-          },
-          "<"
-        )
-
-        .to({}, { duration: 2 })
-
-        .to(
-          current,
-          {
-            autoAlpha: 1,
-            duration: 0.7,
-            ease: "power2.in",
-            onComplete: () => {
-              gsap.set(current, { zIndex: 0 });
+            stagger: {
+              from: "random",
+              amount: 0.8,
             },
           },
-          "+=0"
+          "<"
         );
     });
 
@@ -96,10 +91,13 @@ export const useVideoAnimations = () => {
       tl.kill();
     };
   }, [isReady]);
+  
+  //////// --------- --------- --------- ///////// --------- --------- --------- /////////
 
   return {
-    videos,
+    arrayBannerImage,
     divRef,
     textRef,
-        };
+  };
 };
+

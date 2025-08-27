@@ -2,6 +2,7 @@ import { ProductParams } from "@/Types/filter";
 import { getAllProductsTypes } from "@/Types/main";
 import { Product } from "@/Types/products";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { useRouter } from "next/navigation";
 
 export const ecommerce = createApi({
   reducerPath: "ecommerce",
@@ -17,20 +18,20 @@ export const ecommerce = createApi({
     }),
 
     //////// --------- --------- --------- ///////// --------- --------- --------- /////////
-    
+
     getChosedCategories: builder.query<
-    getAllProductsTypes,
-    { category: string | null }
+      getAllProductsTypes,
+      { category: string | null }
     >({
       query: ({ category }) => `/products/category/${category}`,
     }),
-    
+
     //////// --------- --------- --------- ///////// --------- --------- --------- /////////
-    
+
     getAllProducts: builder.query<getAllProductsTypes, void>({
       query: () => "/products?limit=0&skip=0",
     }),
-    
+
     //////// --------- --------- --------- ///////// --------- --------- --------- /////////
 
     getSingleProduct: builder.query<Product, number>({
@@ -39,25 +40,26 @@ export const ecommerce = createApi({
         method: "GET",
       }),
     }),
-    
+
     //////// --------- --------- --------- ///////// --------- --------- --------- /////////
+
     getProductsFiltered: builder.query<getAllProductsTypes, ProductParams>({
       query: ({ skip, category, sortBy, order, select, limit }) => {
         let url = "";
         const params = new URLSearchParams();
-        
+
         if (category) {
           url = `/products/category/${category}`;
         } else {
           url = `/products`;
         }
-        
+
         if (sortBy) params.append("sortBy", sortBy);
         if (order) params.append("order", order);
         if (limit !== undefined) params.append("limit", String(limit));
         if (skip !== undefined) params.append("skip", String(skip));
         if (select) params.append("select", select);
-        
+
         return `${url}?${params.toString()}`;
       },
       transformResponse: (response: getAllProductsTypes) => {

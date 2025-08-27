@@ -22,14 +22,12 @@ const LoginForm = () => {
   
   const { onSubmit, handleSubmit, register, errors, reset } = useLogInForm();
 
-  // if (isLoading) return <div>LOADING</div>;
   return (
     <div ref={divRef} className="w-full h-full">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-10 md:gap-0  w-full justify-between h-full"
       >
-        {/* {error} */}
         <div className="flex flex-col gap-10  ">
           <RegisterInput
             error={errors.email}

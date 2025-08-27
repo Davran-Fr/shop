@@ -1,13 +1,14 @@
 "use client";
+
 import Image from "next/image";
 import React from "react";
-import bannerAnimations from "./bannerAnimations";
+import {useBannerAnimtaion} from "./animation/useBannerAnimation";
 
 const Banner = () => {
-  const { divRef, arrayBannerImage, textRef } = bannerAnimations();
+  const { divRef, arrayBannerImage, textRef } = useBannerAnimtaion();
 
   return (
-    <div className="w-full relative overflow-hidden  z-40 h-40vh sm:h-[300px] ">
+    <div className="w-full relative overflow-hidden z-40 h-40vh sm:h-[300px]">
       {arrayBannerImage.map((items, i) => (
         <div
           key={i}
@@ -31,9 +32,9 @@ const Banner = () => {
           <Image
             alt="images"
             src={items.img}
-            className="w-full object-cover h-full relative z-20"
-            width={800}
-            height={800}
+            className="relative z-20"
+            fill
+            objectFit="cover"
           />
         </div>
       ))}

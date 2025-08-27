@@ -15,7 +15,7 @@ const AddButton = ({ cards, data }: Props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="font-world max-w-[420px] h-10 xl:text-lg text-sm  flex gap-1">
+    <div className="font-world max-w-[420px] h-10 xl:text-lg text-sm flex gap-1">
       <button
         onClick={() => {
           if (cards.count > 0) {
@@ -32,7 +32,7 @@ const AddButton = ({ cards, data }: Props) => {
             }, 2000);
           }
         }}
-        className=" flex justify-center w-full items-center  bg-orderBtn border-1px border-black h-full rounded-md"
+        className=" flex justify-center w-full items-center bg-orderBtn border-1px border-black h-full rounded-md"
       >
         {spinnner ? (
           <FaSpinner className="animate-spin text-xl text-gray-600" />
@@ -50,7 +50,7 @@ const AddButton = ({ cards, data }: Props) => {
           );
         }}
         type="number"
-        className={` bg-orderBtn   w-1/2 h-full rounded-md px-2 ${
+        className={` bg-orderBtn w-1/2 h-full rounded-md px-2 ${
           require ? "border-red-500 border-2" : "border-black border-1px"
         }`}
         placeholder="Count"

@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 export function UserDataBase({ children }: { children: React.ReactNode }) {
   const dispatch = useDispatch();
   const token = getAccess_token();
-  const refreshToken = getTokenCookies();
   const pathname = usePathname();
 
   const [triggerProfile, { data }] = useLazyGetProfileQuery();

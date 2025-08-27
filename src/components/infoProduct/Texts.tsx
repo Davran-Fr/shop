@@ -39,10 +39,10 @@ const Texts = ({ data }: Props) => {
 
   return (
     <div className="flex flex-col self-center md:self-start space-y-4 w-full md:w-2/5 lg:w-1/3 ">
-      <h2 className="font-world text-3xl 400:text-2xl  xl:text-3xl">
+      <h2 className="font-world text-2xl 400:text-2xl  xl:text-3xl">
         {data?.title}
       </h2>
-      <span className="">
+      <span >
         <PriceDiscount
           classname="xl:text-4xl text-4xl"
           price={data?.price}
@@ -54,7 +54,7 @@ const Texts = ({ data }: Props) => {
         onClick={() => setDescription(!description)}
         className={`${
           description ? "h-auto  flex gap-0.5 max-h-fit" : "h-5 max-h-5"
-        }  overflow-hidden duration-200 max-w-[420px] transition-all text-base cursor-pointer relative`}
+        }  overflow-hidden duration-200 max-w-[420px] transition-all cursor-pointer relative`}
       >
         <p className={`font-world pr-5 ${description ? "" : "truncate"}`}>
           {data?.description}

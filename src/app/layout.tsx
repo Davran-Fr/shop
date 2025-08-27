@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Providers } from "@/provider/Providers";
 import "./globals.css";
-import HeaderFooter from "@/components/header/HeaderFooter";
+import {MainLayout} from "@/components/header/MainLayout";
 
 export const metadata: Metadata = {
   title: "DVG",
@@ -15,9 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased `}>
+      <body className={`antialiased`}>
         <Providers>
-          <HeaderFooter>{children}</HeaderFooter>
+          <MainLayout>{children}</MainLayout>
         </Providers>
       </body>
     </html>

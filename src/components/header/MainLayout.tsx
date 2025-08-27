@@ -1,11 +1,12 @@
 "use client";
+
 import React from "react";
 import Header from "./Header";
 import Fotoer from "../footer/Footer";
 
 import { usePathname } from "next/navigation";
 
-const HeaderFooter = ({ children }: { children: React.ReactNode }) => {
+export const MainLayout = ({ children }: { children: React.ReactNode }) => {
   
   const pathname = usePathname();
   const check = pathname.startsWith("/auth");
@@ -19,4 +20,3 @@ const HeaderFooter = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default HeaderFooter;

@@ -1,0 +1,23 @@
+import { Container } from "@/ui/Container";
+import { Indicator } from "./Indicator";
+import { Reviews } from "./Reviews";
+import { Recommends } from "./Recommends";
+import { useState } from "react";
+
+export const ReviewsRecommends = () => {
+  const [show , setShow] = useState(false)
+  
+  return (
+    <div className="py-10 space-y-10">
+      <div className="w-full bg-orderBtn">
+        <Container>
+          <Indicator onClick={(items) => setShow(items)} />
+        </Container>
+      </div>
+      <Container>
+        <Reviews show={show} />
+        <Recommends show={show} />
+      </Container>
+    </div>
+  );
+};

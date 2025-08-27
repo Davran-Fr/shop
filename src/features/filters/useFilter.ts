@@ -2,12 +2,14 @@ import { useGetProductsFilteredQuery } from "@/Api/ecommerce";
 import { changeFilter } from "@/Redux/filterBase";
 import { RootState } from "@/Redux/store";
 import { getAllProductsTypes } from "@/Types/main";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const productsFiltiration = () => {
   const [filtered, setFiltered] = useState<getAllProductsTypes>();
   const dispatch = useDispatch();
+  const router = useRouter();
   const filterBase = useSelector((state: RootState) => state.filter);
 
   //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////

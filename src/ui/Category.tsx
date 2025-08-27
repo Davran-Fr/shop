@@ -44,7 +44,7 @@ const Category = forwardRef<HTMLDivElement, Props>(
           </div>
         )}
         <ul
-          className={`absolute z-30 left-0 w-full  h-80 lg:h-52 overflow-y-scroll overflow-x-hidden divide-y-[1px] divide-gray-300 bg-white rounded-md border border-gray-500 transform transition-all duration-200 custom-scroll
+          className={`absolute z-30 left-0 w-full h-80 lg:h-52 overflow-y-scroll overflow-x-hidden divide-y-[1px] divide-gray-300 bg-white rounded-md border border-gray-500 transform transition-all duration-200 custom-scroll
            ${
              open
                ? " top-12 opacity-100 visible pointer-events-auto"

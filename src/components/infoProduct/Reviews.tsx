@@ -1,10 +1,34 @@
-import { Container } from "@/ui/Container";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
-export const Reviews = () => {
+import { useSelector } from "react-redux";
+import { RootState } from "@/Redux/store";
+import { ReviewsCards } from "@/ui/ReviewsCards";
+import { useReviewAnimation } from "./animation/useReviewAnimation";
+
+export const Reviews = ({ show }: { show: boolean }) => {
+  const data = useSelector((state: RootState) => state.infoProductsBase.data);
+  const { containerRef } = useReviewAnimation(show);
+
   return (
-    <Container className="pt-10">
-      <h3 className="font-world text-3xl">Reviews</h3>
-    </Container>
+    <div
+      ref={containerRef}
+      className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 text-black gap-5 ${
+        !show ? "block" : "hidden"
+      }`}
+    >
+      {data?.reviews.map((items, i) => {
+        const { date, reviewerName, rating, comment } = items;
+
+        return (
+          <ReviewsCards
+            key={i}
+            date={date}
+            reviewerName={reviewerName}
+            rating={rating}
+            comment={comment}
+          />
+        );
+      })}
+    </div>
   );
 };

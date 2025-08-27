@@ -6,3 +6,5 @@ export const recommend = [
   {name : 'Laptops', title: "laptops", img: "https://res.cloudinary.com/dhjcpetui/image/upload/v1753904154/j3pvtwb5l0xowzlpafuf.jpg" },
   {name : 'Mans-shirts', title: "mens-shirts", img: "https://res.cloudinary.com/dhjcpetui/image/upload/v1753959697/shutterstock_476839699_800x_lyhioi.jpg" },
 ];
+
+

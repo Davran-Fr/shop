@@ -7,12 +7,14 @@ interface Props {
   error?: FieldError;
   placeholder: string;
 }
+
 const RegisterInput = ({
   type = 'text',
   registation,
   error,
   placeholder,
 }: Props) => {
+
   return (
     <label  className="flex flex-col border-1px  border-black  rounded-lg  w-full relative">
        <input

@@ -1,25 +1,21 @@
 "use client";
 
-import { useGetAllCategoriesListsQuery } from "@/Api/ecommerce";
-import React, { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useRef } from "react";
 import { RootState } from "@/Redux/store";
-import useClickOutside from "@/hooks/useClickOutSide";
-import Prices from "../../ui/Prices";
-import Order from "../../ui/Order";
-import Category from "../../ui/Category";
-import Search from "../../ui/Search";
-import {
-  useCategory,
-  usePrices,
-  useOrder,
-  useSearch,
-} from "../../features/filters/filter";
 import { useWidth } from "@/hooks/useWidth";
-import { useOverFlow } from "@/hooks/overFlow";
-import MobileFilterBar from "./MobileFilterBar";
+import { useOverFlow } from "@/hooks/useOverFlow";
 import { toggleFilter } from "@/Redux/toggleFilterBack";
 import { Container } from "@/ui/Container";
+import { useDispatch, useSelector } from "react-redux";
+import { useGetAllCategoriesListsQuery } from "@/Api/ecommerce";
+import {  useCategory,  usePrices,  useOrder,  useSearch} from "../../features/filters/useFilterChanges";
+
+import MobileFilterBar from "./MobileFilterBar";
+import useClickOutside from "@/hooks/useClickOutSide";
+import Prices from "@/ui/Prices";
+import Order from "@/ui/Order";
+import Category from "@/ui/Category";
+import Search from "@/ui/Search";
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -29,6 +25,8 @@ const Filter = () => {
   const divFilter = useRef<HTMLDivElement | null>(null);
   const filterBase = useSelector((state: RootState) => state.filter);
   const filterBack = useSelector((state: RootState) => state.toggleFilter);
+
+  //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
   const { data: categories } = useGetAllCategoriesListsQuery();
 
@@ -55,15 +53,22 @@ const Filter = () => {
     onClearOrder,
   } = useOrder(dispatch);
 
+  //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
+
   useClickOutside(divCategory, () => setOpen(false));
   useClickOutside(divOrder, () => setOpenOrder(false));
   useClickOutside(divFilter, () => dispatch(toggleFilter(false)));
   useOverFlow(filterBack.filter);
+
+  //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
+
   const animation = ` px-4 ${
     filterBack.filter
       ? "visible pointer-events-auto  delay translate-y-full"
       : "invisible  pointer-events-none -translate-y-10"
   }`;
+
+  //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
   return (
     <Container className="relative bg-white z-30 w-full font-world flex items-center gap-5 lg:gap-0">

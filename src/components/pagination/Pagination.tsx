@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeFilter } from "@/Redux/filterBase";
 import { RootState } from "@/Redux/store";
 
-const PaginationPage = ({
+export const Pagination = ({
   total,
 }: {
   total: number;
@@ -89,4 +89,4 @@ const PaginationPage = ({
   );
 };
 
-export default PaginationPage;
+
