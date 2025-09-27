@@ -9,6 +9,7 @@ import {
 } from "@/validation/validation";
 import {
   useLazyGetAllUserInfoQuery,
+  useLazyGetProfileQuery,
   useLogInMutation,
   useSignUpMutation,
 } from "@/Api/auth";
@@ -18,15 +19,15 @@ import { setTokenCookies } from "../../lib/useCookies";
 import { useUploadToCloudinary } from "@/hooks/useUpLoadCloudinary";
 import { useDispatch } from "react-redux";
 import { loadingAuth } from "@/Redux/globalLoading";
+import { setUsersDataBase } from "@/Redux/userDataBase";
 
 export const useRegisterForm = () => {
-  //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
-
   const router = useRouter();
   const dispatch = useDispatch();
   const [data] = useLazyGetAllUserInfoQuery();
   const [signUp] = useSignUpMutation();
   const [logIn] = useLogInMutation();
+  const [profile] = useLazyGetProfileQuery();
   const [imgPreview, setImgPreview] = useState<string | null>(null);
 
   //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
@@ -128,6 +129,10 @@ export const useRegisterForm = () => {
       if (tokens.access_token && tokens.refresh_token) {
         setTokenCookies(tokens.refresh_token);
         setAccess_token(tokens.access_token);
+        const userProfile = await profile().unwrap();
+        if (userProfile) {
+          dispatch(setUsersDataBase(userProfile));
+        }
       }
 
       setImgPreview(null);

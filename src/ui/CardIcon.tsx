@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import React from "react";
 import { TiShoppingCart } from "react-icons/ti";
 
@@ -8,9 +9,11 @@ interface Props {
 }
 
 export const CardIcon = ({ enter, leave, length }: Props) => {
+  const router = useRouter()
   return (
     <div
       onMouseLeave={leave}
+      onClick={() => router.push('/cards')}
       onMouseEnter={enter}
       className="relative md:flex items-center cursor-pointer"
     >

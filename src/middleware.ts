@@ -4,7 +4,12 @@ export function middleware(request: NextRequest) {
   const token = request.cookies.get("refreshToken")?.value;
   const pathname = request.nextUrl.pathname;
 
-  const protectedRoutes = pathname === "/" || pathname.startsWith("/products");
+  const protectedRoutes =
+    pathname === "/" ||
+    pathname.startsWith("/products") ||
+    pathname.startsWith("/cards") ||
+    pathname.startsWith("/order");
+    
   const authRoutes =
     pathname.startsWith("/auth") ||
     pathname.startsWith("/auth/login") ||
@@ -22,5 +27,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/products/:path*", "/auth/:path*"],
+  matcher: ["/", "/products/:path*", "/auth/:path*" , "/order/:path*" ,  "/cards/:path*" ,  "/my-orders/:path*" ],
 };

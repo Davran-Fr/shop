@@ -24,10 +24,10 @@ module.exports = {
           "linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.50) 100%)",
       },
       backgroundColor: {
-        mainColor: "#F4F6E4 ",
+        mainColor: "#d7e3fc",
         bgBlue: "#d8eaab",
-        orderBtn: "#EBEFCE",
-        footerBacl: "#E9EDC9",
+        orderBtn: "#bfd8bd",
+        footerBacl: "#d7e3fc",
       },
       divideColor: {
         mainBack: "#475c6c",

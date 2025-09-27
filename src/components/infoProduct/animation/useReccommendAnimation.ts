@@ -9,8 +9,7 @@ gsap.registerPlugin(ScrollToPlugin);
 export const useReccommendAnimation = (show: boolean) => {
   const [showMore, setShowMore] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const widht = useWidth()
-  
+
   //////// --------- --------- --------- ///////// --------- --------- --------- /////////
 
   useEffect(() => {
@@ -48,8 +47,7 @@ export const useReccommendAnimation = (show: boolean) => {
           offsetY: 150,
         },
       });
-    } 
-    else {
+    } else {
       gsap.fromTo(
         el,
         { height: "500px", overflow: "hidden" },
@@ -57,6 +55,9 @@ export const useReccommendAnimation = (show: boolean) => {
           height: el.scrollHeight,
           duration: 1,
           ease: "power2.inOut",
+          onComplete: () => {
+            el.style.overflow = "visible";
+          },
         }
       );
     }
@@ -68,7 +69,6 @@ export const useReccommendAnimation = (show: boolean) => {
   return {
     showMore,
     toggleAccordion,
-    widht,
     containerRef,
   };
 };

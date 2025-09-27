@@ -1,4 +1,4 @@
-import { useLogInMutation } from "@/Api/auth";
+import { useLazyGetProfileQuery, useLogInMutation } from "@/Api/auth";
 import { logInForm, LoginType } from "@/validation/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -7,11 +7,13 @@ import { setTokenCookies } from "../../lib/useCookies";
 import { useRouter } from "next/navigation";
 import { setAccess_token } from "../../lib/useLocaleStorage";
 import { loadingAuth } from "@/Redux/globalLoading";
+import { setUsersDataBase } from "@/Redux/userDataBase";
 
 export const useLogInForm = () => {
   const [logInMutation, { data, error, isLoading }] = useLogInMutation();
   const router = useRouter();
   const dispacht = useDispatch();
+  const [userData] = useLazyGetProfileQuery();
 
   //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
@@ -41,6 +43,8 @@ export const useLogInForm = () => {
       if (token.access_token && token.refresh_token) {
         setAccess_token(token.access_token);
         setTokenCookies(token.refresh_token);
+        const profile = await userData().unwrap();
+        dispacht(setUsersDataBase(profile));
       }
       reset();
       router.replace("/");

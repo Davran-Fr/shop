@@ -1,13 +1,14 @@
 import { useOverFlow } from "@/hooks/useOverFlow";
-import { loadingAuth } from "@/Redux/globalLoading";
 import { RootState } from "@/Redux/store";
+import { toggleFilter } from "@/Redux/toggleFilterBack";
 import Image from "next/image";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const QrCode = () => {
   const dispatch = useDispatch();
-  const show = useSelector((state: RootState) => state.loadingAuth.loading);
+  const show = useSelector((state: RootState) => state.toggleFilter.filter);
+  const add = useSelector((state: RootState) => state.cardItems.notification);
 
   //////// --------- --------- --------- ///////// --------- --------- --------- /////////
 
@@ -21,16 +22,16 @@ const QrCode = () => {
 
   return (
     <div
-      onClick={() => dispatch(loadingAuth(true))}
+      onClick={() => dispatch(toggleFilter(false))}
       className={`fixed bg-black/50 px-4 flex items-center justify-center top-0 left-0 w-full h-full ${
-        !show ? "pointer-events-auto visible" : "invisible pointer-events-none "
+      show ? "pointer-events-auto visible" : "invisible pointer-events-none "
       } z-50`}
     >
       <Image
         src={qrCode as string}
         alt="quearCode "
         className={`w-[300px] ${
-          !show ? "scale-100 opacity-100" : "scale-0 opacity-0"
+          show ? "scale-100 opacity-100" : "scale-0 opacity-0"
         } duration-300 delay-75 relative z-50 `}
         width={800}
         height={800}

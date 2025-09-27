@@ -4,15 +4,15 @@ import PriceDiscount from "@/ui/PriceDiscount";
 import React, { useEffect, useRef, useState } from "react";
 import { Rating, Star } from "@smastrom/react-rating";
 import { FaChevronDown } from "react-icons/fa";
-import { PropsSlice } from "@/Redux/cards";
+import { changeNotification, PropsSlice } from "@/Redux/cards";
 import { Product } from "@/Types/products";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
 import { usePathname } from "next/navigation";
 import { MdQrCode } from "react-icons/md";
-import { loadingAuth } from "@/Redux/globalLoading";
 
 import "@smastrom/react-rating/style.css";
+import { toggleFilter } from "@/Redux/toggleFilterBack";
 
 interface Props {
   data: Product;
@@ -87,7 +87,9 @@ const Texts = ({ data }: Props) => {
       </span>
       <div className="">
         <MdQrCode
-          onClick={() => dispatch(loadingAuth(false))}
+          onClick={() => {
+            dispatch(toggleFilter(true))
+          }}
           className="text-5xl cursor-pointer"
         />
       </div>

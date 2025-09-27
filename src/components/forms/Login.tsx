@@ -26,9 +26,9 @@ const LoginForm = () => {
     <div ref={divRef} className="w-full h-full">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-10 md:gap-0  w-full justify-between h-full"
+        className="flex flex-col gap-10 md:gap-0 w-full justify-between h-full"
       >
-        <div className="flex flex-col gap-10  ">
+        <div className="flex flex-col gap-10">
           <RegisterInput
             error={errors.email}
             type="email"

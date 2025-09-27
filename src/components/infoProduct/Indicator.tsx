@@ -40,16 +40,16 @@ export const Indicator = ({ onClick }: Props) => {
           </h3>
         </div>
       ))}
-      {/* triangel and background item*/}
+      {/* triangelss and background item*/}
       <div
         ref={indicatorRef}
-        className="absolute bottom-0 h-full z-0  bg-black/40 rounded-full"
+        className="absolute bottom-0 h-full z-0  bg-black/50 rounded-full"
       />
       <div
         ref={triangleRef}
         className="absolute left-0 w-0 h-0 border-l-[15px] border-l-transparent 
           border-r-[15px] border-r-transparent 
-          border-t-[15px] border-black/40"
+          border-t-[15px] border-black/50"
       />
     </div>
   );

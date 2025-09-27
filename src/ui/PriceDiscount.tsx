@@ -10,7 +10,7 @@ const PriceDiscount = ({ price, discountPercentage , classname }: Props) => {
   const discountPrice = price && discountPercentage ? price  * (1 - discountPercentage  / 100): null 
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center text-center">
       {discountPrice && (
         <span className={` ${classname} font-workSans font-bold text-red-400`}>
           {discountPrice.toFixed(2)}$

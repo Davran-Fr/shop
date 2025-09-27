@@ -3,9 +3,9 @@ import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 
 interface Props {
   type?: string;
-  registation: UseFormRegisterReturn;
+  registation?: UseFormRegisterReturn;
   error?: FieldError;
-  placeholder: string;
+  placeholder?: string;
 }
 
 const RegisterInput = ({

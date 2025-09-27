@@ -79,14 +79,14 @@ const SwiperCard = () => {
                 swiperRef.current?.swiper.slideToLoop(i, 500);
                 swiperRef.current?.swiper.autoplay.stop();
               }}
-              className=" cursor-pointer relative  rounded-xl"
+              className="cursor-pointer relative  rounded-xl"
             >
               <div
                 className={clsx(
                   "w-full rounded-xl flex backdrop-blur-xl items-center overflow-hidden relative justify-center text-base sm:text-xl py-7",
                   mainPageActions.category === item
-                    ? "bg-orderBtn"
-                    : "bg-mainColor"
+                    ? "bg-gray-400 text-white"
+                    : "bg-gray-100 bg-opacity-"
                 )}
               >
                 <div

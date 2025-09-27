@@ -3,6 +3,7 @@ import { addCountCards, addItems, PropsSlice } from "@/Redux/cards";
 import { Product } from "@/Types/products";
 import { FaSpinner } from "react-icons/fa";
 import { useDispatch } from "react-redux";
+import { useShowSuccess } from "@/hooks/useShowSuccess";
 
 interface Props {
   data: Product;
@@ -12,6 +13,7 @@ interface Props {
 const AddButton = ({ cards, data }: Props) => {
   const [spinnner, setSpinner] = useState(false);
   const [require, setRequire] = useState(false);
+  const success = useShowSuccess();
   const dispatch = useDispatch();
 
   return (
@@ -21,6 +23,7 @@ const AddButton = ({ cards, data }: Props) => {
           if (cards.count > 0) {
             setSpinner(true);
             setTimeout(() => {
+              success();
               dispatch(addItems(data));
               setSpinner(false);
               dispatch(addCountCards({ count: 0 }));
@@ -32,10 +35,10 @@ const AddButton = ({ cards, data }: Props) => {
             }, 2000);
           }
         }}
-        className=" flex justify-center w-full items-center bg-orderBtn border-1px border-black h-full rounded-md"
+        className="flex justify-center w-full items-center group bg-gray-100 hover:bg-black/50 hover:text-white duration-200 border-1px border-black h-full rounded-md"
       >
         {spinnner ? (
-          <FaSpinner className="animate-spin text-xl text-gray-600" />
+          <FaSpinner className="animate-spin text-xl text-gray-600 group-hover:text-white hover:text-white" />
         ) : (
           <span>Add to Card</span>
         )}
@@ -50,9 +53,10 @@ const AddButton = ({ cards, data }: Props) => {
           );
         }}
         type="number"
-        className={` bg-orderBtn w-1/2 h-full rounded-md px-2 ${
+        className={` bg-gray-100 w-1/2 h-full rounded-md px-2 ${
           require ? "border-red-500 border-2" : "border-black border-1px"
         }`}
+        min={0}
         placeholder="Count"
         max={data?.stock}
       />

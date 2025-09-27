@@ -8,8 +8,8 @@ export const ReviewsRecommends = () => {
   const [show , setShow] = useState(false)
   
   return (
-    <div className="py-10 space-y-10">
-      <div className="w-full bg-orderBtn">
+    <div className="pt-10 pb-28 space-y-10">
+      <div className="w-full bg-gray-100">
         <Container>
           <Indicator onClick={(items) => setShow(items)} />
         </Container>

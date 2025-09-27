@@ -12,7 +12,7 @@ export const ReviewsCards = ({
 }: Props) => {
     
   return (
-    <div  className="commentsDiv bg-orderBtn last:col-span-full lg:last:col-span-1 flex flex-col items-center mx-auto lg:mx-0 max-w-[500px] lg:max-w-none lg:items-start w-full p-5 rounded-xl">
+    <div  className="commentsDiv bg-gray-100 last:col-span-full lg:last:col-span-1 flex flex-col items-center mx-auto lg:mx-0 max-w-[500px] lg:max-w-none lg:items-start w-full p-5 rounded-xl">
       <div className="space-y-3 flex flex-col items-center lg:items-start">
         <h5 className="text-xl font-world">{reviewerName}</h5>
         <p className="font-workSans text-base font-medium">"{comment}"</p>

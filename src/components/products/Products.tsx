@@ -33,6 +33,7 @@ export const Products = ({ main }: Props) => {
             {main?.products.map((items, i) => {
               return (
                 <div
+                  key={i}
                   ref={(e) => {
                     if (e) divAnimation.current[i] = e;
                   }}
@@ -48,4 +49,3 @@ export const Products = ({ main }: Props) => {
     </Container>
   );
 };
-

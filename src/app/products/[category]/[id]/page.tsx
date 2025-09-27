@@ -10,15 +10,15 @@ import { BreadCrumbs } from "@/components/infoProduct/BreadCrumbs";
 import { ReviewsRecommends } from "@/components/infoProduct/Reviews-Recommends";
 
 const page = () => {
-  const { isLoading, error, infoBase } = dates();
+  const { error, infoBase } = dates();
 
   if (error || !infoBase) return null;
 
   return (
-    <div className="w-full py-20">
+    <div>
       <QrCode />
       <NotificateInfo />
-      <BreadCrumbs />
+      <BreadCrumbs name="produts" />
       <Info />
       <ReviewsRecommends />
     </div>

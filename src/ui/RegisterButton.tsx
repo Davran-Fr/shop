@@ -18,7 +18,7 @@ const RegisterButton = React.forwardRef<HTMLButtonElement, Props>(
       <button
         ref={ref}
         type={`${type}`}
-        className={`bg-orderBtn border-1px border-gray-500 w-full rounded-xl text-black py-2 ${classname}`}
+        className={`bg-black/50  border-1px border-gray-500 w-full rounded-xl text-white py-2 ${classname}`}
         onClick={() => {
           onclick?.();
           if (navigation) router.push(`${navigation}`);

@@ -14,11 +14,14 @@ const userDataBase = createSlice({
   initialState,
   reducers: {
     setUsersDataBase: (state, action: PayloadAction<UserResponse>) => {
-      state.data = action.payload
+      state.data = action.payload;
+    },
+    clearUserDataBase: (state) => {
+      state.data = null;
     },
   },
 });
 
-export const { setUsersDataBase } = userDataBase.actions;
+export const { setUsersDataBase, clearUserDataBase } = userDataBase.actions;
 
 export default userDataBase.reducer;

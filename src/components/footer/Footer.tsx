@@ -6,7 +6,7 @@ import { BsTwitterX } from "react-icons/bs";
 
 const Fotoer = () => {
   return (
-    <div className="w-full bg-footerBacl font-world text-black ">
+    <div className="w-full bg-gray-100 font-world text-black ">
       <div className="container mx-auto gap-10 px-4 flex flex-col items-center py-20">
         <h5 className="font-agamtoh text-5xl text-center">DvG</h5>
         <div className="flex gap-5 items-center flex-col 350:flex-row ">

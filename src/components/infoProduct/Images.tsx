@@ -29,7 +29,7 @@ const Images = ({ data }: Props) => {
                   setActiveSlide(i);
                   swiperRef.current?.swiper.slideToLoop(i);
                 }}
-                className="bg-orderBtn border-1px p-2 relative border-black"
+                className="bg-gray-100 border-1px p-2 relative border-black"
               >
                 <div
                   className={`  z-10  w-full duration-100 h-full absolute top-0 left-0   ${
@@ -51,7 +51,7 @@ const Images = ({ data }: Props) => {
         </div>
       )}
 
-      <div className="bg-orderBtn border-1px border-black  w-full 500:w-fit   flex items-center justify-center relative border-">
+      <div className="bg-gray-100 border-1px border-black  w-full 500:w-fit   flex items-center justify-center relative border-">
         <Swiper
           ref={swiperRef}
           onSlideChange={(s) => setActiveSlide(s.realIndex)}

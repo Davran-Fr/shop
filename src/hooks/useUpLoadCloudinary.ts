@@ -4,7 +4,7 @@ export const useUploadToCloudinary = async (file: File ) => {
   data.append("upload_preset", "unsigned_present");
   
   const res = await fetch(
-    `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_KEY}/image/upload`,
+    `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_NAME}/image/upload`,
     {
       method: "POST",
       body: data,

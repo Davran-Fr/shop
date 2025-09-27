@@ -14,6 +14,7 @@ import { Logo } from "@/ui/Logo";
 import { Avatar } from "../../ui/Avatar";
 import { CardIcon } from "../../ui/CardIcon";
 import { Container } from "@/ui/Container";
+import { Settings } from "./Settings";
 
 const Header = () => {
   const user = useSelector((state: RootState) => state.userInfo.data);
@@ -21,6 +22,7 @@ const Header = () => {
   const divRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const [openCards, setOpenCards] = useState(false);
+  const [openSetting, setOpenSetting] = useState(false);
 
   const onClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -36,7 +38,7 @@ const Header = () => {
         <Logo />
         <ul className=" hidden md:flex bg-black/50 items-center gap-3 px-10 text-white rounded-full h-full backdrop-blur-xl space-x-7 text-lg">
           {links.map((items, i) => {
-            if(items.href === '/cards') return null
+            if (items.href === "/cards") return null;
             return (
               <li key={i}>
                 <Link href={items.href} className="cursor-pointer">
@@ -52,8 +54,10 @@ const Header = () => {
             enter={() => setOpenCards(true)}
             leave={() => setOpenCards(false)}
           />
-          <div className="relative z-30">
+          <div className="relative cursor-pointer z-30">
             <Avatar
+              enter={() => setOpenSetting(true)}
+              leave={() => setOpenSetting(false)}
               className="w-6 h-6 hidden md:block"
               avatar={user?.avatar ? user.avatar : ""}
             />
@@ -62,6 +66,11 @@ const Header = () => {
               onClick={(e) => onClick(e)}
             />
           </div>
+          <Settings
+            onMouseEnter={() => setOpenSetting(true)}
+            onMouseLeave={() => setOpenSetting(false)}
+            openCards={openSetting}
+          />
           <CardsShortView
             onMouseEnter={() => setOpenCards(true)}
             onMouseLeave={() => setOpenCards(false)}

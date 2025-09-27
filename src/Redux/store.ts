@@ -3,7 +3,8 @@ import filter from "@/Redux/filterBase";
 import toggleFilter from "./toggleFilterBack";
 import loadingAuth from "./globalLoading";
 import cardItems from "./cards";
-import addInfoProducts  from "./infoDataBase";
+import addInfoProducts from "./infoDataBase";
+import showOrder from "./showOrder";
 
 import { ecommerce } from "@/Api/ecommerce";
 import { api } from "@/Api/auth";
@@ -18,7 +19,8 @@ export const store = configureStore({
     toggleFilter: toggleFilter,
     loadingAuth: loadingAuth,
     cardItems: cardItems,
-    infoProductsBase : addInfoProducts
+    infoProductsBase: addInfoProducts,
+    showOrder: showOrder,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware).concat(ecommerce.middleware),
