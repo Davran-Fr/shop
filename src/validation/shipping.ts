@@ -60,12 +60,19 @@ export const shipping = z.object({
   name: z.string({ message: "The name need contain minimum 2 letters" }).min(2),
   area: z.string().nonempty({ message: "Area is required" }),
   phone: z.string().min(2),
-  velayat: z.enum(TURKMEN_VELAYATS, {
-    errorMap: () => ({ message: "Please select a valid velayat" }),
-  }),
-  districts: z.enum(TURKMEN_DISTRICTS, {
-    errorMap: () => ({ message: "Please select a valid district" }),
-  }),
+  velayat: z
+    .enum(TURKMEN_VELAYATS, {
+      // убрали errorMap
+    })
+    .refine((val) => TURKMEN_VELAYATS.includes(val), {
+      message: "Please select a valid velayat",
+    }),
+
+  districts: z
+    .enum(TURKMEN_DISTRICTS)
+    .refine((val) => TURKMEN_DISTRICTS.includes(val), {
+      message: "Please select a valid district",
+    }),
 });
 
 export type ShippingType = z.infer<typeof shipping>;
