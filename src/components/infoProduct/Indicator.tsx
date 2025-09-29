@@ -34,7 +34,7 @@ export const Indicator = ({ onClick }: Props) => {
           }`}
         >
           <h3
-            className={`font-world text-xl rounded-full w-fit h-full py-3 px-5`}
+            className={`font-world sm:text-xl rounded-full w-fit h-full py-3 px-5`}
           >
             {label}
           </h3>
