@@ -15,24 +15,27 @@
 //   return json.secure_url;
 // };
 
-
 export const useUploadToCloudinary = async (file: File) => {
   const API_KEY = "1d90a45e129f36a9c9a52bafc5cf4101"; // твой ключ
   const formData = new FormData();
 
-  formData.append("key", API_KEY); // ключ API
-  formData.append("image", file); // сам файл
+  formData.append("key", API_KEY);
+  formData.append("image", file);
 
-  const res = await fetch("https://api.imgbb.com/1/upload", {
-    method: "POST",
-    body: formData,
-  });
+  try {
+    const res = await fetch("https://api.imgbb.com/1/upload", {
+      method: "POST",
+      body: formData,
+    });
 
-  if (!res.ok) {
-    throw new Error(`Upload failed: ${res.status}`);
+    if (!res.ok) {
+      throw new Error(`Upload failed: ${res.status}`);
+    }
+
+    const data = await res.json();
+    return data.data.url; // ОБЯЗАТЕЛЬНО data.data.url
+  } catch (err) {
+    console.error("Upload error:", err);
+    return null; // возвращаем null при ошибке
   }
-
-  const data = await res.json();
-  return data.url; // прямая ссылка на изображение
 };
-

@@ -1,13 +1,14 @@
 "use client";
+
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
-import { MdOutlineCameraAlt } from "react-icons/md";
-import { useRegisterForm } from "@/features/auth/useRegisterForm";
+import gsap from "gsap";
 import RegisterInput from "@/ui/RegisterInput";
 import RegisterButton from "@/ui/RegisterButton";
-import gsap from "gsap";
+
+import React, { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { TestUpload } from "@/Test";
+import { MdOutlineCameraAlt } from "react-icons/md";
+import { useRegisterForm } from "@/features/auth/useRegisterForm";
 
 const RegisterForm = () => {
   const divRef = useRef<HTMLDivElement>(null);
