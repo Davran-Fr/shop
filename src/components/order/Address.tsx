@@ -31,7 +31,7 @@ export const Address = () => {
   return (
     <>
       {state.show === false && (
-        <div className="pt-10 pb-20 mx-auto max-w-[900px] gap-x-10 px-4 flex justify-between w-full relative">
+        <div className="pt-10 pb-20 mx-auto max-w-[900px] gap-x-10 gap-y-10 px-4 flex justify-between flex-col-reverse items-center md:flex-row w-full relative">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-5"
@@ -84,7 +84,7 @@ export const Address = () => {
             />
             <Buttons spinner={spinner} />
           </form>
-          <div className=" relative w-[425px] h-[325px]">
+          <div className="relative md:w-[425px] md:h-[325px] w-full h-[225px]">
             <Image fill alt="map" src={"/map.jpg"} className="rounded-xl" />
           </div>
         </div>

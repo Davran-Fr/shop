@@ -25,8 +25,8 @@ export const Order = () => {
   return (
     <>
       {state.show === true && (
-        <div className="flex relative justify-between max-w-[900px] pt-10 pb-20 px-4 mx-auto">
-          <div className="relative w-[350px] h-[350px]">
+        <div className="flex relative flex-col md:flex-row gap-y-10 justify-between items-center max-w-[900px] pt-10 pb-20 px-4 mx-auto">
+          <div className="relative md:w-[350px] md:h-[350px] w-full h-[300px]">
             <Image src={"/order.jpg"} alt="order" fill />
           </div>
           <div className="max-w-[400px] w-full divide-y-[1px] divide-gray-500 bg-gray-100 rounded-xl backdrop-blur-xl p-4">
