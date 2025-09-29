@@ -61,9 +61,7 @@ export const shipping = z.object({
   area: z.string().nonempty({ message: "Area is required" }),
   phone: z.string().min(2),
   velayat: z
-    .enum(TURKMEN_VELAYATS, {
-      // убрали errorMap
-    })
+    .enum(TURKMEN_VELAYATS, {})
     .refine((val) => TURKMEN_VELAYATS.includes(val), {
       message: "Please select a valid velayat",
     }),

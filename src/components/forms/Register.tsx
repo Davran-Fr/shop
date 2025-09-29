@@ -7,6 +7,7 @@ import RegisterInput from "@/ui/RegisterInput";
 import RegisterButton from "@/ui/RegisterButton";
 import gsap from "gsap";
 import { usePathname } from "next/navigation";
+import { TestUpload } from "@/Test";
 
 const RegisterForm = () => {
   const divRef = useRef<HTMLDivElement>(null);
@@ -29,7 +30,7 @@ const RegisterForm = () => {
     onSubmit,
     clearSubmit,
   } = useRegisterForm();
-  
+
   return (
     <div
       ref={divRef}
@@ -73,7 +74,6 @@ const RegisterForm = () => {
             </span>
           )}
         </label>
-
         <div className="w-full h-full  text-black gap-5 flex flex-col  justify-between">
           <RegisterInput
             error={errors.name}
