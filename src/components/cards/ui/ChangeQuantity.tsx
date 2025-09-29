@@ -24,7 +24,7 @@ export const AddButton = ({ cards, item }: Props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="flex justify-center items-center gap-3 h-8">
+    <div className="flex justify-center font-world items-center gap-3 h-8">
       <button
         onClick={() => {
           if (orderAdd !== "0" && orderAdd !== "") {
