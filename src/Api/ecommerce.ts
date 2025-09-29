@@ -7,7 +7,8 @@ import { useRouter } from "next/navigation";
 export const ecommerce = createApi({
   reducerPath: "ecommerce",
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.NEXT_PUBLIC_ECOMMERCE_URL,
+    // baseUrl: process.env.NEXT_PUBLIC_ECOMMERCE_URL,
+    baseUrl: 'https://dummyjson.com',
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
     },
