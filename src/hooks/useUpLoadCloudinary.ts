@@ -33,6 +33,6 @@ export const useUploadToCloudinary = async (file: File) => {
   }
 
   const data = await res.json();
-  return data.data.url; // прямая ссылка на изображение
+  return data.url; // прямая ссылка на изображение
 };
 
