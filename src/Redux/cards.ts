@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+
 import { Product } from "@/Types/products";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -23,47 +25,42 @@ export interface PropsSlice {
   totalCount: number;
   productsTotalPrice: number;
   remainding: number;
-  notification: "add" | "stopAdding" | "notificate" | 'remove';
+  notification: "add" | "stopAdding" | "notificate" | "remove";
   notificateText: string;
 }
 
 //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
-const saveCartLocalStorage = (state: PropsSlice) => {
+const saveCartCookies = (state: PropsSlice) => {
+  console.log("Cart size", new Blob([JSON.stringify(state)]).size);
   try {
-    localStorage.setItem("cart", JSON.stringify(state));
+    Cookies.set("cart", JSON.stringify(state), {
+      expires: 7,
+      sameSite: "Strict",
+    });
   } catch (e) {
-    console.error("Error saving to localStorage", e);
+    console.error("Error saving to cookies", e);
   }
 };
 
 //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
-
-const loadCartLocalStorage = (): PropsSlice => {
+const loadCartCookies = (): PropsSlice => {
   try {
-    const data = localStorage.getItem("cart");
+    const data = Cookies.get("cart");
     if (data) {
       return JSON.parse(data) as PropsSlice;
     }
   } catch (e) {
-    console.error("Error loading from localStorage", e);
+    console.error("Error loading from cookies", e);
   }
   return defaultState;
 };
 
 //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
-const initialState: PropsSlice = loadCartLocalStorage();
+const initialState: PropsSlice = loadCartCookies();
 
-// const initialState: PropsSlice = {
-//   items: [],
-//   count: 0,
-//   totalCount: 0,
-//   productsTotalPrice: 0,
-//   remainding : 0,
-//   notification : 'stopAdding',
-//   notificateText : ''
-// };
+//////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
 const cardItems = createSlice({
   name: "card",
@@ -153,7 +150,7 @@ const cardItems = createSlice({
 
       //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
-      saveCartLocalStorage(state);
+      saveCartCookies(state);
     },
     removeItems: (state, action: PayloadAction<CartItem>) => {
       const findItem = state.items.find(
@@ -197,7 +194,7 @@ const cardItems = createSlice({
 
       //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
-      saveCartLocalStorage(state);
+      saveCartCookies(state);
     },
 
     clearItem: (state) => {
@@ -208,7 +205,7 @@ const cardItems = createSlice({
     },
     changeNotification: (
       state,
-      action: PayloadAction<"add" | "stopAdding" | "notificate" | 'remove'>
+      action: PayloadAction<"add" | "stopAdding" | "notificate" | "remove">
     ) => {
       state.notification = action.payload;
     },

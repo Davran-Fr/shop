@@ -90,7 +90,7 @@ const Images = ({ data }: Props) => {
         {data.length > 1 && (
           <>
             <button className="absolute z-10 top-1/2 -translate-y-1/2 p-2 bg-black/50 text-white nextSwiperBtn rounded-full -right-3  500:right-3">
-              <FaAngleRight className="  cursor-pointer " />
+              <FaAngleRight className="cursor-pointer" />
             </button>
             <button className="absolute z-10 top-1/2 -translate-y-1/2 p-2 bg-black/50 text-white  prevSwiperBtn rounded-full  -left-3 500:left-3">
               <FaAngleLeft className=" cursor-pointer " />

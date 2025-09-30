@@ -14,5 +14,5 @@ const globalLoadingPage = createSlice({
   },
 });
 
-export  const  {loadingAuth} = globalLoadingPage.actions
-export default globalLoadingPage.reducer
+export const { loadingAuth } = globalLoadingPage.actions;
+export default globalLoadingPage.reducer;

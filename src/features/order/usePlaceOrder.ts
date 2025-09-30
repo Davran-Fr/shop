@@ -1,19 +1,17 @@
 import useClickOutside from "@/hooks/useClickOutSide";
-import { CartItem } from "@/Redux/cards";
+
+import { CartItem, clearItem } from "@/Redux/cards";
 import { OrderState } from "@/Redux/showOrder";
-
 import { RootState } from "@/Redux/store";
-
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-interface OrderInfo extends OrderState {
+export interface Order {
   createdAt: string;
-}
-
-interface Orders {
-  date: OrderInfo[];
+  address: OrderState;
   items: CartItem[];
+  totalProducts: number;
+  totalPrice: number;
 }
 
 export const usePlaceOrder = () => {
@@ -44,10 +42,31 @@ export const usePlaceOrder = () => {
   };
 
   const onSubmit = () => {
-    if (!state) return;
+    if (!state || !card.items.length) return;
 
-    if (state) {
-    }
+    const totalPrice = card.items.reduce(
+      (sum, item) => sum + item.totalPrice,
+      0
+    );
+
+    const newOrder: Order = {
+      createdAt: new Date().toISOString(),
+      address: state,
+      items: card.items,
+      totalProducts,
+      totalPrice,
+    };
+
+    const prevOrders: Order[] = JSON.parse(
+      localStorage.getItem("orders") || "[]"
+    );
+
+    const updatedOrders = [...prevOrders, newOrder];
+
+    localStorage.setItem("orders", JSON.stringify(updatedOrders));
+
+    dispacht(clearItem());
+    localStorage.removeItem("cart");
   };
 
   return {

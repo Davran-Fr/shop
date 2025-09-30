@@ -22,7 +22,7 @@ export function UserDataBase({ children }: { children: React.ReactNode }) {
       localStorage.removeItem("addresses");
       clearAccess_token();
     }
-  }, [token, refreshToken, pathname]);
+  }, [token, refreshToken]);
 
   useEffect(() => {
     if (data) {

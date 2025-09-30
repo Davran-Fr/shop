@@ -1,16 +1,18 @@
+import Cookies from "js-cookie";
+
 import { useState } from "react";
 import { RootState } from "@/Redux/store";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { changeOrder, clearOrder } from "@/Redux/showOrder";
+import { changeOrder } from "@/Redux/showOrder";
 import { shipping, ShippingType } from "@/validation/shipping";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
 export const useAdressShipping = () => {
-  const dispacth = useDispatch();
+  const dispatch = useDispatch();
   const state = useSelector((state: RootState) => state.showOrder);
   const [spinner, setSpinner] = useState(false);
-  
+
   const {
     register,
     handleSubmit,
@@ -22,23 +24,29 @@ export const useAdressShipping = () => {
 
   const onSubmit: SubmitHandler<ShippingType> = async (data) => {
     try {
-      const load = localStorage.getItem("addresses");
+      // Загружаем старые адреса из cookies
+      const load = Cookies.get("addresses");
       const oldAddresses: ShippingType[] = load ? JSON.parse(load) : [];
 
+      // Добавляем новый адрес
       const updatedAddresses = [...oldAddresses, data];
 
-      localStorage.setItem("addresses", JSON.stringify(updatedAddresses));
+      // Сохраняем обратно в cookies (7 дней)
+      Cookies.set("addresses", JSON.stringify(updatedAddresses), {
+        expires: 7,
+        sameSite: "Strict",
+      });
 
       setSpinner(true);
 
       setTimeout(() => {
-        dispacth(changeOrder(data))
-        dispacth(changeOrder({ show: true }));
+        dispatch(changeOrder(data));
+        dispatch(changeOrder({ show: true }));
         setSpinner(false);
-
+        reset();
       }, 1000);
     } catch (err) {
-      console.error("Failed to save addresses:", err);
+      console.error("Failed to save addresses in cookies:", err);
     }
   };
 
@@ -48,7 +56,7 @@ export const useAdressShipping = () => {
     setSpinner,
     register,
     onSubmit,
-    dispacth,
+    dispatch,
     handleSubmit,
     reset,
     errors,

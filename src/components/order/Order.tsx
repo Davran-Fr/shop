@@ -39,7 +39,11 @@ export const Order = () => {
                 <input
                   ref={ref}
                   readOnly
-                  value={`${state.name}  /  ${state.district}  /  ${state.velayat}`}
+                  value={`${
+                    !state
+                      ? ""
+                      : `${state.name}  /  ${state.district}  /  ${state.velayat}`
+                  }`}
                   onClick={() => {
                     setOpen((prev) => !prev);
                     loadAddress();
