@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie'
+
 import { clearAccess_token, getAccess_token } from "@/lib/useLocaleStorage";
 import { usePathname } from "next/navigation";
 import { useLazyGetProfileQuery } from "@/Api/auth";
@@ -18,8 +20,8 @@ export function UserDataBase({ children }: { children: React.ReactNode }) {
     if (token && refreshToken && !pathname.startsWith("/auth")) {
       triggerProfile();
     } else if (!refreshToken && pathname.startsWith("/auth")) {
-      localStorage.removeItem("cart");
       localStorage.removeItem("addresses");
+      Cookies.remove("cart");
       clearAccess_token();
     }
   }, [token, refreshToken]);

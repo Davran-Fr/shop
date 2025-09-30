@@ -1,10 +1,12 @@
 import useClickOutside from "@/hooks/useClickOutSide";
+import Cookies from "js-cookie";
 
 import { CartItem, clearItem } from "@/Redux/cards";
 import { OrderState } from "@/Redux/showOrder";
 import { RootState } from "@/Redux/store";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 export interface Order {
   createdAt: string;
@@ -21,6 +23,7 @@ export const usePlaceOrder = () => {
   const state = useSelector((state: RootState) => state.showOrder);
   const card = useSelector((state: RootState) => state.cardItems);
   const dispacht = useDispatch();
+  const router = useRouter();
   const totalProducts = card.items.reduce((a, b) => a + b.count, 0);
 
   useClickOutside(ref, () => setOpen(false));
@@ -66,7 +69,8 @@ export const usePlaceOrder = () => {
     localStorage.setItem("orders", JSON.stringify(updatedOrders));
 
     dispacht(clearItem());
-    localStorage.removeItem("cart");
+    Cookies.remove("cart");
+    router.push("/my-orders");
   };
 
   return {
