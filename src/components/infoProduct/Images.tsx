@@ -14,13 +14,13 @@ interface Props {
 }
 const Images = ({ data }: Props) => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
- 
+
   const swiperRef = useRef<SwiperRef>(null);
 
   return (
     <div className="flex flex-col-reverse items-center justify-center lg:items-start lg:flex-row gap-5">
       {data?.length > 1 && (
-        <div className="flex lg:flex-col  flex-row   gap-2  lg:items-center  ">
+        <div className="flex lg:flex-col flex-row gap-2 lg:items-center">
           {data.map((items, i) => {
             return (
               <div
@@ -32,7 +32,7 @@ const Images = ({ data }: Props) => {
                 className="bg-gray-100 border-1px p-2 relative border-black"
               >
                 <div
-                  className={`  z-10  w-full duration-100 h-full absolute top-0 left-0   ${
+                  className={`z-10 w-full duration-100 h-full absolute top-0 left-0 ${
                     i === activeSlide
                       ? " bg-transparent "
                       : "bg-black/50 hover:bg-transparent"
@@ -68,7 +68,7 @@ const Images = ({ data }: Props) => {
           pagination={{
             clickable: true,
           }}
-          className="mySwiper 500:w-400px  lg:w-500px "
+          className="mySwiper 500:w-400px lg:w-500px"
         >
           {data?.map((items, i) => {
             return (
@@ -77,11 +77,11 @@ const Images = ({ data }: Props) => {
                 className="flex items-center p-3 justify-center"
               >
                 <Image
-                  alt="images "
+                  alt="images"
                   width={800}
                   height={800}
                   src={items}
-                  className="w-full  relative"
+                  className="w-full relative"
                 />
               </SwiperSlide>
             );

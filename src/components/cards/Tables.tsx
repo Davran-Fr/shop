@@ -17,7 +17,7 @@ export const Tables = () => {
   return (
     <Container className="">
       {cards.items.length === 0 ? (
-        <div className="font-world text-6xl py-20 flex flex-col justify-center items-center gap-y-20">
+        <div className="font-world text-3xl md:text-6xl py-20 flex flex-col justify-center items-center gap-y-20">
           <h3>No Products in Card</h3>
           <button
             onClick={() => router.push("/products")}
