@@ -33,9 +33,9 @@ export const useUploadToCloudinary = async (file: File) => {
     }
 
     const data = await res.json();
-    return data.data.url; // ОБЯЗАТЕЛЬНО data.data.url
+    return data.data.url;
   } catch (err) {
     console.error("Upload error:", err);
-    return null; // возвращаем null при ошибке
+    return null;
   }
 };
