@@ -24,14 +24,11 @@ export const useAdressShipping = () => {
 
   const onSubmit: SubmitHandler<ShippingType> = async (data) => {
     try {
-      // Загружаем старые адреса из cookies
       const load = Cookies.get("addresses");
       const oldAddresses: ShippingType[] = load ? JSON.parse(load) : [];
 
-      // Добавляем новый адрес
       const updatedAddresses = [...oldAddresses, data];
 
-      // Сохраняем обратно в cookies (7 дней)
       Cookies.set("addresses", JSON.stringify(updatedAddresses), {
         expires: 7,
         sameSite: "Strict",

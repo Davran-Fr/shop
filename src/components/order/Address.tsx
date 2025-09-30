@@ -17,13 +17,13 @@ export const Address = () => {
     state,
     spinner,
     errors,
-    dispacth,
+    dispatch,
     reset,
   } = useAdressShipping();
 
   useEffect(() => {
     if (state.show === false) {
-      dispacth(clearOrder());
+      dispatch(clearOrder());
       reset();
     }
   }, [state.show]);
