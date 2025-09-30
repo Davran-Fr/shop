@@ -70,7 +70,7 @@ export const usePlaceOrder = () => {
 
     dispacht(clearItem());
     Cookies.remove("cart");
-    router.push("/my-orders");
+    router.push("/settings/my-orders");
   };
 
   return {
