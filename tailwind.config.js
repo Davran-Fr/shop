@@ -22,6 +22,8 @@ module.exports = {
         headerGradient: "linear-gradient(180deg,#2f3e46  ,transparent )",
         showMoreGradient:
           "linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.50) 100%)",
+        gradientAccordion:
+          "linear-gradient(190deg,transparent,gray,transparent)",
       },
       backgroundColor: {
         mainColor: "#d7e3fc",

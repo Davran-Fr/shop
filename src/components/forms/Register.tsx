@@ -39,7 +39,7 @@ const RegisterForm = () => {
     >
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="rounded-xl flex  items-center flex-col sm:flex-row   gap-10  justify-between w-full h-full text-black"
+        className="rounded-xl flex  items-center flex-col sm:flex-row gap-10 justify-between w-full h-full text-black"
       >
         <label
           htmlFor="avatar"

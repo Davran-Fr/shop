@@ -9,13 +9,13 @@ export function middleware(request: NextRequest) {
     pathname === "/" ||
     pathname.startsWith("/products") ||
     pathname.startsWith("/cards") ||
-    pathname.startsWith("/order");
+    pathname.startsWith("/order") ||
+    pathname.startsWith("/settings");
 
   const authRoutes =
     pathname.startsWith("/auth") ||
     pathname.startsWith("/auth/login") ||
     pathname.startsWith("/auth/signup");
-
 
   if (protectedRoutes && !token) {
     return NextResponse.redirect(new URL("/auth", request.url));
@@ -38,7 +38,6 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/products", request.url));
     }
   }
-
   return NextResponse.next();
 }
 
@@ -49,6 +48,6 @@ export const config = {
     "/auth/:path*",
     "/order/:path*",
     "/cards/:path*",
-    "/my-orders/:path*",
+    "/settings/:path*",
   ],
 };

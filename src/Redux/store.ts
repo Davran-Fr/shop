@@ -5,6 +5,7 @@ import loadingAuth from "./globalLoading";
 import cardItems from "./cards";
 import addInfoProducts from "./infoDataBase";
 import showOrder from "./showOrder";
+import orders from "./orders";
 
 import { ecommerce } from "@/Api/ecommerce";
 import { api } from "@/Api/auth";
@@ -21,6 +22,7 @@ export const store = configureStore({
     cardItems: cardItems,
     infoProductsBase: addInfoProducts,
     showOrder: showOrder,
+    orders: orders,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware).concat(ecommerce.middleware),

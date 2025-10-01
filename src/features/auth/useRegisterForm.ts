@@ -16,7 +16,7 @@ import {
 import { useRouter } from "next/navigation";
 import { setAccess_token } from "../../lib/useLocaleStorage";
 import { setTokenCookies } from "../../lib/useCookies";
-import { useUploadToCloudinary } from "@/hooks/useUpLoadCloudinary";
+import { uploadToImgbb } from "@/hooks/useUpLoadCloudinary";
 import { useDispatch } from "react-redux";
 import { loadingAuth } from "@/Redux/globalLoading";
 import { setUsersDataBase } from "@/Redux/userDataBase";
@@ -64,7 +64,7 @@ export const useRegisterForm = () => {
 
     setImgPreview(URL.createObjectURL(file));
 
-    const url = await useUploadToCloudinary(file);
+    const url = await uploadToImgbb(file);
 
     if (!url) {
       alert("Coudn't upload image please try again");

@@ -7,8 +7,8 @@ export interface UserResponse {
   password: string;
   role: "customer" | "admin" | string;
   avatar: string;
-  creationAt: string; 
-  updatedAt: string; 
+  creationAt: string;
+  updatedAt: string;
 }
 export type UserReqest = {
   name: string;

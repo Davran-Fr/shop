@@ -32,7 +32,6 @@ export interface PropsSlice {
 //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
 const saveCartCookies = (state: PropsSlice) => {
-  console.log("Cart size", new Blob([JSON.stringify(state)]).size);
   try {
     Cookies.set("cart", JSON.stringify(state), {
       expires: 7,

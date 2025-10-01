@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie'
+import Cookies from "js-cookie";
 
 import { clearAccess_token, getAccess_token } from "@/lib/useLocaleStorage";
 import { usePathname } from "next/navigation";
@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { setUsersDataBase } from "../Redux/userDataBase";
 import { useDispatch } from "react-redux";
 import { getTokenCookies } from "@/lib/useCookies";
+import { useRemoveDeleteUrl } from "@/lib/useDeleteUrl";
+import { useRemoveOrder } from "@/lib/useOrders";
 
 export function UserDataBase({ children }: { children: React.ReactNode }) {
   const dispatch = useDispatch();
@@ -22,6 +24,8 @@ export function UserDataBase({ children }: { children: React.ReactNode }) {
     } else if (!refreshToken && pathname.startsWith("/auth")) {
       localStorage.removeItem("addresses");
       Cookies.remove("cart");
+      useRemoveOrder();
+      useRemoveDeleteUrl();
       clearAccess_token();
     }
   }, [token, refreshToken]);

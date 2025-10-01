@@ -55,7 +55,7 @@ export const Settings = ({ onMouseEnter, onMouseLeave, openCards }: Props) => {
     clearTokenCookies();
     dispatch(loadingAuth(true));
     dispatch(changeNotification("stopAdding"));
-    dispatch(clearItem())
+    dispatch(clearItem());
     // dispatch();
     setTimeout(() => {
       router.push("/auth");

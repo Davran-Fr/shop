@@ -1,7 +1,12 @@
+import { Orders } from "@/components/settings/My-Orders";
 import React from "react";
 
 const page = () => {
-  return <div className="">my orders</div>;
+  return (
+    <div className="">
+      <Orders />
+    </div>
+  );
 };
 
 export default page;

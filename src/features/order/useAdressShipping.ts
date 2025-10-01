@@ -24,16 +24,12 @@ export const useAdressShipping = () => {
 
   const onSubmit: SubmitHandler<ShippingType> = async (data) => {
     try {
-      const load = Cookies.get("addresses");
+      const load = localStorage.getItem("addresses");
       const oldAddresses: ShippingType[] = load ? JSON.parse(load) : [];
 
       const updatedAddresses = [...oldAddresses, data];
 
-      Cookies.set("addresses", JSON.stringify(updatedAddresses), {
-        expires: 7,
-        sameSite: "Strict",
-      });
-
+      localStorage.setItem("addresses", JSON.stringify(updatedAddresses));
       setSpinner(true);
 
       setTimeout(() => {

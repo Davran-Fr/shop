@@ -7,6 +7,7 @@ import { RootState } from "@/Redux/store";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { addOrder } from "@/Redux/orders";
 
 export interface Order {
   createdAt: string;
@@ -60,14 +61,7 @@ export const usePlaceOrder = () => {
       totalPrice,
     };
 
-    const prevOrders: Order[] = JSON.parse(
-      localStorage.getItem("orders") || "[]"
-    );
-
-    const updatedOrders = [...prevOrders, newOrder];
-
-    localStorage.setItem("orders", JSON.stringify(updatedOrders));
-
+    dispacht(addOrder(newOrder));
     dispacht(clearItem());
     Cookies.remove("cart");
     router.push("/settings/my-orders");
