@@ -45,7 +45,7 @@ const productsAnimations = (main: getAllProductsTypes) => {
           ease: "power2.out",
         });
       }
-    }, 1500);
+    }, 500);
 
     return () => {
       clearTimeout(move);

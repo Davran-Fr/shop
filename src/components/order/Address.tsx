@@ -19,13 +19,11 @@ export const Address = () => {
     errors,
     dispatch,
     reset,
+    setValue,
   } = useAdressShipping();
 
   useEffect(() => {
-    if (state.show === false) {
-      dispatch(clearOrder());
-      reset();
-    }
+    reset();
   }, [state.show]);
 
   return (
@@ -40,6 +38,7 @@ export const Address = () => {
               Add Shipping <span className="text-orange-500">Address</span>
             </h3>
             <ShippingInput
+              setValue={setValue}
               value={state.name}
               dis={"name"}
               actions={register("name")}
@@ -49,14 +48,16 @@ export const Address = () => {
             />
             <ShippingInput
               value={state.phone}
+              setValue={setValue}
               dis={"phone"}
               actions={register("phone")}
               error={errors.phone}
-              type="number"
+              type="tel"
               placeholder="Phone number (+993 65 581689)"
             />
             <ShippingInput
               value={state.area}
+              setValue={setValue}
               dis={"area"}
               actions={register("area")}
               className="max-h-[300px] h-[100px]"
@@ -65,16 +66,18 @@ export const Address = () => {
               placeholder="Area (area and street)"
             />
             <ShippingInput
+              setValue={setValue}
               value={state.district}
               dis={"district"}
-              actions={register("districts")}
+              actions={register("district")}
               data={TURKMEN_DISTRICTS as any}
-              error={errors.districts}
+              error={errors.district}
               type="text"
               placeholder="District/City/Town"
             />
             <ShippingInput
               value={state.velayat}
+              setValue={setValue}
               dis={"velayat"}
               actions={register("velayat")}
               data={TURKMEN_VELAYATS as any}

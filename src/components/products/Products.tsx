@@ -7,9 +7,10 @@ import { Container } from "@/ui/Container";
 
 interface Props {
   main?: getAllProductsTypes;
+  loading: boolean;
 }
 
-export const Products = ({ main }: Props) => {
+export const Products = ({ main, loading }: Props) => {
   if (!main) return;
 
   const { mainDiv, filterBack, divAnimation } = productsAnimations(main);

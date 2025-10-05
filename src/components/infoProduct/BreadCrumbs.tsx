@@ -12,17 +12,24 @@ import { Container } from "@/ui/Container";
 
 interface Props {
   name?: string;
+  className?: string;
 }
 
-export const BreadCrumbs = ({ name }: Props) => {
+export const BreadCrumbs = ({ name, className }: Props) => {
   const data = useSelector((state: RootState) => state.infoProductsBase.data);
   const dispatch = useDispatch();
   const router = useRouter();
   const pathName = usePathname();
   const { category } = useParams();
+  const splitedPathname = pathName.split("/");
+  const lastIndex = splitedPathname.length - 1;
 
   return (
-    <div className="w-full bg-gray hidden sm:flex items-center mt-20 py-3">
+    <div
+      className={`w-full items-center  hidden sm:flex ${
+        name === "settings" ? "m-0" : "mt-20"
+      } ${className}`}
+    >
       <Container className="flex text-xl items-center w-full text-black font-world gap-3">
         <FaAngleLeft
           className="text-xl mr-5 cursor-pointer"
@@ -48,9 +55,25 @@ export const BreadCrumbs = ({ name }: Props) => {
             /<span className="opacity-80">{data?.title}</span>
           </>
         ) : (
-          <span className="cursor-pointer opacity-50">
-            {capitalize(pathName.slice(1, pathName.length))}
-          </span>
+          <>
+            {splitedPathname.map((items, i) => {
+              if (items === "") return null;
+              return (
+                <div key={i} className="flex gap-x-3">
+                  <span
+                    className={`cursor-pointer ${
+                      i === lastIndex && "opacity-50" 
+                    }`}
+                  >
+                    {capitalize(items)}
+                  </span>
+                  <span className={`${lastIndex === i ? "hidden" : "block"}`}>
+                    /
+                  </span>
+                </div>
+              );
+            })}
+          </>
         )}
       </Container>
     </div>

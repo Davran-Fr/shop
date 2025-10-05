@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { FaArrowRight } from "react-icons/fa6";
 import { Desktop } from "./Desktop";
 import { Mobile } from "./Mobile";
+import { NotFound } from "@/ui/NotFound";
 
 export const Tables = () => {
   const cards = useSelector((state: RootState) => state.cardItems);
@@ -17,15 +18,7 @@ export const Tables = () => {
   return (
     <Container className="">
       {cards.items.length === 0 ? (
-        <div className="font-world text-3xl md:text-6xl py-20 flex flex-col justify-center items-center gap-y-20">
-          <h3>No Products in Card</h3>
-          <button
-            onClick={() => router.push("/products")}
-            className="bg-gray-100 text-2xl px-5 w-fit rounded-md py-5"
-          >
-            Go Shopp
-          </button>
-        </div>
+        <NotFound name="No Products in Card" />
       ) : (
         <>
           <div className="w-full xl:space-y-0 flex flex-col xl:items-center pt-20 sm:pt-10 sm:pb-20 pb-10">

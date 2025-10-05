@@ -1,4 +1,9 @@
 import { Product } from "@/Types/products";
+import { UpdatedType } from "@/validation/validation";
+
+export type ChangeProfilePayload = {
+  id: string;
+} & UpdatedType;
 
 export interface UserResponse {
   id: number;

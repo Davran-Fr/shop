@@ -8,21 +8,31 @@ import useClickOutside from "@/hooks/useClickOutSide";
 import { CardsShortView } from "./ShortView";
 import { links } from "./links";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
 import { Logo } from "@/ui/Logo";
 import { Avatar } from "../../ui/Avatar";
 import { CardIcon } from "../../ui/CardIcon";
 import { Container } from "@/ui/Container";
 import { Settings } from "./Settings";
+import { LogOutNotificate } from "../notification/LogOutNotificate";
+import { clearAccess_token } from "@/lib/useLocaleStorage";
+import { clearTokenCookies } from "@/lib/useCookies";
+import { loadingAuth } from "@/Redux/globalLoading";
+import { changeNotification, clearItem } from "@/Redux/cards";
+import { useRouter } from "next/navigation";
+import { clearUserDataBase } from "@/Redux/userDataBase";
 
 const Header = () => {
   const user = useSelector((state: RootState) => state.userInfo.data);
   const cards = useSelector((state: RootState) => state.cardItems.items);
   const divRef = useRef<HTMLDivElement>(null);
+  const dispatch = useDispatch();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [openCards, setOpenCards] = useState(false);
   const [openSetting, setOpenSetting] = useState(false);
+  const [notificate, setNotificate] = useState(false);
 
   const onClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -33,6 +43,7 @@ const Header = () => {
 
   return (
     <div className="w-full pt-3 fixed z-50 top-0 font-world">
+      <LogOutNotificate />
       <HeaderDrawer onClick={(e) => onClick(e)} open={open} ref={divRef} />
       <Container className="h-11 flex justify-between  items-center text-white">
         <Logo />
@@ -67,6 +78,7 @@ const Header = () => {
             />
           </div>
           <Settings
+            setShow={() => setNotificate(true)}
             onMouseEnter={() => setOpenSetting(true)}
             onMouseLeave={() => setOpenSetting(false)}
             openCards={openSetting}

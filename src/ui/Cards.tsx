@@ -41,7 +41,6 @@ const Cards: React.FC<Card> = ({ data }) => {
           className="mySwiper overflow-hidden h-[250px] 500:h-[350px] relative"
         >
           {data.images.map((item, i) => {
-            console.log(item);
             if (item) {
               return (
                 <SwiperSlide key={i} className="rounded-xl relative">

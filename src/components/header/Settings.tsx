@@ -8,22 +8,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { PiSignOutBold } from "react-icons/pi";
 import { LuShoppingBag } from "react-icons/lu";
 import { useRouter } from "next/navigation";
-import { clearAccess_token } from "@/lib/useLocaleStorage";
-import { clearTokenCookies } from "@/lib/useCookies";
 import { loadingAuth } from "@/Redux/globalLoading";
-import { clearUserDataBase, setUsersDataBase } from "@/Redux/userDataBase";
-import { changeNotification, clearItem } from "@/Redux/cards";
+import { logOutNotificate } from "@/Redux/logOut";
 
 interface Props {
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   openCards: boolean;
+  setShow: VoidFunction;
 }
 
-export const Settings = ({ onMouseEnter, onMouseLeave, openCards }: Props) => {
+export const Settings = ({
+  onMouseEnter,
+  onMouseLeave,
+  openCards,
+  setShow,
+}: Props) => {
   const user = useSelector((state: RootState) => state.userInfo);
   const router = useRouter();
-  const dispatch = useDispatch();
+  const dispacth = useDispatch()
 
   const container = clsx(
     "rounded-md hidden lg:block w-[300px] duration-300 bottom-3  transition-all ",
@@ -36,12 +39,12 @@ export const Settings = ({ onMouseEnter, onMouseLeave, openCards }: Props) => {
   const settings = [
     {
       label: "Account",
-      push: "/accaunt",
+      push: "/account",
       icon: <MdManageAccounts className="w-full h-full hidden md:block" />,
     },
     {
       label: "My Orders",
-      push: "/my-orders",
+      push: "/account/my-orders",
       icon: <LuShoppingBag className="w-full h-full hidden md:block" />,
     },
     {
@@ -49,19 +52,6 @@ export const Settings = ({ onMouseEnter, onMouseLeave, openCards }: Props) => {
       icon: <PiSignOutBold className="w-full h-full hidden md:block" />,
     },
   ];
-
-  const signOut = () => {
-    clearAccess_token();
-    clearTokenCookies();
-    dispatch(loadingAuth(true));
-    dispatch(changeNotification("stopAdding"));
-    dispatch(clearItem());
-    // dispatch();
-    setTimeout(() => {
-      router.push("/auth");
-      dispatch(clearUserDataBase());
-    }, 1000);
-  };
 
   return (
     <div
@@ -89,10 +79,11 @@ export const Settings = ({ onMouseEnter, onMouseLeave, openCards }: Props) => {
         {settings.map((item, i) => (
           <div
             onClick={() => {
+              onMouseLeave
               if (item.push) {
                 router.push(item.push);
               } else if (item.label === "Sign Out") {
-                signOut();
+                dispacth(logOutNotificate(true))
               }
             }}
             key={i}

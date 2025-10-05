@@ -57,20 +57,20 @@ export const TURKMEN_DISTRICTS = [
 ] as const;
 
 export const shipping = z.object({
-  name: z.string({ message: "The name need contain minimum 2 letters" }).min(2),
+  name: z
+    .string()
+    .min(2, { message: "The name need contain minimum 2 letters" }),
   area: z.string().nonempty({ message: "Area is required" }),
-  phone: z.string().min(2),
-  velayat: z
-    .enum(TURKMEN_VELAYATS, {})
-    .refine((val) => TURKMEN_VELAYATS.includes(val), {
-      message: "Please select a valid velayat",
-    }),
+  phone: z.string().regex(/^\+993\d{8}$/, {
+    message: "Please enter your phone number correctly",
+  }),
+  velayat: z.enum(TURKMEN_VELAYATS, {
+    message: "Please select a valid velayat",
+  }),
 
-  districts: z
-    .enum(TURKMEN_DISTRICTS)
-    .refine((val) => TURKMEN_DISTRICTS.includes(val), {
-      message: "Please select a valid district",
-    }),
+  district: z.enum(TURKMEN_DISTRICTS, {
+    message: "Please select a valid district",
+  }),
 });
 
 export type ShippingType = z.infer<typeof shipping>;

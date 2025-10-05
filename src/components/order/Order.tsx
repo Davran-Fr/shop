@@ -20,6 +20,8 @@ export const Order = () => {
     setOpen,
     ref,
     card,
+    setPlace,
+    place,
   } = usePlaceOrder();
 
   return (
@@ -39,11 +41,13 @@ export const Order = () => {
                 <input
                   ref={ref}
                   readOnly
-                  value={`${
-                    !state
-                      ? ""
-                      : `${state.name}  /  ${state.district}  /  ${state.velayat}`
-                  }`}
+                  value={
+                    place?.name
+                      ? `${place.name} / ${place.district} / ${place.velayat}`
+                      : state?.name
+                      ? `${state.name} / ${state.district} / ${state.velayat}`
+                      : ""
+                  }
                   onClick={() => {
                     setOpen((prev) => !prev);
                     loadAddress();
@@ -55,7 +59,7 @@ export const Order = () => {
                 <ul
                   className={`${
                     open ? "block" : "hidden"
-                  } absolute w-full custom-scroll z-10 mt-1 max-h-[400px] overflow-y-scroll rounded-md border-1px border-black top-full bg-white`}
+                  } absolute w-full custom-scroll z-10 mt-1 max-h-[300px] overflow-y-scroll rounded-md border-1px border-black top-full bg-white`}
                 >
                   <div className="relative divide-black divide-y-1px">
                     {[...addresses].reverse().map((items, i) => {
@@ -65,6 +69,7 @@ export const Order = () => {
                           onClick={() => {
                             dispacht(changeOrder(items));
                             setOpen(false);
+                            setPlace(items);
                           }}
                           className="p-3 text-center cursor-pointer space-x-2 hover:bg-slate-400 hover:text-white"
                         >
@@ -76,9 +81,10 @@ export const Order = () => {
                     })}
                     <li
                       onClick={() => {
-                        dispacht(clearOrder());
                         setOpen(false);
                         dispacht(changeOrder({ show: false }));
+                        dispacht(clearOrder());
+                        setPlace({});
                       }}
                       className="text-center sticky cursor-pointer bg-black/50 text-white bottom-0 w-full h-[44px] flex justify-center items-center left-0"
                     >
@@ -89,7 +95,7 @@ export const Order = () => {
                         onClick={() => {
                           localStorage.removeItem("addresses");
                           setAddresses([]);
-                          dispacht(clearOrder());
+                          // dispacht(clearOrder());
                         }}
                         className="text-center cursor-pointer bg-black/50 text-white w-full h-[44px] flex justify-center items-center left-0"
                       >

@@ -45,12 +45,12 @@ const NotificateInfo = () => {
             cards.notification === "notificate"
               ? " translate-y-0 opacity-100"
               : "opacity-0 translate-y-10"
-          } delay-200 w-[500px] h-200px   duration-300 items-center bg-white p-5 flex flex-col justify-between gap-10 font-world text-lg`}
+          } delay-100 w-[500px] h-200px duration-200 items-center bg-white p-5 flex flex-col justify-between gap-10 font-world text-lg`}
         >
           <span className="text-xl text-center">{cards.notificateText}</span>
           <button
             onClick={() => dispatch(changeNotification("stopAdding"))}
-            className="border-1px border-black bg-orderBtn rounded-md w-full"
+            className="border-1px border-black bg-black/50 text-white rounded-md w-full"
           >
             Close
           </button>

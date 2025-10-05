@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Cards from "../../ui/Cards";
 import clsx from "clsx";
@@ -14,13 +14,13 @@ import { Container } from "@/ui/Container";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import { Loading } from "@/ui/Loading";
 
 const SwiperCard = () => {
   const width = useWidth();
   const swiperRef = useRef<SwiperRef>(null);
   const mainPageActions = actionMainPageCard();
   const { slidesPerView, choosePerView } = useSliderBreakPoints();
-
   useEffect(() => {
     if (
       !swiperRef.current?.swiper ||
@@ -38,6 +38,8 @@ const SwiperCard = () => {
       swiperRef.current.swiper.slideToLoop(index, 300);
     }
   }, [mainPageActions.categories, mainPageActions.category]);
+  
+  if (mainPageActions.isLoading) return <Loading />;
 
   return (
     <Container className="space-y-10 text-black pb-20 font-ptSerif">

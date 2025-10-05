@@ -33,6 +33,9 @@ export const validForm = z
 export type GetTypeValidForm = z.infer<typeof validForm>;
 export type UpdatedType = Omit<GetTypeValidForm, "confirmPassword">;
 
+export const profileValidation = validForm.partial();
+
+
 //For Login
 export const logInForm = z.object({
   password: z.string().min(2, { message: "Please enter your password" }),

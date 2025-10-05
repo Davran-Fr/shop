@@ -57,7 +57,7 @@ const Category = forwardRef<HTMLDivElement, Props>(
               <li
                 key={i}
                 onClick={() => onChange(items)}
-                className="py-1.5 hover:bg-orderBtn w-full  text-center cursor-pointer "
+                className="py-1.5 hover:bg-black/50 hover:text-white w-full  text-center cursor-pointer "
               >
                 <span className="block w-full">{capitalize(items)}</span>
               </li>

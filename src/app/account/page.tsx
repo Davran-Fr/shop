@@ -1,10 +1,11 @@
-import { Orders } from "@/components/settings/My-Orders";
 import React from "react";
+
+import { Account } from "@/components/account/Account";
 
 const page = () => {
   return (
-    <div className="">
-      <Orders />
+    <div>
+      <Account />
     </div>
   );
 };

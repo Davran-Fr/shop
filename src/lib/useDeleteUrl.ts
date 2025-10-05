@@ -1,6 +1,6 @@
-export const useSetDeleteUrl = (token: string) => {
+export const useSetDeleteUrl = (url: string) => {
   if (typeof window !== "undefined") {
-    localStorage.setItem("url_delete", token);
+    localStorage.setItem("url_delete", url);
   }
 };
 

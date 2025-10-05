@@ -59,13 +59,13 @@ const Order = forwardRef<HTMLDivElement, Props>(
         >
           <li
             onClick={LowToHigh}
-            className="py-1.5 hover:bg-orderBtn w-full cursor-pointer "
+            className="py-1.5 hover:bg-black/50 hover:text-white w-full cursor-pointer "
           >
             Low to High
           </li>
           <li
             onClick={HighToLow}
-            className="py-1.5 hover:bg-orderBtn w-full cursor-pointer "
+            className="py-1.5 hover:bg-black/50 hover:text-white w-full cursor-pointer "
           >
             High to Low
           </li>

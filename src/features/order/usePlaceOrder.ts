@@ -21,6 +21,7 @@ export const usePlaceOrder = () => {
   const ref = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
   const [addresses, setAddresses] = useState<OrderState[]>([]);
+  const [place, setPlace] = useState<OrderState>();
   const state = useSelector((state: RootState) => state.showOrder);
   const card = useSelector((state: RootState) => state.cardItems);
   const dispacht = useDispatch();
@@ -40,13 +41,16 @@ export const usePlaceOrder = () => {
       }
     } catch (e) {
       console.error("Invalid addresses in localStorage", e);
-
       setAddresses([]);
     }
   };
 
   const onSubmit = () => {
-    if (!state || !card.items.length) return;
+    if (!state || !card.items.length) {
+      loadAddress();
+      return;
+    }
+    
 
     const totalPrice = card.items.reduce(
       (sum, item) => sum + item.totalPrice,
@@ -64,10 +68,11 @@ export const usePlaceOrder = () => {
     dispacht(addOrder(newOrder));
     dispacht(clearItem());
     Cookies.remove("cart");
-    router.push("/settings/my-orders");
+    router.push("/account/my-orders");
   };
 
   return {
+    place,
     onSubmit,
     loadAddress,
     setAddresses,
@@ -76,6 +81,7 @@ export const usePlaceOrder = () => {
     state,
     open,
     totalProducts,
+    setPlace,
     setOpen,
     card,
     ref,

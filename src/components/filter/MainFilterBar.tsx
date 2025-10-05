@@ -106,7 +106,7 @@ const Filter = () => {
           value={filterBase.order}
           openToggle={toggleOpenOrder}
         />
-        <div className="flex w-full lg:w-fit gap-5 relative  justify-between">
+        <div className="flex w-full lg:w-fit gap-5 relative justify-between">
           <Prices
             placeholder="Min Price"
             value={filterBase.minPrice}

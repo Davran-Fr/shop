@@ -10,7 +10,7 @@ export function middleware(request: NextRequest) {
     pathname.startsWith("/products") ||
     pathname.startsWith("/cards") ||
     pathname.startsWith("/order") ||
-    pathname.startsWith("/settings");
+    pathname.startsWith("/account");
 
   const authRoutes =
     pathname.startsWith("/auth") ||
@@ -48,6 +48,6 @@ export const config = {
     "/auth/:path*",
     "/order/:path*",
     "/cards/:path*",
-    "/settings/:path*",
+    "/account/:path*",
   ],
 };

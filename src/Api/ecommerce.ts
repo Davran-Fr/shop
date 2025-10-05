@@ -2,13 +2,13 @@ import { ProductParams } from "@/Types/filter";
 import { getAllProductsTypes } from "@/Types/main";
 import { Product } from "@/Types/products";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { useRouter } from "next/navigation";
 
 export const ecommerce = createApi({
   reducerPath: "ecommerce",
   baseQuery: fetchBaseQuery({
+    //////// ---------  Coudn't use Url from env because of vercel can'not find Url from env ---------  /////////
     // baseUrl: process.env.NEXT_PUBLIC_ECOMMERCE_URL,
-    baseUrl: 'https://dummyjson.com',
+    baseUrl: "https://dummyjson.com",
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
     },

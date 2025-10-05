@@ -1,5 +1,3 @@
-import Cookies from "js-cookie";
-
 import { useState } from "react";
 import { RootState } from "@/Redux/store";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,9 +13,12 @@ export const useAdressShipping = () => {
 
   const {
     register,
+    control,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting },
+    getValues,
+    setValue,
+    formState: { errors },
   } = useForm<ShippingType>({
     resolver: zodResolver(shipping),
   });
@@ -26,7 +27,6 @@ export const useAdressShipping = () => {
     try {
       const load = localStorage.getItem("addresses");
       const oldAddresses: ShippingType[] = load ? JSON.parse(load) : [];
-
       const updatedAddresses = [...oldAddresses, data];
 
       localStorage.setItem("addresses", JSON.stringify(updatedAddresses));
@@ -51,8 +51,10 @@ export const useAdressShipping = () => {
     onSubmit,
     dispatch,
     handleSubmit,
+    setValue,
+    getValues,
     reset,
+    control,
     errors,
-    isSubmitting,
   };
 };

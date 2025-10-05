@@ -1,7 +1,7 @@
-import {  UpdatedType } from "@/validation/validation";
+import { UpdatedType } from "@/validation/validation";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { customBaseQuery } from "./fecthBaseQueryAuth";
-import { UserResponse } from "@/Types/main";
+import { ChangeProfilePayload, UserResponse } from "@/Types/main";
 
 export const api = createApi({
   reducerPath: "pokemonApi",
@@ -12,7 +12,7 @@ export const api = createApi({
     }),
 
     //////// --------- --------- --------- ///////// --------- --------- --------- /////////
-    
+
     signUp: builder.mutation<UserResponse, UpdatedType>({
       query: (newUser) => ({
         url: "/users",
@@ -22,8 +22,11 @@ export const api = createApi({
     }),
 
     //////// --------- --------- --------- ///////// --------- --------- --------- /////////
-    
-    logIn: builder.mutation<{access_token : string, refresh_token: string}, {email: string , password:string}>({
+
+    logIn: builder.mutation<
+      { access_token: string; refresh_token: string },
+      { email: string; password: string }
+    >({
       query: (newUser) => ({
         url: "/auth/login",
         method: "POST",
@@ -32,42 +35,53 @@ export const api = createApi({
     }),
 
     //////// --------- --------- --------- ///////// --------- --------- --------- /////////
-    
-    refreshToken : builder.mutation<{refresh_token: string | undefined , access_token : string | undefined} , {refreshToken: string}>({
-      query: (refreshToken)=> ({
-        url: '/auth/refresh-token',
-        method: 'POST',
+
+    refreshToken: builder.mutation<
+      { refresh_token: string | undefined; access_token: string | undefined },
+      { refreshToken: string }
+    >({
+      query: (refreshToken) => ({
+        url: "/auth/refresh-token",
+        method: "POST",
         body: refreshToken,
-      })
+      }),
     }),
 
     //////// --------- --------- --------- ///////// --------- --------- --------- /////////
-    
-    userInfo : builder.query<UserResponse, string | null>({
-      query:(id) => ({
+
+    userInfo: builder.query<UserResponse, string | null>({
+      query: (id) => ({
         url: `/users/${id}`,
-        method : 'GET',
-      })
-    })
-    ,
-
-    //////// --------- --------- --------- ///////// --------- --------- --------- /////////
-    
-    getProfile: builder.query<UserResponse, void>({
-      query : () => '/auth/profile'
+        method: "GET",
+      }),
     }),
-    
     //////// --------- --------- --------- ///////// --------- --------- --------- /////////
 
-    isEmailAvailable : builder.mutation<{isAvailable : boolean  } , {email : string}>({
-      query : ({email}) => ({
-       method : "POST",
-       url : '/users/is-available',
-       body: {email}
-      })
-    })
-  
+    getProfile: builder.query<UserResponse, void>({
+      query: () => "/auth/profile",
+    }),
+
+    //////// --------- --------- --------- ///////// --------- --------- --------- /////////
+
+    changeProfile: builder.mutation<
+      UserResponse,
+      { id: string; body: Partial<UpdatedType> }
+    >({
+      query: ({ id, body }) => ({
+        url: `/users/${id}`,
+        method: "PUT",
+        body,
+      }),
+    }),
   }),
 });
 
-export const {useIsEmailAvailableMutation ,  useLazyGetAllUserInfoQuery, useSignUpMutation , useLogInMutation ,useLazyGetProfileQuery, useRefreshTokenMutation , useUserInfoQuery} = api;
+export const {
+  useChangeProfileMutation,
+  useLazyGetAllUserInfoQuery,
+  useSignUpMutation,
+  useLogInMutation,
+  useLazyGetProfileQuery,
+  useRefreshTokenMutation,
+  useUserInfoQuery,
+} = api;

@@ -1,20 +1,26 @@
 import { changeOrder } from "@/Redux/showOrder";
-import { FieldError, UseFormRegisterReturn } from "react-hook-form";
+import {
+  FieldError,
+  UseFormRegisterReturn,
+  UseFormSetValue,
+} from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { OrderState } from "@/Redux/showOrder";
 
 import React, { useRef, useState } from "react";
 import useClickOutside from "@/hooks/useClickOutSide";
+import { ShippingType } from "@/validation/shipping";
 
 interface Props {
   value?: string;
-  dis?: keyof OrderState;
+  dis?: keyof ShippingType;
   error?: FieldError;
   actions: UseFormRegisterReturn;
   type?: string;
   className?: string;
   placeholder?: string;
   data?: string[];
+  setValue: UseFormSetValue<ShippingType>;
 }
 
 export const ShippingInput = ({
@@ -26,6 +32,7 @@ export const ShippingInput = ({
   data,
   error,
   actions,
+  setValue,
 }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
@@ -37,15 +44,16 @@ export const ShippingInput = ({
     <div ref={ref} className="relative max-w-[350px]">
       {type === "area" ? (
         <textarea
-          className="text-black font-world p-2 min-h-[100px] w-full rounded-md border border-black "
+          className="text-black font-world p-2 min-h-[100px] w-full rounded-md border border-black"
           {...actions}
           placeholder={placeholder}
-          value={value}
+          // value={value}
           onChange={(e) => {
             if (dis) {
               dispacht(changeOrder({ [dis]: e.target.value }));
+              setValue(dis, e.target.value);
+              actions.onChange(e);
             }
-            actions.onChange(e);
           }}
         ></textarea>
       ) : (
@@ -53,12 +61,13 @@ export const ShippingInput = ({
           {...actions}
           type={type}
           placeholder={placeholder}
-          value={value}
+          // value={value}
           onChange={(e) => {
             if (dis) {
               dispacht(changeOrder({ [dis]: e.target.value }));
+              actions.onChange(e);
+              setValue(dis, e.target.value);
             }
-            actions.onChange(e);
           }}
           onFocus={() => setOpen(true)}
           className={`${className} text-black font-world p-2 w-full rounded-md border border-black`}
@@ -73,10 +82,11 @@ export const ShippingInput = ({
               onClick={() => {
                 if (dis) {
                   dispacht(changeOrder({ [dis]: item }));
+                  setValue(dis, item, {
+                    shouldValidate: true,
+                    shouldDirty: true,
+                  });
                 }
-                actions.onChange({
-                  target: { value: item, name: actions.name },
-                });
                 setOpen(false);
               }}
               className="p-2 cursor-pointer hover:bg-gray-200"
@@ -87,7 +97,7 @@ export const ShippingInput = ({
         </ul>
       )}
 
-      {error && <p className="text-red-500  z-10 text-sm">{error.message}</p>}
+      {error && <p className="text-red-500 z-10 text-sm">{error.message}</p>}
     </div>
   );
 };

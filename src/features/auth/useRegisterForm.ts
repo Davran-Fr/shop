@@ -125,7 +125,6 @@ export const useRegisterForm = () => {
         email: validForm.email,
         password: validForm.password,
       }).unwrap();
-
       if (tokens.access_token && tokens.refresh_token) {
         setTokenCookies(tokens.refresh_token);
         setAccess_token(tokens.access_token);

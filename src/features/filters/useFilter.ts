@@ -61,7 +61,7 @@ const productsFiltiration = () => {
     if (!data) return;
     const handler = setTimeout(() => {
       setFiltered({ ...data, products: selectedItems });
-    }, 1500);
+    }, 500);
 
     return () => {
       clearTimeout(handler);

@@ -1,12 +1,14 @@
 "use client";
 
+import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 
 import { RootState } from "@/Redux/store";
 import { useSelector } from "react-redux";
 import { LuShoppingBag } from "react-icons/lu";
 import { FaChevronDown } from "react-icons/fa";
-import gsap from "gsap";
+import { InfoRow } from "@/ui/InfoRow";
+import { NotFound } from "@/ui/NotFound";
 
 export const Orders = () => {
   const orders = useSelector((state: RootState) => state.orders.orders);
@@ -41,7 +43,10 @@ export const Orders = () => {
 
   return (
     <div className="flex-col flex">
-      {orders.map((items, i) => {
+      {orders.length === 0 && <NotFound name="No Orders" />}
+
+      {[...orders].reverse().map((items, i) => {
+        if (orders.length === 0) return null;
         const [date, timeWithMs] = items.createdAt.split("T");
         const time = timeWithMs.split(".")[0];
         const lastElement = orders.length - 1;
@@ -49,12 +54,16 @@ export const Orders = () => {
 
         return (
           <div key={i}>
-            <div className={`max-w-[600px] py-5 w-full mx-auto`}>
+            <div
+              className={`max-w-[500px] ${
+                i === 0 ? "pb-5" : "py-5"
+              } w-full mx-auto`}
+            >
               <div
                 onClick={() => toggle(i)}
                 className="flex text-lg items-center cursor-pointer justify-between w-full"
               >
-                <LuShoppingBag className="lg:w-12 lg:h-12 w-10 h-10" />
+                <LuShoppingBag className="lg:w-8 lg:h-8 w-10 h-10" />
                 <div>
                   <p>
                     {items.address.name} / {items.address.district} /{" "}
@@ -72,29 +81,19 @@ export const Orders = () => {
                 className={`overflow-hidden`}
               >
                 <div className="py-5 space-y-2">
-                  <div className="flex gap-x-5">
-                    <p>Date : </p>
-                    <p>{time}</p>
-                    <p>{date}</p>
-                  </div>
-                  <div className="flex gap-x-5">
-                    <p>Items : </p>
-                    <p className="">{counts}</p>
-                  </div>
-                  <div className="flex gap-x-5">
-                    <p>Total Price : </p>
-                    <p className="text-red-500">
-                      {items.totalPrice.toFixed(2)} $
-                    </p>
-                  </div>
-                  <div className="flex gap-x-5">
-                    <p>Phone : </p>
-                    <p className="">{items.address.phone}</p>
-                  </div>
-                  <div className="flex gap-x-5">
-                    <p>Area : </p>
-                    <p className="">{items.address.area}</p>
-                  </div>
+                  <InfoRow label="Name" value={items.address.name} />
+                  <InfoRow label="Phone" value={items.address.phone} />
+                  <InfoRow label="District" value={items.address.district} />
+                  <InfoRow label="Velayat" value={items.address.velayat} />
+                  <InfoRow label="Time" value={time} />
+                  <InfoRow label="Date" value={date} />
+                  <InfoRow label="Items" value={counts} />
+                  <InfoRow
+                    highlight
+                    label="Total Price"
+                    value={`${items.totalPrice.toFixed(2)} $`}
+                  />
+                  <InfoRow label="Area" value={items.address.area} />
                 </div>
               </div>
             </div>

@@ -7,10 +7,9 @@ import { Order } from "@/components/order/Order";
 const page = () => {
   return (
     <div>
-      
       <BreadCrumbs />
-      <Order />
       <Address />
+      <Order />
     </div>
   );
 };

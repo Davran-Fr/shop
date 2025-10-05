@@ -24,7 +24,7 @@ export const Pagination = ({
           "& .MuiPaginationItem-ellipsis": {
             backgroundColor: "transparent !important", // Убираем фон у точек
             border: "none !important", // Если нужно убрать границу
-            color: " #EBEFC1 !important", // Оставляем цвет как у обычного текста
+            color: " #F3F4F6 !important", // Оставляем цвет как у обычного текста
             fontSize: "35px !important", // Размер шрифта точек
             minWidth: "43px !important", // Минимальная ширина точки
             minHeight: "55px !important", //// Минимальная высота точки
@@ -34,14 +34,13 @@ export const Pagination = ({
           },
 
           "& .MuiPaginationItem-root.Mui-selected": {
-            backgroundColor: "#EBEFB1", // Фон активной кнопки
+            backgroundColor: "#F3F4F6", // Фон активной кнопки
             scale: "1.3",
           },
           "& .MuiPaginationItem-root": {
             color: "black", // Цвет текста
-            backgroundColor: " #EBEFCE",
+            backgroundColor: " #F3F4F6",
             padding: "10px",
-            border: "none",
             minWidth: "4px",
             width: {
               xs: "30px", // Для мобильных экранов (xs)
@@ -62,7 +61,7 @@ export const Pagination = ({
               xs: "none", // скрыть на xs
               sm: "flex", // показать на sm и выше
             },
-            backgroundColor: "#EBEFCE", // Меняем цвет фона
+            backgroundColor: "#F3F4F6", // Меняем цвет фона
             color: "black",
             fontSize: "2000rem !important", // Увеличиваем размер текста
             padding: "8px 16px !important", // Увеличиваем внутренние отступы для кнопок
@@ -74,14 +73,14 @@ export const Pagination = ({
               fontSize: "30px",
             },
             "&:hover": {
-              backgroundColor: "#EBEFB1", // Убираем цвет фона при наведении
+              backgroundColor: "#00000080", // Убираем цвет фона при наведении
               boxShadow: "none", // Убираем возможные тени
             },
           },
         }}
         count={Math.ceil(total / values.itemsPerPage)}
         page={values.page}
-        style={{ color: "#EBEFCE" }}
+        style={{ color: "#F3F4F6" }}
         onChange={(_, i) => dispatch(changeFilter({ page: i }))}
         variant="outlined"
       />
