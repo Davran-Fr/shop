@@ -46,7 +46,7 @@ export const LogOutNotificate = () => {
           </button>
           <button
             onClick={() => {
-              if (!show) {
+              if (show) {
                 logOut();
               }
             }}
