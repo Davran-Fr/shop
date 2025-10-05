@@ -21,7 +21,7 @@ const Cards: React.FC<Card> = ({ data }) => {
         router.push(`/products/${data.category}/${data.id}`);
       }}
       key={data.id}
-      className="bg-gray-100 rouned-xl overflow-hidden flex relative justify-between flex-col"
+      className="bg-gray-100 cursor-pointer rouned-xl overflow-hidden flex relative justify-between flex-col"
     >
       <div className="relative rounded-xl">
         {/* <div className="bg-white/25 blur-xl w-44 h-44 rounded-full absolute top-1/2 left-1/2 z-0 transform -translate-y-1/2 -translate-x-1/2" /> */}

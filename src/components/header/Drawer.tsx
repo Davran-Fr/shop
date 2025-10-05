@@ -6,9 +6,11 @@ import React, { forwardRef } from "react";
 import { useOverFlow } from "@/hooks/useOverFlow";
 import { IoCloseSharp } from "react-icons/io5";
 import { links } from "./links";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
 import { Avatar } from "../../ui/Avatar";
+import { useRouter } from "next/navigation";
+import { logOutNotificate } from "@/Redux/logOut";
 
 interface Props {
   open: boolean;
@@ -18,7 +20,8 @@ interface Props {
 const HeaderDrawer = forwardRef<HTMLDivElement, Props>(
   ({ open, onClick }, ref) => {
     const user = useSelector((state: RootState) => state.userInfo.data);
-
+    const router = useRouter();
+    const dispacht = useDispatch();
     useOverFlow(open);
 
     const container = clsx(
@@ -36,14 +39,26 @@ const HeaderDrawer = forwardRef<HTMLDivElement, Props>(
         <div ref={ref} className={container}>
           <IoCloseSharp className="text-3xl" onClick={onClick} />
           <div className="flex w-full items-center gap-10 flex-col">
-            <Avatar className="w-16 h-16" avatar={user?.avatar ? user.avatar : ""} />
+            <Avatar
+              className="w-16 h-16"
+              avatar={user?.avatar ? user.avatar : ""}
+            />
             <ul className="flex flex-col w-full gap-3 font-world text-center">
               {links.map((items, i) => {
                 return (
-                  <li key={i} className="py-2 bg-black/50 text-white border-1px border-gray-500 rounded-xl">
-                    <Link onClick={onClick} key={i} href={items.href}>
-                      {items.name}
-                    </Link>
+                  <li
+                    onClick={(e) => {
+                      onClick(e);
+                      if (items.href === "/auth") {
+                        dispacht(logOutNotificate(true));
+                      } else {
+                        router.push(items.href);
+                      }
+                    }}
+                    key={i}
+                    className="py-2 bg-black/50 text-white border-1px border-gray-500 rounded-xl"
+                  >
+                    {items.name}
                   </li>
                 );
               })}

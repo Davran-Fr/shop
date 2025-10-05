@@ -6,6 +6,7 @@ import { changeFilter } from "@/Redux/filterBase";
 import { useRouter } from "next/navigation";
 import { FaArrowRight } from "react-icons/fa";
 import { useDispatch } from "react-redux";
+import { useWidth } from "@/hooks/useWidth";
 
 interface Props {
   name: string;
@@ -17,18 +18,26 @@ interface Props {
 export const CategoryCard = ({ img, name, title, i }: Props) => {
   const [index, setIndex] = useState<number | null>(null);
   const router = useRouter();
-  const dispacht = useDispatch()
+  const dispacht = useDispatch();
+  const width = useWidth();
   const show = "translate-y-0 transform";
 
-  
   return (
     <div
-    onClick={() => {
-        router.push(`/products`); 
+      onClick={() => {
+        router.push(`/products`);
         dispacht(changeFilter({ category: title }));
       }}
-      onMouseEnter={() => setIndex(i)}
-      onMouseLeave={() => setIndex(null)}
+      onMouseEnter={() => {
+        if (width > 1024) {
+          setIndex(i);
+        }
+      }}
+      onMouseLeave={() => {
+        if (width > 1024) {
+          setIndex(null);
+        }
+      }}
       key={i}
       className={`mb-5  relative  shadow-sm rounded-md cursor-pointer overflow-hidden `}
     >

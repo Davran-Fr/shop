@@ -15,7 +15,7 @@ const Category = () => {
           </h2>
           <div className="flex gap-5 self-end items-center">
             <span className="text-2xl">...</span>
-            <FaArrowCircleRight className="text-2xl hover:translate-x-10" />
+            <FaArrowCircleRight className="text-2xl" />
           </div>
         </div>
         <div className="columns-2 min-[600px]:columns-3 lg:columns-4 gap-5">

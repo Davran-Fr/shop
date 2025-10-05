@@ -8,7 +8,7 @@ import useClickOutside from "@/hooks/useClickOutSide";
 import { CardsShortView } from "./ShortView";
 import { links } from "./links";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
 import { Logo } from "@/ui/Logo";
 import { Avatar } from "../../ui/Avatar";
@@ -16,23 +16,17 @@ import { CardIcon } from "../../ui/CardIcon";
 import { Container } from "@/ui/Container";
 import { Settings } from "./Settings";
 import { LogOutNotificate } from "../notification/LogOutNotificate";
-import { clearAccess_token } from "@/lib/useLocaleStorage";
-import { clearTokenCookies } from "@/lib/useCookies";
-import { loadingAuth } from "@/Redux/globalLoading";
-import { changeNotification, clearItem } from "@/Redux/cards";
 import { useRouter } from "next/navigation";
-import { clearUserDataBase } from "@/Redux/userDataBase";
 
 const Header = () => {
   const user = useSelector((state: RootState) => state.userInfo.data);
   const cards = useSelector((state: RootState) => state.cardItems.items);
   const divRef = useRef<HTMLDivElement>(null);
-  const dispatch = useDispatch();
-  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [openCards, setOpenCards] = useState(false);
   const [openSetting, setOpenSetting] = useState(false);
   const [notificate, setNotificate] = useState(false);
+  const router = useRouter();
 
   const onClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -49,10 +43,10 @@ const Header = () => {
         <Logo />
         <ul className=" hidden md:flex bg-black/50 items-center gap-3 px-10 text-white rounded-full h-full backdrop-blur-xl space-x-7 text-lg">
           {links.map((items, i) => {
-            if (items.href === "/cards") return null;
+            if (items.href === "/auth") return null;
             return (
-              <li key={i}>
-                <Link href={items.href} className="cursor-pointer">
+              <li key={i} className={"cursor-pointer"}>
+                <Link href={items.href} className="">
                   {items.name}
                 </Link>
               </li>
