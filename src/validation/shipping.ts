@@ -62,7 +62,7 @@ export const shipping = z.object({
     .min(2, { message: "The name need contain minimum 2 letters" }),
   area: z.string().nonempty({ message: "Area is required" }),
   phone: z.string().regex(/^\+993\d{8}$/, {
-    message: "Please enter your phone number correctly",
+    message: "Please enter your phone number correctly starts +993",
   }),
   velayat: z.enum(TURKMEN_VELAYATS, {
     message: "Please select a valid velayat",

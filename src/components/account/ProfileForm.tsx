@@ -28,7 +28,6 @@ export const ProfileForm = ({ show, setShow }: Props) => {
         show ? "block" : "hidden"
       }`}
     >
-      <span className="bg-red-500 text-2xl">{errors.name?.message}</span>
       <label
         htmlFor="avatar"
         className="flex font-workSans gap-3 h-fit text-xl items-center flex-col justify-center cursor-pointer"
