@@ -1,5 +1,6 @@
 import Image from "next/image";
-import React  from "react";
+import { useRouter } from "next/navigation";
+import React from "react";
 import { MdAccountCircle } from "react-icons/md";
 
 export const Avatar = ({
@@ -13,8 +14,11 @@ export const Avatar = ({
   enter?: VoidFunction;
   leave?: VoidFunction;
 }) => {
+  const router = useRouter();
+
   return avatar ? (
     <div
+      onClick={() => router.push("/account")}
       onMouseEnter={enter}
       onMouseLeave={leave}
       className={`overflow-hidden relative md:block rounded-full ${className}`}

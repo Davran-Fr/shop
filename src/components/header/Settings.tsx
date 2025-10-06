@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { PiSignOutBold } from "react-icons/pi";
 import { LuShoppingBag } from "react-icons/lu";
 import { usePathname, useRouter } from "next/navigation";
-import { useWidth } from "@/hooks/useWidth";
 import { logOutNotificate } from "@/Redux/logOut";
+import { useWidth } from "@/hooks/useWidth";
 
 interface Props {
   onMouseEnter: () => void;
@@ -21,13 +21,15 @@ export const Settings = ({ onMouseEnter, onMouseLeave, openCards }: Props) => {
   const user = useSelector((state: RootState) => state.userInfo);
   const router = useRouter();
   const dispacth = useDispatch();
+  const pathname = usePathname();
 
   const container = clsx(
-    "rounded-md hidden lg:block w-[300px] duration-300 bottom-3  transition-all ",
+    "rounded-md w-[300px] duration-300 bottom-3  transition-all ",
     "ease-in-out overflow- z-10 absolute right-0 pt-5 translate-y-full",
     openCards
       ? "visible pointer-events-auto max-h-[400px] h-[300px]"
-      : "invisible pointer-events-none max-h-0 h-0"
+      : "invisible pointer-events-none max-h-0 h-0",
+    pathname.startsWith("/account") ? "hidden" : "hidden lg:block"
   );
 
   const settings = [
@@ -49,8 +51,8 @@ export const Settings = ({ onMouseEnter, onMouseLeave, openCards }: Props) => {
 
   return (
     <div
-      onMouseLeave={onMouseLeave}
-      onMouseEnter={onMouseEnter}
+      onMouseLeave={() => onMouseLeave()}
+      onMouseEnter={() => onMouseEnter()}
       className={container}
     >
       <div

@@ -47,8 +47,8 @@ export const usePlaceOrder = () => {
 
   const onSubmit = () => {
     if ((!state || !place) && card.items.length > 0) {
-      loadAddress();
-      // alert('wd')  
+      // loadAddress();
+      alert("Please fill your Address");
       return;
     }
 
