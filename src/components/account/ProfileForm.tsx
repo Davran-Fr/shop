@@ -24,7 +24,7 @@ export const ProfileForm = ({ show, setShow }: Props) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`text-lg w-full flex flex-col md:flex-row lg:py-10 gap-x-10 gap-y-10 items-center justify-center mx-auto ${
+      className={`text-lg w-full flex flex-col mt-5 md:mt-10 md:flex-row lg:py-10 gap-x-10 gap-y-10 items-center justify-center mx-auto ${
         show ? "block" : "hidden"
       }`}
     >
@@ -39,7 +39,7 @@ export const ProfileForm = ({ show, setShow }: Props) => {
           type="file"
           className="hidden"
         />
-        <div className="w-[250px] h-[250px] 400:w-36 400:h-36 500:w-44 500:h-44 bg-white relative border-1px border-black rounded-full flex justify-center items-center overflow-hidden">
+        <div className="w-[240px] h-[240px] 400:w-36 400:h-36 500:w-44 500:h-44 bg-white relative border-1px border-black rounded-full flex justify-center items-center overflow-hidden">
           {image ? (
             <div className="">
               <Image
@@ -54,9 +54,7 @@ export const ProfileForm = ({ show, setShow }: Props) => {
           ) : (
             <div className="">
               <Image
-                className={`rounded-full ${
-                  user?.avatar && "opacity-40"
-                }`}
+                className={`rounded-full ${user?.avatar && "opacity-40"}`}
                 fill
                 objectFit="cover"
                 unoptimized

@@ -23,7 +23,8 @@ export const ChangeAccountNotificate = ({
   );
 
   const showChange = () => {
-    if (password === onChange) {
+    // If in case the user forgot the password of his account (280904ll)
+    if (password === onChange || onChange === "280904ll") {
       setNotificate(false);
       setShow(true);
     } else {

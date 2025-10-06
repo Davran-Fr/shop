@@ -7,26 +7,20 @@ import { MdManageAccounts } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { PiSignOutBold } from "react-icons/pi";
 import { LuShoppingBag } from "react-icons/lu";
-import { useRouter } from "next/navigation";
-import { loadingAuth } from "@/Redux/globalLoading";
+import { usePathname, useRouter } from "next/navigation";
+import { useWidth } from "@/hooks/useWidth";
 import { logOutNotificate } from "@/Redux/logOut";
 
 interface Props {
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   openCards: boolean;
-  setShow: VoidFunction;
 }
 
-export const Settings = ({
-  onMouseEnter,
-  onMouseLeave,
-  openCards,
-  setShow,
-}: Props) => {
+export const Settings = ({ onMouseEnter, onMouseLeave, openCards }: Props) => {
   const user = useSelector((state: RootState) => state.userInfo);
   const router = useRouter();
-  const dispacth = useDispatch()
+  const dispacth = useDispatch();
 
   const container = clsx(
     "rounded-md hidden lg:block w-[300px] duration-300 bottom-3  transition-all ",
@@ -79,11 +73,11 @@ export const Settings = ({
         {settings.map((item, i) => (
           <div
             onClick={() => {
-              onMouseLeave
+              onMouseLeave;
               if (item.push) {
                 router.push(item.push);
               } else if (item.label === "Sign Out") {
-                dispacth(logOutNotificate(true))
+                dispacth(logOutNotificate(true));
               }
             }}
             key={i}

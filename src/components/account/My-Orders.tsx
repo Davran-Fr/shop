@@ -9,11 +9,13 @@ import { LuShoppingBag } from "react-icons/lu";
 import { FaChevronDown } from "react-icons/fa";
 import { InfoRow } from "@/ui/InfoRow";
 import { NotFound } from "@/ui/NotFound";
+import { useWidth } from "@/hooks/useWidth";
 
 export const Orders = () => {
   const orders = useSelector((state: RootState) => state.orders.orders);
   const [index, setIndex] = useState<number | null>(null);
   const refs = useRef<HTMLDivElement[]>([]);
+  const width = useWidth();
 
   const toggle = (i: number) => {
     setIndex(index === i ? null : i);
@@ -42,7 +44,7 @@ export const Orders = () => {
   }, [index]);
 
   return (
-    <div className="flex-col flex">
+    <div className="flex-col flex mt-6 md:mt-14">
       {orders.length === 0 && <NotFound name="No Orders" />}
 
       {[...orders].reverse().map((items, i) => {
@@ -66,8 +68,8 @@ export const Orders = () => {
                 <LuShoppingBag className="lg:w-8 lg:h-8 w-10 h-10" />
                 <div>
                   <p>
-                    {items.address.name} / {items.address.district} /{" "}
-                    {items.address.velayat}
+                    {items.address.name} / {items.address.velayat}
+                    {width > 450 && `/ ${items.address.district}`}
                   </p>
                 </div>
                 <FaChevronDown

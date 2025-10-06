@@ -32,7 +32,7 @@ export const useProfileForm = ({ setShow }: Props) => {
   });
 
   //////// --------- Submit handler --------- /////////
-  const onSubmit: SubmitHandler<ProfileUpdateType> = async (data) => {
+  const onSubmit: SubmitHandler<ProfileUpdateType> = async (data  ) => {
     if (!user?.id) return;
 
     try {

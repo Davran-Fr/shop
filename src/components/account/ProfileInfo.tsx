@@ -13,7 +13,7 @@ export const ProfileInfo = ({ show, setNotificate }: Props) => {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className={`${!show ? "block" : "hidden"} space-y-5 text-center`}>
+    <div className={`${!show ? "block" : "hidden"} space-y-5 text-center mt-14 md:mt-10`}>
       <div className="relative bg-black/50 mx-auto w-[250px] h-[250px] overflow-hidden rounded-full">
         {loading && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-200 animate-pulse rounded-full">

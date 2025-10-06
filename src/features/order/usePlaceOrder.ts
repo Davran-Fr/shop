@@ -46,11 +46,11 @@ export const usePlaceOrder = () => {
   };
 
   const onSubmit = () => {
-    if (!state || !card.items.length) {
+    if ((!state || !place) && card.items.length > 0) {
       loadAddress();
+      // alert('wd')  
       return;
     }
-    
 
     const totalPrice = card.items.reduce(
       (sum, item) => sum + item.totalPrice,
