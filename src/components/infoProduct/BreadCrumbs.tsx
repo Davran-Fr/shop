@@ -19,7 +19,7 @@ interface Props {
 
 export const BreadCrumbs = ({ name, className }: Props) => {
   const data = useSelector((state: RootState) => state.infoProductsBase.data);
-  const selection = useSelector((state: RootState) => state.removeSelect);
+  const cards = useSelector((state: RootState) => state.cardItems);
   const dispatch = useDispatch();
   const router = useRouter();
   const pathName = usePathname();
@@ -82,7 +82,7 @@ export const BreadCrumbs = ({ name, className }: Props) => {
             </>
           )}
         </div>
-        {name === "cards" && (
+        {name === "cards" && cards.items.length !== 0 && (
           <div
             onClick={() => dispatch(showToggle())}
             className="flex items-center pt-5 justify-self-end text-xl gap-x-5 font-world cursor-pointer"
