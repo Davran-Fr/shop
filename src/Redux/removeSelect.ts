@@ -29,8 +29,10 @@ const removeSelect = createSlice({
     },
     showToggle: (state) => {
       state.show = !state.show;
+      state.items = [];
     },
     showSelection: (state, action: PayloadAction<boolean>) => {
+      state.items = [];
       state.show = action.payload;
     },
     removeButton: (state, action: PayloadAction<CartItem[]>) => {
