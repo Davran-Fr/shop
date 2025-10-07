@@ -7,7 +7,6 @@ import { useAdressShipping } from "@/features/order/useAdressShipping";
 import { ShippingInput } from "@/ui/ShippingInput";
 import { TURKMEN_DISTRICTS, TURKMEN_VELAYATS } from "@/validation/shipping";
 import { Buttons } from "./Buttons";
-import { clearOrder } from "@/Redux/showOrder";
 
 export const Address = () => {
   const {

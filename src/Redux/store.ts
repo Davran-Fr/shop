@@ -7,6 +7,7 @@ import addInfoProducts from "./infoDataBase";
 import showOrder from "./showOrder";
 import orders from "./orders";
 import logOut from "./logOut";
+import removeSelect from "./removeSelect";
 
 import { ecommerce } from "@/Api/ecommerce";
 import { api } from "@/Api/auth";
@@ -24,7 +25,8 @@ export const store = configureStore({
     infoProductsBase: addInfoProducts,
     showOrder: showOrder,
     orders: orders,
-    logOut: logOut
+    logOut: logOut,
+    removeSelect: removeSelect,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware).concat(ecommerce.middleware),

@@ -30,34 +30,30 @@ export interface PropsSlice {
 }
 
 //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
-
-const saveCartCookies = (state: PropsSlice) => {
+const saveCartLocal = (state: PropsSlice) => {
   try {
-    Cookies.set("cart", JSON.stringify(state), {
-      expires: 7,
-      sameSite: "Strict",
-    });
+    localStorage.setItem("cart", JSON.stringify(state));
   } catch (e) {
-    console.error("Error saving to cookies", e);
+    console.error("Error saving cart to localStorage", e);
   }
 };
 
 //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
-const loadCartCookies = (): PropsSlice => {
+const loadCartLocal = (): PropsSlice => {
   try {
-    const data = Cookies.get("cart");
+    const data = localStorage.getItem("cart");
     if (data) {
       return JSON.parse(data) as PropsSlice;
     }
   } catch (e) {
-    console.error("Error loading from cookies", e);
+    console.error("Error loading cart from localStorage", e);
   }
   return defaultState;
 };
 
 //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
-const initialState: PropsSlice = loadCartCookies();
+const initialState: PropsSlice = loadCartLocal();
 
 //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
@@ -149,7 +145,7 @@ const cardItems = createSlice({
 
       //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
-      saveCartCookies(state);
+      saveCartLocal(state);
     },
     removeItems: (state, action: PayloadAction<CartItem>) => {
       const findItem = state.items.find(
@@ -193,7 +189,7 @@ const cardItems = createSlice({
 
       //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
-      saveCartCookies(state);
+      saveCartLocal(state);
     },
 
     clearItem: (state) => {
@@ -211,10 +207,17 @@ const cardItems = createSlice({
     remaindingState: (state, action: PayloadAction<number>) => {
       state.remainding = action.payload;
     },
+    selectedItemRemove: (state, action: PayloadAction<CartItem[]>) => {
+      const toRemove = action.payload.map((i) => i.id);
+      state.items = state.items.filter((item) => !toRemove.includes(item.id));
+      saveCartLocal(state);
+    },
+    
   },
 });
 
 export const {
+  selectedItemRemove,
   addItems,
   removeItems,
   clearItem,

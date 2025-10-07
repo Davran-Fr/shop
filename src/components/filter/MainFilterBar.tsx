@@ -79,7 +79,7 @@ const Filter = () => {
         ref={divFilter}
         className={`absolute ${
           width < 1024 && animation
-        }  lg:relative ease-in-out lg:border-none border-b-1px border-gray-500 transition-all duration-500 flex lg:flex-row flex-col lg:justify-between bg-white gap-5 pb-10 lg:py-10  bottom-0 left-0 z-30 w-full`}
+        }  lg:relative ease-in-out transition-all duration-500 flex lg:flex-row flex-col lg:justify-between bg-white gap-5 pb-10 lg:py-10  bottom-0 left-0 z-30 w-full`}
       >
         <Search
           value={filterBase.search}

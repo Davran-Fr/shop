@@ -24,18 +24,18 @@ export const uploadToImgbb = async (file: File) => {
   formData.append("key", API_KEY);
   formData.append("image", file);
 
-  try {
-    const res = await fetch(`${deleteUrl}`, {
-      method: "GET",
-    });
-    if (res.ok) {
-      console.log("✅ Картинка удалена!");
-    } else {
-      console.error("❌ Ошибка при удалении:", res.status);
-    }
-  } catch (err) {
-    console.error("⚠️ Ошибка сети:", err);
-  }
+  // try {
+  //   const res = await fetch(`${deleteUrl}`, {
+  //     method: "GET",
+  //   });
+  //   if (res.ok) {
+  //     console.log("✅ Картинка удалена!");
+  //   } else {
+  //     console.error("❌ Ошибка при удалении:", res.status);
+  //   }
+  // } catch (err) {
+  //   console.error("⚠️ Ошибка сети:", err);
+  // }
 
   try {
     const res = await fetch("https://api.imgbb.com/1/upload", {
