@@ -61,8 +61,19 @@ export const shipping = z.object({
     .string()
     .min(2, { message: "The name need contain minimum 2 letters" }),
   area: z.string().nonempty({ message: "Area is required" }),
-  phone: z.string().regex(/^\+993\d{8}$/, {
-    message: "Please enter your phone number correctly starts +993",
+  phone: z.string().superRefine((val, ctx) => {
+    if (!val.startsWith("+993")) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Phone number must start with +993",
+      });
+    }
+    if (val.length !== 12) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Phone number must be exactly 12 characters",
+      });
+    }
   }),
   velayat: z.enum(TURKMEN_VELAYATS, {
     message: "Please select a valid velayat",
