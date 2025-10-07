@@ -1,5 +1,4 @@
 import useClickOutside from "@/hooks/useClickOutSide";
-import Cookies from "js-cookie";
 
 import { CartItem, clearItem } from "@/Redux/cards";
 import { OrderState } from "@/Redux/showOrder";
@@ -67,7 +66,7 @@ export const usePlaceOrder = () => {
 
     dispacht(addOrder(newOrder));
     dispacht(clearItem());
-    Cookies.remove("cart");
+    localStorage.removeItem("cart");
     router.push("/account/my-orders");
   };
 

@@ -32,7 +32,7 @@ export const useProfileForm = ({ setShow }: Props) => {
   });
 
   //////// --------- Submit handler --------- /////////
-  const onSubmit: SubmitHandler<ProfileUpdateType> = async (data  ) => {
+  const onSubmit: SubmitHandler<ProfileUpdateType> = async (data) => {
     if (!user?.id) return;
 
     try {
@@ -50,7 +50,6 @@ export const useProfileForm = ({ setShow }: Props) => {
         ...(avatarUrl && { avatar: avatarUrl }),
         ...(data.password && { password: data.password }),
       };
-      console.log(payload);
 
       const updatedUser = await changeProfile({
         id: String(user.id),
@@ -61,7 +60,7 @@ export const useProfileForm = ({ setShow }: Props) => {
         dispatch(setUsersDataBase(updatedUser));
       }, 500);
 
-      alert("Profile updated!");
+      // alert("Profile updated!");
       setShow(false);
       setValue("name", "");
       setValue("email", "");

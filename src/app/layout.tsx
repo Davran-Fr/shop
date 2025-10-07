@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Providers } from "@/provider/Providers";
+import { MainLayout } from "@/components/header/MainLayout";
+
 import "./globals.css";
-import {MainLayout} from "@/components/header/MainLayout";
 
 export const metadata: Metadata = {
   title: "DVG",
