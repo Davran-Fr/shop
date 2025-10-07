@@ -19,7 +19,7 @@ export const Tables = () => {
         <NotFound name="No Products in Card" />
       ) : (
         <>
-          <div className="w-full xl:space-y-0 flex flex-col xl:items-center pt-10 sm:pb-20 pb-32">
+          <div className="w-full xl:space-y-0 flex flex-col xl:items-center pt-10 sm:pb-20 pb-32 relative">
             <Desktop />
             <Mobile />
             <TableFooter />

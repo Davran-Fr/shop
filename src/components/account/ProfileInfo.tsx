@@ -13,8 +13,8 @@ export const ProfileInfo = ({ show, setNotificate }: Props) => {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className={`${!show ? "block" : "hidden"} space-y-5 text-center mt-14 md:mt-10`}>
-      <div className="relative bg-black/50 mx-auto w-[250px] h-[250px] overflow-hidden rounded-full">
+    <div className={`${!show ? "block" : "hidden"} space-y-5 text-center pt-12 md:pt-10`}>
+      <div className="relative bg-black/50 mx-auto w-[200px] h-[200px] overflow-hidden rounded-full">
         {loading && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-200 animate-pulse rounded-full">
             <span className="text-gray-500 text-sm">Loading...</span>
@@ -36,7 +36,7 @@ export const ProfileInfo = ({ show, setNotificate }: Props) => {
         onClick={() => setNotificate(true)}
         className="bg-black/50 text-white px-5 py-2 rounded-lg text-lg hover:shadow-md duration-300 hover:shadow-black"
       >
-        Change Account
+        Change Profile
       </button>
     </div>
   );

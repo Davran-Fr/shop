@@ -34,7 +34,7 @@ const MobileFilterBar = ({ filter, divFilter }: Props) => {
   };
   
   return (
-    <div className=" w-full flex items-center bg-red-400  relative overflow-hidden justify-between">
+    <div className=" w-full flex items-center relative overflow-hidden justify-between">
       <FaArrowLeft onClick={() => router.back()} />
       <div
         ref={closeIcon}

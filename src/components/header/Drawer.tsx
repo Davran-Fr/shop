@@ -45,6 +45,7 @@ const HeaderDrawer = forwardRef<HTMLDivElement, Props>(
             />
             <ul className="flex flex-col w-full gap-3 font-world text-center">
               {links.map((items, i) => {
+                if (items.href === "/cards") return null;
                 return (
                   <li
                     onClick={(e) => {
