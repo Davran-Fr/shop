@@ -13,7 +13,7 @@ const Info = () => {
     return <div className="w-full py-32 text-center">Product Not Found</div>;
 
   return (
-    <Container className="flex flex-col md:flex-row w-full gap-10 md:gap-5 justify-center py-20 sm:py-10">
+    <Container className="flex font-medium flex-col md:flex-row w-full gap-10 md:gap-5 justify-center py-20 sm:py-10">
       <Images data={data?.images} />
       <Texts data={data} cards={cards} />
     </Container>

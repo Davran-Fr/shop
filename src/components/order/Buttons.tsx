@@ -7,7 +7,7 @@ export const Buttons = ({ spinner }: { spinner: boolean }) => {
   const dispacth = useDispatch();
 
   return (
-    <div className="space-y-5 text-white">
+    <div className="space-y-5 font-medium text-white">
       {" "}
       <button
         type="submit"

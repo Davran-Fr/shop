@@ -42,7 +42,7 @@ const SwiperCard = () => {
   if (mainPageActions.isLoading) return <Loading />;
 
   return (
-    <Container className="space-y-10 text-black pb-20 font-ptSerif">
+    <Container className="space-y-10 font-medium text-black pb-20 font-ptSerif">
       <Swiper
         ref={swiperRef}
         loop={

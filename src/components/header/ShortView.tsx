@@ -25,7 +25,7 @@ export const CardsShortView = ({
   const total = useSelector((state: RootState) => state.cardItems);
 
   const container = clsx(
-    "rounded-md hidden lg:block w-[350px] duration-300 bottom-3 transition-all ease-in-out z-10 absolute right-0 pt-5 translate-y-full",
+    "rounded-md hidden lg:block w-[350px] font-medium duration-300 bottom-3 transition-all ease-in-out z-10 absolute right-0 pt-5 translate-y-full",
     cards.length === 0 && "invisible pointer-events-none -z-50",
     pathname === "/cards" && "invisible pointer-event-none",
     openCards

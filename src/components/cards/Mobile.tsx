@@ -44,7 +44,7 @@ export const Mobile = () => {
   }, [index]);
 
   return (
-    <div className="xl:hidden divide-y-1px divide-slate-200">
+    <div className="xl:hidden font-medium divide-y-1px divide-slate-200">
       {[...cards.items].reverse().map((items, i) => {
         const price = items.price * (1 - items.discountPercentage / 100);
         const padd = selection.items.find((item) => {

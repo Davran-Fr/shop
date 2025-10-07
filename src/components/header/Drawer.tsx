@@ -25,7 +25,7 @@ const HeaderDrawer = forwardRef<HTMLDivElement, Props>(
     useOverFlow(open);
 
     const container = clsx(
-      `fixed py-10 px-5 text-black top-0 w-2/3 delay-400 space-y-10 ease-out duration-500 transition-transform h-full right-0 z-60 bg-mainBack`,
+      `fixed py-10 px-5 text-black font-medium top-0 w-2/3 delay-400 space-y-10 ease-out duration-500 transition-transform h-full right-0 z-60 bg-mainBack`,
       open ? "translate-x-0 delay-200" : "translate-x-full "
     );
 

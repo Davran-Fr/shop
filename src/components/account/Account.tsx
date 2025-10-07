@@ -1,19 +1,17 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 
 import { ChangeAccountNotificate } from "../notification/ChangeNotificate";
 import { useProfileUpdate } from "@/features/profile-update/useProfileUpdate";
 import { ProfileForm } from "./ProfileForm";
 import { ProfileInfo } from "./ProfileInfo";
 
-
 export const Account = () => {
   const { show, notificate, setShow, setNotificate } = useProfileUpdate();
-  
 
   return (
-    <div className="mx-auto text-xl">
+    <div className="mx-auto font-medium text-xl">
       <ChangeAccountNotificate
         notificate={notificate}
         setShow={setShow}

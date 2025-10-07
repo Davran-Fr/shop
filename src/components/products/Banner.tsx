@@ -8,7 +8,7 @@ const Banner = () => {
   const { divRef, arrayBannerImage, textRef } = useBannerAnimtaion();
 
   return (
-    <div className="w-full relative overflow-hidden z-40 h-40vh sm:h-[300px]">
+    <div className="w-full relative font-medium overflow-hidden z-40 h-40vh sm:h-[300px]">
       {arrayBannerImage.map((items, i) => (
         <div
           key={i}

@@ -36,7 +36,7 @@ export const SideBar = () => {
   const width = useWidth();
 
   return (
-    <div className=" sticky md:flex flex bottom-0 md:flex-col flex-wrap justify-center md:justify-start gap-x-10 gap-y-5">
+    <div className=" sticky md:flex font-medium flex bottom-0 md:flex-col flex-wrap justify-center md:justify-start gap-x-10 gap-y-5">
       {links.map((item, i) => {
         const isActive = pathname === item.href;
         const lastElement = links.length - 1;

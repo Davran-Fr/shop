@@ -38,7 +38,7 @@ const Texts = ({ data }: Props) => {
   }, [selector.count, pathname]);
 
   return (
-    <div className="flex flex-col self-center md:self-start space-y-4 w-full md:w-2/5 lg:w-1/3 ">
+    <div className="flex flex-col font-medium self-center md:self-start space-y-4 w-full md:w-2/5 lg:w-1/3 ">
       <h2 className="font-world text-2xl 400:text-2xl  xl:text-3xl">
         {data?.title}
       </h2>

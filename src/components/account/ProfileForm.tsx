@@ -24,7 +24,7 @@ export const ProfileForm = ({ show, setShow }: Props) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`text-lg w-full flex flex-col mt-14 md:mt-10 md:flex-row lg:py-10 gap-x-10 gap-y-10 items-center justify-center mx-auto ${
+      className={`text-lg w-full flex flex-col font-medium mt-14 md:mt-10 md:flex-row lg:py-10 gap-x-10 gap-y-10 items-center justify-center mx-auto ${
         show ? "block" : "hidden"
       }`}
     >

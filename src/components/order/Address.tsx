@@ -28,7 +28,7 @@ export const Address = () => {
   return (
     <>
       {state.show === false && (
-        <div className="pt-10 pb-20 mx-auto max-w-[900px] gap-x-10 gap-y-10 px-4 flex justify-between flex-col-reverse items-center md:flex-row w-full relative">
+        <div className="pt-10 pb-20 font-medium mx-auto max-w-[900px] gap-x-10 gap-y-10 px-4 flex justify-between flex-col-reverse items-center md:flex-row w-full relative">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-5"

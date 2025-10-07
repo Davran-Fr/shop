@@ -24,7 +24,7 @@ export const Settings = ({ onMouseEnter, onMouseLeave, openCards }: Props) => {
   const pathname = usePathname();
 
   const container = clsx(
-    "rounded-md w-[300px] duration-300 bottom-3  transition-all ",
+    "rounded-md w-[300px] font-medium duration-300 bottom-3  transition-all ",
     "ease-in-out overflow- z-10 absolute right-0 pt-5 translate-y-full",
     openCards
       ? "visible pointer-events-auto max-h-[400px] h-[300px]"

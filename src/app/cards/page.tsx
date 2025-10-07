@@ -7,7 +7,7 @@ import { BreadCrumbs } from "@/components/infoProduct/BreadCrumbs";
 const page = () => {
 
   return (
-    <div className="">
+    <div className="font-medium">
       <NotificateInfo />
       <BreadCrumbs name="cards"/>
       <Tables />

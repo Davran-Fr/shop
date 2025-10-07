@@ -14,7 +14,7 @@ export const Indicator = ({ onClick }: Props) => {
   } = useIndicatorAnimation();
 
   return (
-    <div className="relative flex gap-4 ">
+    <div className="relative font-medium flex gap-4 ">
       {["Reviews", "Recommends"].map((label, i) => (
         <div
           key={i}

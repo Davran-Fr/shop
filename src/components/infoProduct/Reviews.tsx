@@ -12,7 +12,7 @@ export const Reviews = ({ show }: { show: boolean }) => {
   return (
     <div
       ref={containerRef}
-      className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 text-black gap-5 ${
+      className={`grid grid-cols-1 sm:grid-cols-2 font-medium lg:grid-cols-3 text-black gap-5 ${
         !show ? "block" : "hidden"
       }`}
     >

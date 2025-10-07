@@ -14,7 +14,7 @@ const NotificateInfo = () => {
     <>
       <div
         className={`
-      fixed duration-300 bottom-0 left-0 w-full  z-50 py-5 ${
+      fixed duration-300 bottom-0  left-0 w-full  z-50 py-5 ${
         (cards.notification === "add" || cards.notification === 'remove') && !success.loading
           ? "visible pointer-events-auto translate-y-0 opacity-100"
           : "invisible pointer-events-none opacity-0 translate-y-10"

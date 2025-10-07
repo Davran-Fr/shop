@@ -36,7 +36,7 @@ const Header = () => {
   useClickOutside(divRef, () => setOpen(false));
 
   return (
-    <div className="w-full pt-3 fixed z-50 top-0 font-world">
+    <div className="w-full pt-3 font-medium fixed z-50 top-0 font-world">
       <LogOutNotificate />
       <HeaderDrawer onClick={(e) => onClick(e)} open={open} ref={divRef} />
       <Container className="h-11 flex justify-between  items-center text-white">

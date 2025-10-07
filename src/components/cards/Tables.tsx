@@ -14,7 +14,7 @@ export const Tables = () => {
   const cards = useSelector((state: RootState) => state.cardItems);
 
   return (
-    <Container className="">
+    <Container className="font-medium">
       {cards.items.length === 0 ? (
         <NotFound name="No Products in Card" />
       ) : (

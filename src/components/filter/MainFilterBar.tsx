@@ -76,7 +76,7 @@ const Filter = () => {
   //////////// ---- ---- ---- ---- ---- ---- ---- ////////////////// ---- ---- ---- ---- ---- ---- ---- ---- ///////////
 
   return (
-    <Container className="relative bg-white z-30 w-full font-world flex items-center gap-5 lg:gap-0">
+    <Container className="relative font-medium bg-white z-30 w-full font-world flex items-center gap-5 lg:gap-0">
       <div className=" lg:hidden  py-7 z-40 relative overflow-hidden text-2xl bg-white w-full items-center">
         <MobileFilterBar filter={filterBack.filter} divFilter={divFilter} />
       </div>

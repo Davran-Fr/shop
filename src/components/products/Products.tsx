@@ -16,7 +16,7 @@ export const Products = ({ main, loading }: Props) => {
   const { mainDiv, filterBack, divAnimation } = productsAnimations(main);
 
   return (
-    <Container className="pb-20">
+    <Container className="pb-20 font-medium">
       <div ref={mainDiv} className="w-full">
         {main?.products.length === 0 ? (
           <h3 className="w-full text-5xl font-semibold text-center py-10 font-world">

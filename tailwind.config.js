@@ -39,9 +39,8 @@ module.exports = {
         ptSerif: ["var(--font-workSans) ", "sans-serif"],
         agamtoh: ["Agamtoh", "sans-serif"],
         agamtohh: ["Agamtohh", "sans-serif"],
-        world: ["World", "sans-serif"],
-        how: ["Howdybun", "sans-serif"],
-        howw: ["Howdybunn", "sans-serif"],
+        world: ["var(--font-playfair)", "serif"],
+        playfair: ["var(--font-playfair)", "serif"],
       },
       height: {
         "1px": "1px",

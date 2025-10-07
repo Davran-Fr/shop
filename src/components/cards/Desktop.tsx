@@ -13,7 +13,7 @@ export const Desktop = () => {
   const show = selection.show && "opacity-40";
 
   return (
-    <table className="hidden xl:block border-separate border-spacing-y-7 border-spacing-x-10">
+    <table className="hidden xl:block border-separate font-medium border-spacing-y-7 border-spacing-x-10">
       <thead className="text-xl font-world">
         <tr>
           <th>Image</th>

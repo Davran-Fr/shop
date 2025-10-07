@@ -27,7 +27,7 @@ export const Recommends = ({ show }: { show: boolean }) => {
   //////// --------- --------- --------- ///////// --------- --------- --------- /////////
 
   const showDiv = clsx(
-    "relative grid sm:grid-cols-3 min-[900px]:grid-cols-4 xl:grid-cols-5 grid-cols-2 500:grid-cols-2 gap-5 h-[500px]",
+    "relative grid sm:grid-cols-3 font-medium min-[900px]:grid-cols-4 xl:grid-cols-5 grid-cols-2 500:grid-cols-2 gap-5 h-[500px]",
     show ? "block" : "hidden overflow-hidden",
     !showMore && "overflow-hidden"
   );

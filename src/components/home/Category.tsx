@@ -7,7 +7,7 @@ import { CategoryCard } from "@/ui/CategoryCard";
 
 const Category = () => {
   return (
-    <div className="bg-mainBack w-full relative z-10 font-world">
+    <div className="bg-mainBack w-full font-medium relative z-10 font-world">
       <Container className="pt-10 pb-20 md:py-20 space-y-10">
         <div className="flex justify-between items-center text-black">
           <h2 className="text-lg bg-gray-100 px-5 sm:text-3xl sm:py-5 sm:px-8 py-2 rounded-xl">

@@ -29,7 +29,7 @@ export const BreadCrumbs = ({ name, className }: Props) => {
 
   return (
     <div
-      className={`w-full items-center ${
+      className={`w-full items-center font-medium ${
         name === "cards" ? "flex" : "hidden sm:flex"
       } ${name === "settings" ? "m-0" : "mt-20"} ${className}`}
     >

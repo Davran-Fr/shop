@@ -9,7 +9,7 @@ export const Welcome = () => {
   const { loginBtn, registerBtn, dvgTexts, btnDiv } = useAnimations();
 
   return (
-    <div className=" text-center gap-10 py-10 w-full h-full text-black flex flex-col">
+    <div className=" text-center font-medium gap-10 py-10 w-full h-full text-black flex flex-col">
       <div
         ref={dvgTexts}
         className="flex relative z-50 flex-col justify-center gap-10 font-agamtoh w-full h-full "

@@ -35,7 +35,7 @@ const RegisterForm = () => {
   return (
     <div
       ref={divRef}
-      className="flex  font-medium items-center font-world 500:h-700px sm:h-full w-full"
+      className="flex font-medium items-center font-world 500:h-700px sm:h-full w-full"
     >
       <form
         onSubmit={handleSubmit(onSubmit)}

@@ -17,7 +17,7 @@ export const TableFooter = () => {
   const selectedItemsCount = selection.items.length > 0 && selection.show;
 
   return (
-    <div className="gap-y-20 pt-10 border-t-1px border-slate-200 flex flex-col w-full">
+    <div className="gap-y-20 pt-10 border-t-1px font-medium border-slate-200 flex flex-col w-full">
       <div className="flex xl:justify-between w-full xl:flex-row gap-y-5 flex-col xl:items-end">
         <div className="flex items-end">
           <h5 className="font-world text-lg md:text-xl">Total Price:</h5>

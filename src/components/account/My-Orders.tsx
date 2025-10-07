@@ -44,7 +44,7 @@ export const Orders = () => {
   }, [index]);
 
   return (
-    <div className="flex-col flex mt-6 md:mt-14">
+    <div className="flex-col flex mt-6 md:mt-14 font-medium">
       {orders.length === 0 && <NotFound name="No Orders" />}
 
       {[...orders].reverse().map((items, i) => {

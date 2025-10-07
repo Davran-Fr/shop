@@ -29,7 +29,7 @@ export const LogOutNotificate = () => {
     <div
       className={`fixed flex ${
         show ? " visible pointer-events-auto" : "invisible pointer-events-none"
-      } duration-100 items-center px-4 justify-center top-0 left-0 w-full h-full bg-black/60 z-50`}
+      } duration-100 items-center px-4 font-medium justify-center top-0 left-0 w-full h-full bg-black/60 z-50`}
     >
       <div
         className={`rounded-md bg-white ${
