@@ -10,6 +10,7 @@ const initialState: Props = {
   show: false,
   items: [],
 };
+
 const removeSelect = createSlice({
   name: "removeSelect",
   initialState,

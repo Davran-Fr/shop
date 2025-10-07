@@ -1,7 +1,7 @@
 import { UpdatedType } from "@/validation/validation";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { customBaseQuery } from "./fecthBaseQueryAuth";
-import { ChangeProfilePayload, UserResponse } from "@/Types/main";
+import {  UserResponse } from "@/Types/main";
 
 export const api = createApi({
   reducerPath: "pokemonApi",

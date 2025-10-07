@@ -16,6 +16,7 @@ import {
 } from "@/lib/useLocaleStorage";
 
 const baseQuery = fetchBaseQuery({
+  //////// ---------  Coudn't use Url from env because of vercel can'not find Url from env ---------  /////////
   // baseUrl:  process.env.NEXT_PUBLIC_API_URL,
   baseUrl: "https://api.escuelajs.co/api/v1",
   //   credentials: "include",

@@ -8,7 +8,12 @@ import { toggleFilter } from "@/Redux/toggleFilterBack";
 import { Container } from "@/ui/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetAllCategoriesListsQuery } from "@/Api/ecommerce";
-import {  useCategory,  usePrices,  useOrder,  useSearch} from "../../features/filters/useFilterChanges";
+import {
+  useCategory,
+  usePrices,
+  useOrder,
+  useSearch,
+} from "../../features/filters/useFilterChanges";
 
 import MobileFilterBar from "./MobileFilterBar";
 import useClickOutside from "@/hooks/useClickOutSide";
